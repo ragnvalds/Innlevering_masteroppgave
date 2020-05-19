@@ -1,0 +1,277 @@
+####Notes for theory and introduction####
+[@sett inn navn2010]
+According to @navn2014
+[@RN2018; @RN2004; @RN2016]
+
+
+
+se pa DE Lincs. Alle LINCene i Daniel sin analyse. Hva skjer med Lincene. I forste omgang ikke se pa forskjell multiple single sets. Se pa hvordan seq og qpcr data korrelerer
+
+
+
+# Plan videre:
+validere seq data
+korrelasjon seq data-qpcr data fold-change, baseline verdier.
+
+model lavrespondere- Flytte lavrespondere til highrespondere?
+
+fokus:
+vet lite om LINCs
+se po LINCS og hva som er gjort.
+diskusjon
+low responder og high responder.
+
+
+-all genes present when searching in counts_matrix in excel. How to search in counts_data in R?
+
+
+-find all lincs in count matrix. Where do I find the list?
+
+-normalising LINCs?
+
+-only use the LINCs that responds on both training modalities (1set/3sets)
+
+-only use anotated LINcs
+
+-main focus on LINCS used for PCR
+
+-PCR vs seq data use fold/change mean values
+
+
+
+####From eks. master####
+
+mechanical stimuli to skeletal muscle, strength training. **Kilde**
+
+addition of sarcomeres in parallel in muscle fibres**Kilde**
+
+beginners low hypetrophy effect. mostly neural adaptations, muscle activation.**KIlde**
+
+after a while muscle growt**KIlde**
+
+over time, increase in muscle net protein synthesis (MPS) **KIlde** (Damas, Phillips, Vechin, & Ugrinowitsch, 2015; Hornberger, 2011), because lower protein degradation and higher, maybe more efficient protein synthesis (Phillips, Tipton, Aarsland, Wolf, & Wolfe, 1997)
+
+(Kraemer et al., 2002)
+
+mammalian target of rapamycin (mTOR) very important for the adaptaion to strength training, mTOR complex 1 (mTORC1)**KIlde**
+
+
+signalling pathways**KIlde**
+
+
+
+translation capacity how many ribosomes are available, tRNA and translation factors **KIlde**(Chaillou, Kirby, & McCarthy, 2014) 
+translation efficiency is how effiecent the ribosome does the protein synthesi, **KILDE**
+
+Increase in the translation efficiency is likely one of the main variables  behind elevated MPS as a response to strenth training. **KIlde**
+  (O’Neil, Duffy, Frey, & Hornberger, 2009).
+
+
+
+mTOR is a part of the phosphatidylinositol 3-kinase-related kinase family. two distinct multi-protein complexes mtor c1 and c2 **KILDE**
+
+
+adaptations: mtor is targeting different signalling patways and proteins. Is probably very important for MPS **KILDE**
+
+rapamycin binds to the FKBP12-rapamycin binding domain (FRB) and by doing that inhibits mtorc1. That results in inhibited cell proliferation and muscle hypertrophy.  **KILDE**
+
+mTorC1 activity is regulated by several upstream regulators. One of them is phosphoinositide 3-kinase (PI3K), that again regulates protein kinase B (Akt) (Bodine et al., 2001; Stokoe et al., 1997)**KILDE** Mechanical stimuli leads to that Insulin-like growth factor 1 (IGF-1) binds to receptors in the cell membrane, and this initiate stimulation of PI3K- and Akt-activity (McCarthy & Esser, 2010) **KILDE** AKT phosporylates downstream effectors and that activates G-protein Rheb (Ras-homolog enriched in brain) and that again activates mTORC1 
+
+amino acids and mechanical stimuli upregulates mtorc1. **KILDE**
+mTORC1 phosphorylates 4E-BP1 and S6K1 which eventually leads to enhanced protein synthesis **KILDE**
+
+we dont know much about the function of mtorc2, but it looks like it may be associatesd with the ribosome and regulating ribosomal activity. And cell suvival.  **KILDE**
+
+
+
+
+
+####Adaptations to Endurance and Strength Training
+David C. Hughes, Stian Ellefsen, and Keith Baar####
+
+prolonged exercise training can enhance human exercise performance. Humans adapt to training. Alter muscle phenotype. individual responses. All not identified yet.
+
+strength training resilts in neural adaptations, improved strength and cross sectional area. adaptations to strength traing shows after 8-12 weeks (Folland JP, Williams AG. 2007. Morphological and neurological
+contributions to increased strength. Sports Med
+37: 145–168)
+
+
+vary load and volume to target either CSA or neuromuscular drive **KILDE**. load between 1RM and 10RM and 4-12 reps.
+
+Hypertrophy adaptation, increase CSA muscle fibers, add sarcomers in paralell **Staron et al.1990, KILDE**
+
+central neural component important for adaptations espescially witg unilateral training, CSA in utrained leg does not change, but an increase in strength can be found **Munn et al.2004, KILDE**
+
+
+INcreased RFD (rate of increase in force at the contraction onset)  **KILDE**
+
+Increase in mtorc1 activity after strength training -> singnaling trhough a P13K/Akt independent RXRxxS/T kinase **KILDE**
+
+mtorc1 driving ribosomal biogenesis not yet understood the mechanism **KILDE**
+
+
+
+####Exercise Metabolism and the Molecular Regulation of Skeletal Muscle Adaptation####
+Brendan Egan1,2 and Juleen R. Zierath2,3,4,*
+Copenhagen DK-2200, Denmark
+http://dx.doi.org/10.1016/j.cmet.2012.12.012
+
+
+Increase in mRNA expression after bout of strength training, drives protein synthesis of specifikk proteins **Barres et al. KILDE**
+
+sceletal muscle plasticity: contraction induced changes, calcium flux, redox balance, reactive oxygen species (ROS). cascade of signal transduction.
+
+excitation-transcription model. See schematic overview.
+
+adaptive hypertrophy mainly driven by MPS (muscle protein synthesis) after activation of mTOR, ribosomal protein S6K (p70) and downstream variables **(Bodine et al., 2001, KILDE)**
+protein translation pathways, and ribosomal biogenesis pathways  **ELABORATE** **KILDE**
+
+adaptations. increased CSA, spescially IIa fibres, increase in noncontractile tissue, e.g collagen, and change in muscle fibers angle of pennation. **KILDE**
+
+mTOR pathway **ELABORATE**
+
+protein degradation **ELABORATE**
+
+
+
+####LONG NON CODING RNA####
+
+Long non-coding RNAs in the regulation of skeletal myogenesis and
+muscle diseases
+Yuying Li a, Xiaona Chen b, c, Hao Sun a, Huating Wang.
+
+
+noncodev5: database om funksjon til lnc.
+
+
+
+
+
+####Abbreviations#### 
+4E-BP1 Eukaryotic initiation factor 4E-binding protein 1
+ADP Adenosine diphosphate
+Akt Protein kinase 
+ATP Adenosine triphosphate
+AU Arbitrary units
+CHO Choline
+CI Confidence interval
+CONST Constant-volume training
+Ct Threshold cycle
+CTRL Control group
+DAG Diacylglycerol
+DGK Diacylglycerol kinase
+DGKα Diacylglycerol kinase alpha
+DGKζ Diacylglycerol kinase zeta
+DGKζS1 Diacylglycerol kinase zeta splice isoform 1
+DGKζS2 Diacylglycerol kinase zeta splice isoform 2
+DGKζS3 Diacylglycerol kinase zeta splice isoform 3
+dH2O Distilled water
+DXA Dual-energy X-ray absorptiometry
+E Efficiencies
+ECL Enhanced chemiluminescent
+EDTA Ethylenediaminetetraacetic acid
+eEF2 Eukaryotic elongation factor 2
+EXP Experimental group
+FoxO Forkhead box protein O
+FRB FKBP12-rapamycin binding domain
+6
+HEK293 Human embryonic kidney 293 cells
+IGF-1 Insulin-like growth factor 1
+IP3 Inositol triphosphate
+LDS Lithium dodecyl sulphate
+LEK Local ethics committee
+LMM Linear mixed-effects models
+Log Logarithmic scale
+MARCKS Myristoylated alanine-rich C kinase substrate
+
+
+NaCl Sodium chloride
+NF-κB Nuclear factor kappa-light-chain-enhancer of activated B-cells
+p53 Tumour protein p53
+PA Phosphatidic acid
+PC Phosphatidylcholine
+PI3K Phosphoinositide 3-kinase
+PIP2 Phosphatidylinositol 4.5-bisphosphate
+PLC Phospholipase C
+PLD Phospholipase D
+post1w Muscle biopsy sampled 7 days after last session
+qPCR Quantitative polymerase chain reaction
+Rheb Ras-homolog enriched in brain
+RM Repetition maximum
+S0 Muscle biopsy sampled prior to training (baseline)
+S1 Muscle biopsy sampled 48 hours after 1st session
+S12 Muscle biopsy sampled 48 hours after last (12th) session
+7
+S4 Muscle biopsy sampled prior to 5th session
+S5 Muscle biopsy sampled 48 hours after 5th session
+S6K1 Ribosomal protein S6 kinase beta-1
+S8 Muscle biopsy sampled prior to 9th session
+S9 Muscle biopsy sampled 48 hours after 9th session
+SD Standard deviation
+SDS Sodium dodecyl sulphate
+SM Sphingomyelin
+SMS Sphingomyelin synthase
+STR Strength
+TBS-T Tris-buffered saline containing Tween-20
+Tris Tris(hydroxymethyl)aminomethane
+Tris-HCl Tris Hydrochloride
+TSC2 Tuberous sclerosis complex 2
+UPS Ubiquitin-proteasome system
+US Ultrasound
+VAR Variable-volume training
+
+######Genes used for qPCR#######
+
+GAS5 (Growth arrest-specific 5; suppression of MYC translation) (ENSEMBL 221; ENST00000450589.5):
+
+Regulators of myogenic differentiation/myogenesis/hypertrophy:				
+Linc MD1 (BESTILT okt 2017):
+Linc-MD1 is a well-characterized ceRNAs in skeletal muscle. Its
+expression is restricted to skeletal muscle and activated upon
+mouse and human myoblast differentiation [13]. Its depletion
+down-regulated the myogenic markers, while overexpression led
+to their accumulation. It was showed that linc-MD1 affects myogenesis
+by acting as a decoy of miR-133 and miR-135, blocking the
+repression of their target mRNAs including mastermind-like transcriptional
+coactivatore1 (MAML1) and myocyte enhance factor 2C
+(MEF2C). MAML1 and MEF2C are both important transcriptional
+co-activators in myogenic differentiation, in particular MEF2C activates
+multiple muscle specific gene. H. Shen, et al., The Notch coactivator, MAML1, functions as a novel coactivator
+for MEF2C-mediated transcription and is required for normal myogenesis,
+Gene Dev. 20 (6) (2006) 675e688.
+				
+AK017368/ 5430431A17Rik (mus)/ AC020909.2-201 (human, ensembl):	Information/inspiration from http://www.fasebj.org/content/early/2017/09/13/fj.201700560RR.long 			
+				
+Positive regulator of ribosomal biogenesis:				
+PARROT (positive regulator av c-Myc) (BESTILT okt 2017): 				
+				
+PVT1 				
+(activated early during muscle atrophy, impacts mitochondrial respiration and morphology and affects mito/autophagy, apoptosis and myofiber size in vivo; ENST00000523068.1 = denne varianten er representative for de fleste splice variantene) (http://www.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000249859;r=8:127794533-128101253)				
+				
+AK021986 (homolog til mm SYISL, a linc located in the fourth intron of the SYNPO2 gene) (https://www.ncbi.nlm.nih.gov/nuccore/AK021986; http://www.ensembl.org/Homo_sapiens/Location/Genome?ftype=DnaAlignFeature;id=AK021986.1;db=cdna)				
+				
+Se artikkelen: Long noncoding RNA SYISL regulates myogenesis by interacting with polycomb repressive complex 2				
+				
+RMRP (RNA component of mitochondrial RNA processing endoribonuclease; transport gjennom mitokondriemembranen):				
+				
+LNC310:				
+				
+LNC1405:
+
+
+
+######from daniel RNA extraction#######
+
+ Approximately 25 mg of wet muscle tissue was homogenised in a total volume of 1 ml of TRIzol reagent (Invitrogen, Life technologies AS, Oslo, Norway) using 0.5 mm RNase-free zirconium oxide beads and a bead homogeniser (Bullet Blender,NextAdvanced,Averill Park, NY, USA) according to the manufacturer’s instructions. In order to enable analysis of target gene expression per unit tissue weight, an exogenous RNA control (λ polyA External Standard Kit, Takara Bio Inc., Shiga, Japan) was added at a fixed amount (0.04 ng ml−1 of Trizol reagent) per extraction prior to homogenisation, as previously described (Ellefsen et al. 2008, 2014a). Following phase separation, 400 µl of the upper phase was transferred to a fresh tube and RNA was precipitated using isopropanol. The resulting RNA pellet was washed three times with 70% EtOH and finally eluted in TE buffer. RNA quantity and purity was evaluated using a spectrophotometer; all samples had a 260 nm/280 nm ratio >1.95. RNA was stored at −80°C until further processing. In the analysis of total RNA content per unit tissue weight, one sample was excluded prior to analysis duetonegativedeviation fromtheexpectedvalue basedon the relationship between sample weight and RNA content, suggesting sample loss in washing steps. RNA integrity was assessed by capillary electrophoresis (Experion Automated Electrophoresis Station using RNA StdSens Assay, Bio-Rad) with average integrity score (RNA quality indicator; RQI) 8.1 (SD = 2.1). Five hundred nanograms ofRNAwere reverse transcribed using anchored oligo-dT, random hexamer primers (Thermo Scientific) and SuperScript IV Reverse Transcriptase (Invitrogen) according to the manufacturers’ instructions. All samples were reverse transcribed in duplicate and diluted 1:50 prior to quantitative real-time polymerase chain reaction (qPCR). 
+ 
+ 
+ ##from daniel 
+ qPCR reactions were run on a fast-cycling real-time detection system(Applied Biosystems 7500 fast Real-Time PCR Systems, Life Technologies AS), with a total volume of 10 µl, containing 2 µl of cDNA, specific primers (0.5 µM final concentration) and a commercial master mix (2X SYBR Select Master Mix, Applied Biosystems, Life Technologies AS). qPCR reactions consisted of 40 cycles (3 s 95°C denaturing and 30 s 60°C annealing). Melt-curve analyses were performed for all reactions to verify single-product amplification. Gene-specific primers were designed for all targets using Primer-BLAST (Ye et al. 2012) and Primer3Plus (Untergasser et al. 2012) and ordered from Thermo Scientific, except for the external RNA control, for which primers were supplied with the kit. Raw fluorescence data were exported from the platform-specific software and amplification curves were modelled with a best-fit sigmoidal model using the qpcR-package (Ritz & Spiess, 2008) written for R (R Core Team, 2018). Threshold cycles (Ct) were estimated from the models by the second-derivate maximum method with technical duplicates modelled independently. Amplification efficiencies were estimated for every reaction (as described by Tichopad et al. 2003; implemented inRitz&Spiess, 2008).For everyprimerpair, mean amplification efficiencies (E) were utilised to transform data to the linear scale using E–Ct. Primer sequences and primer characteristics (i.e. average primer efficiencies and Ct values) are presented in Table 2. Gene expression data were log-transformed prior to statistical analysis. As Ct values, but not efficiencies are related to RNA integrity (Fleige & Pfaffl, 2006), RQI scores were used in the statistical treatment ofqPCR data to control for potential degradation effects on a by target basis (see below).
+
+
+## from daniel
+Data analysis and statistics
+
+
+
+All descriptive data are presented as mean and standard deviation (mean (SD)) unless otherwise stated. Apriori sample-size calculations indicated that 40 participants was sufficient to detect ß3 and 5 percentage-point differences in the primary outcomes, muscle cross-sectional area and maximal voluntary strength, respectively, between volume conditions. Sample-size calculations were based on a desired 80% power, assuming differences between volume condition corresponding to effect sizes of 0.47–0.51, as estimated from previous studies (Ronnestad et al. 2007; Mitchell et al. 2012). To assess the effect of volume conditions (number of sets) on muscle hypertrophy and strength, linear mixed-effects models (LMMs) were specified with relative changes from baseline as the dependent variable and number of sets as the main fixed effect. Baseline values were used as a co-variate together with sex. The interaction between sex and number of sets was explored for all hypertrophy and strength outcomes. Training effects on molecular characteristics (total RNA and western blot data) were also assessed using LMMs specified with time and the time to exercise–volume interaction as fixed effects. Models were specified with random intercepts for participants and when appropriate, random slopes for time and exercise volume at the level ofparticipants. Model simplification was performed through reduction of random-effects parameters based on likelihood-ratio (LHR) tests. Plots of residual and fitted values were visually inspected to assess uniformity of variance over the fitted range. Whenever deviations from these assumptions were identified, data were log-transformed and models were re-fitted. Generalised linear mixed-effects models (GLMMs) were used to fit muscle fibre distributions and gene family-normalised myosin heavy-chain mRNA data (Ellefsen et al. 2014b; after transformation to transcript counts as described by Matz et al. 2013) using the fixed and random effects structure specified above for molecular characteristics. A binomial variance/link function (logit-link) was used for muscle fibre distributions with the number of counted fibres per sample used as weights to account for sample size. A beta variance/link-function (logit-link) was used tomodel gene family-normalised myosin heavy-chain mRNA data. This was done in order to account for the non-normal nature of relative fibre-type/myosin-isoform distribution data, where specific fibres/transcripts are analysed as a proportion ofthe totalnumberoffibres/transcripts in each sample and thus bound between 0 and 1. The beta model was used for gene-family mRNA data as the denominator could be regarded as arbitrary. Gene-abundance data, either expressed as per total RNA or per unit muscle weight using the external reference gene were analysed through the modelling of gene sets as suggested by Matz etal. (2013) using mixed linear modelswith within-model normalisation through the addition of random effects of technical replicates. To allow for gene-specific variances, variance functions were specified per strata (per gene) (Pinheiro&Bates, 2000). RNA integrity scores (RQI) were included in the model on a per target basis to coontrol for RNA degradation. Tests against the null-hypotheses of no differences between volume conditions and no effect of time were performed on model-parameter estimates resulting from LMMs and GLMMs. LMMs were fitted using the nlme-package (Pinheiro & Bates, 2000), binomial GLMM models using the lme4-package (Bates etal. 2015) and beta GLMMs using the glmmTMB-package (Magnusson et al. 2019) written for R. To explore the determinants of the additional benefit of multiple-sets, dichotomous response variables were constructed from individual differences in singleand multiple-set outcomes in muscle hypertrophy (cross-sectional area, CSA) and average muscle strength. When the difference between volume conditions in training-induced outcomes were larger than the smallest worthwhile change (SWC) in the direction of the multiple-set, variables were coded as additional benefits of multiple-set. The SWC was calculated as between-participants SD × 0.2. To account for sex differences in CSA and strength measures, standard deviations were estimated from data mean-centred per sex.SWCswere expressed as percentages ofthe sex-specific mean and the averages thereof were used to classify benefits. For the combined strength variable, a weighted SWC was used in order to avoid underestimation of between-participant variability due to regression toward the mean. The probability of benefits of the multiple-set was related to a wide range of predictors using logistic regression. Prior to model fitting, apriori selection of relevant predictor variables was done; these included blood variables, baseline strength and muscle mass, volume-dependent molecular responses to training (i.e. total RNA content and S6K1 phosphorylation expressed as a percentage of single-set readouts) and baseline fibre-type composition. Two participants were excluded from variable selection due to missing data in selected variables. Purposeful selection of variables was done in a step-wise manner following Hosmer et al. (2013). First, each possible predictor was fitted into a univariate linear model, controlling for sex, providing estimation of the between-benefit groups difference for the variable ofinterest. Predictors with P < 0.20 from the first step were kept for further considerations. All predictors from the first step were fitted in a preliminary model from where predictors were sequentially removed if they were not significant at the P< 0.1 level using Wald-based P values or influenced other predictors. All predictors from the first step were checked for linearity (logit) by creating design variables and plotting each categorymedian against coefficients from a logistic model. Non-linear variables were categorised into biologically meaningful categories (e.g. Vitamin D insufficient/sufficient), dichotomised based on measurement detection limits (testosterone in females) or sex-specific median values (e.g. lean body mass). Thirty-two participants were included in the variable selection as two participants had missing data in some of the pre-selected variables. Logistic models fitted with small samples have been shown to give biased estimates (Nemes et al. 2009); this was recognised and bias-corrected estimates were reported (Kosmidis, 2019) with Pvalues from likelihood-ratio tests comparing sequentially reduced models. The level of statistical significance was set to α = 0.05. All data-analysis was done in R (R Core Team, 2018).

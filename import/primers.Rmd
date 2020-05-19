@@ -1,0 +1,94 @@
+---
+output:
+  
+  html_document: default
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse) # for data wrangling and file download
+library(knitr) # for the kable function
+library(kableExtra) # for extended capabilities
+library(readxl) #to read excel spredsheets
+
+
+
+```
+
+```{r data, include=FALSE, echo=FALSE}
+primers_all <- read_excel("./data/primers_all.xlsx", na = "NA")
+
+
+#First steps, decide what data to use and summarise
+#Before we can start to format the table, we need to decide what data to #put in it. The goal here is to create a summary table of primer #characteristics. .
+#Store in a new object, so that the raw data can be used later.
+
+
+
+pri <- primers_all %>%
+  rowwise() 
+
+
+#Using dplyr::group:by() and dplyr::summarise() we can now create a summary table.
+
+pri <- data.frame(pri) %>%
+  ungroup() %>%
+  group_by(Ensemble_ID) %>% 
+  print()
+
+
+
+```
+
+```{r primer_table_all, results ='asis', echo=FALSE}
+#The summary table is ready for making a table. In R Markdown chunk settings, we need to set the output format to results = "asis". This will print the table correctly. To create the table, all we need to do is to is to pipe it to kable().
+ 
+ pri %>%
+  kable(format = "html", col.names = c("Primers", 
+                                       "Ensemble ID",
+                                       "Forward primer", 
+                                       "Reversed primer"), 
+        caption = "Table 1: All primers made for selected genes") %>% 
+   pack_rows("LincAK017368", 1, 3) %>%
+  pack_rows("LincMD1", 4, 6) %>% 
+  pack_rows("PARROT/LINP1", 7, 9) %>% 
+  pack_rows("GAS5", 10, 12) %>% 
+  pack_rows("PVT1", 13, 15) %>% 
+  pack_rows("AK021986", 16, 18) %>% 
+  pack_rows("RMRP", 19, 21) %>% 
+  pack_rows("LNC310", 22, 28) %>% 
+  pack_rows("LNC1405", 29, 31) %>% 
+ kable_styling(bootstrap_options = "striped", font_size = 12) %>%  
+save_kable(file = "figures/all_primers.png")
+  #add_header_above(c(" " = 1, "Female" = 2, "Male" = 2))   #1, 2 and 2 is the number of cols .
+
+
+
+
+
+```
+
+
+
+
+
+# Primers used
+
+```{r}
+prim_u <- read_excel("./data/primers_used.xlsx", na = "NA") %>% 
+  select(Name, Gene, Forward_primer, Reversed_primer)
+
+prim_u %>% 
+  kable(format = "html", col.names = c("Name", 
+                                       "Ensemble ID",
+                                       "Forward primer",
+                                       "Reversed primer"), 
+        caption = "Table 2: Primers used") %>% 
+  kable_styling(bootstrap_options = "striped", font_size = 12) %>% 
+  save_kable(file = "figures/primers_used.png") 
+```
+
+
+

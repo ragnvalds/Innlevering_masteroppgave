@@ -1,0 +1,48 @@
+**Bruk følgende oppbygning av intro dersom du går for 3 set vs 1 set sammenligning (bruk gjerne Hammarstrøm et al 2020 som mal/for inspirasjon)**:
+
+**Avsnitt der du kort beskriver viktigheten av styrketrening for alt fra topputøvere til syke og setter effektene i relasjon til muskelvekst. Få deretter frem at grad av muskelvekst henger sammen med anvendte treningsprotokoller (e.g. treningsvolum), men at vi fortsatt vet lite om de underliggende forklaringene.**
+
+**Ta deretter turen via generelle pathways for regulering av muskelplastisitet (mTOR/AKT, MAPK, o.l.) og dens effekter på feks translasjonskapasistet (e.g. rRNA) og satelittcelleproliferering,** 
+
+**før du fremhever LNC’enes tilstedeværelse og deres mulige interaksjoner med de aktuelle pathways**.
+
+**Til slutt fremhever du at vi vet svært lite om LNCs generelt (men at det er et forskningstema i eksplosiv vekst), at vi vet enda mindre i skjelettmuskel, og at kunnskap fra muskel hos mennesker er tilnærmet fraværende. Disse to avsnittene skal altså fungere som innledning til det første delkap (og samtidig definerer (og begrunne) oppgavens fokus – uten at dette skrive tydelig – det skal henge i luften.**
+
+
+
+
+**Delkap1: Muskelvekst og treningsvolum (kan evt gjøres til to underdelkap – mulig rekkefølgen bør byttes om). Her skal du først få frem at det er et tydelig forhold mellom muskelvekst og treningsvolum. Fremhev at dette lenge var usikkert, men at meta-analyse viser dette – få deretter frem at dette er tydelig i intrabiologiskemodeller (og hvorfor). Hvorfor **
+
+
+
+**Delkap 2: fokus på cellulære pathways som antas å kontrollere muskelvekst (ie. Gjennom reg av translasjon og satelittcelleprolif) – her skal du konsentrere deg om pathways som senere skal brukes aktivt i diskusjon rundt betydningene av LNCs – du skal altså etablere en rød tråd – informasjonen begrenses således til generell oversikt samt perspektiver som påvirkes av LNCs**
+
+
+
+•**Delkap 3: LNCs (flere underdelkap? E.g.** 
+
+  **o	 LNCs generelt, hva er de? Hvorfor vet vi så lite? Generelle funksjoner og nomenklatur/kategorier**
+
+**Some of the first cases of gene-specific regulatory roles of lncRNAs were uncovered in the early 1990s, with the discovery of lncRNAs involved in epigenetic regulation, such as H19 (Brannan et al. 1990) **
+
+
+ **o	LNCs i cellevekst og proliferering (med særlig fokus på muskel utover i underdelkap). Hvilke funksjoner har de i regulering av cellevekst og proliferering (på generelt grunnlag – e.g. fra kreftforskning) - igjen plukker du opp pathways fra foregående delkap)? Hvilke funksjoner har de i muskel, inkl info om totalt uttrykksomfang i dyrestudier og kjente funksjoner for spesifikke LNCs?**
+ 
+ **o	hvordan kan vi studerer LNCs in vivo hos mennesker? Først må uttrykksomfanget kartlegges. RNA-seq vs qPCR . Få frem at ikke alle LNCs har poly-A hale, noe som er nødvendig dersom de skal plukkes opp i poly-A drevet RNAseq (poenget er å forberede leseren på at du kun gjenfinner 6 av linkene fra qPCR-exp i RNA-seq datasettet  - dette er en av mulige forklaringer – sekvenseringsdybde er en annen)**
+ 
+   Genes used for qPCR **dette må ogspå inn I teorikap. Mitt tips er at du skriver teoridelen først – deretter lager du en compiled variant som fungerer som intro i artikkelen**
+   
+   **Ha fokus på å skrive gode avsnitt (på ca ½ side – rettesnor) som forteller en sammenhengende historie – hele introen skal henge sammen**
+   
+   
+   
+   **gangen gjennom results blir som følger (skriv som sammenhengende historie):**
+   
+   **•	sammenligning moderat vs lavt volum – hvor mange LNCs responderte ulikt på de to treningsmod ved hvert av de tre tidspunktene?**
+
+**•	Hvilke endret seg ved hvert av de tre tidspunktene? Prøv å få til en samlende historie, med fokus på gener som endrer seg, inkl retning og fold-change. For de andre, holder det å skrive at de ikke endret seg**
+
+
+**•	Var det forskjell mellom moderat og lavt volum? Ideelt sett skrives dette sammen med info fra foregående punkt – igjen tenk rød tråd og historie RNA-seq vs qPCR** 
+
+**lage én figur som fremviser korrelasjon (mellom per mg uttrykk RNA-seq og per-mg-uttrykk-qPCR)? Bryte dataene ned til individer? Dvs  lage et korrelasjonsplot for samtlige individer og gener? Evt et plot per gen. Disse dataene kan evt presenteres i tabellform -  poenget er å vise frem at dataene er reliable**
