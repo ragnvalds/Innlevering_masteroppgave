@@ -82,7 +82,8 @@ lnc_count <- lncRNA %>%
 ####rest model timepoint and sets single sets#####
 
 
-  full_rest_lnc <- full_rest %>%
+  
+full_rest_lnc <- full_rest %>%
   filter(model %in% c("lib_size_normalized", "tissue_offset_lib_size_normalized"),
          coef %in% c("timew2pre", "timew12")) %>%
   
@@ -102,9 +103,12 @@ full_rest_lnc %>%
   mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
  ggplot(aes(estimate, -log10(p.val), color = paste(pt,inc_dec))) + geom_point() + 
   facet_grid(model ~ coef)+
-  xlab("log2FC") +
-  labs(caption = "Figure 2: Differential expressed lncRNAs at rest, timepoint and sets model, single sets")
+  xlab("log2FC")+
+  labs(title = "Rested state,single sets")
 
+
+  
+  
 
 
 
@@ -127,11 +131,10 @@ full_rest_lnc %>%
 full_acute_lnc %>%
   mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
   mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
-  ggplot(aes(estimate, -log10(p.val), color = paste(pt,inc_dec,gene))) + geom_point() +
+  ggplot(aes(estimate, -log10(p.val), color = paste(pt,inc_dec))) + geom_point() +
   facet_grid(model ~ coef)+
   xlab("log2FC") +
-  labs(caption = "Figure 4: Differential expressed lncRNAs acute respons, timepoint and sets model, single sets")
-
+  labs(title = "Acute respons,single sets")
 
 
 
@@ -163,7 +166,7 @@ full_rest_lnc_m %>%
   ggplot(aes(estimate, -log10(p.val), color = paste(pt,inc_dec))) + geom_point() + 
   facet_grid(model ~ coef)+
   xlab("log2FC") +
-  labs(caption = "Figure 2: Differential expressed lncRNAs at rest, timepoint and sets model, multiple sets")
+  labs(title = "Rested state,multiple sets")
 
 
 
@@ -194,8 +197,7 @@ full_acute_lnc_m %>%
   ggplot(aes(estimate, -log10(p.val), color = paste(pt,inc_dec))) + geom_point(aes(label=gene)) +
   facet_grid(model ~ coef)+
   xlab("log2FC") +
-  labs(caption = "Figure 4: Differential expressed lncRNAs acute respons, timepoint and sets model, multiple sets")
-
+  labs(title = "Acute respons, multiple sets")
 
 
 
@@ -233,8 +235,7 @@ full_rest_lnc_pcr %>%
   ggplot(aes(estimate, -log10(p.val), color = paste(pt,inc_dec))) + geom_point() + 
   facet_grid(model ~ coef)+
   xlab("log2FC") +
-  labs(caption = "Figure 2: Differential expressed qpcr lncRNAs at rest, timepoint and sets model, single sets")
-
+  labs(title = "Rested state qpcr lncs, single sets")
 
 
 
@@ -263,7 +264,7 @@ full_acute_lnc_pcr %>%
   ggplot(aes(estimate, -log10(p.val), color = paste(pt,inc_dec))) + geom_point() +
   facet_grid(model ~ coef)+
   xlab("log2FC") +
-  labs(caption = "Figure 4: Differential expressed qpcr lncRNAs acute respons, timepoint and sets model, single sets")
+  labs(title = "Acute respons qpcr lncs, single sets")
 
 
 
@@ -297,7 +298,7 @@ full_rest_lnc_m_pcr %>%
   ggplot(aes(estimate, -log10(p.val), color = paste( pt, inc_dec))) + geom_point() + 
   facet_grid(model ~ coef)+
   xlab("log2FC") +
-  labs(caption = "Figure 2: Differential expressed pcr lncRNAs at rest, timepoint and sets model, multiple sets")
+  labs(title = "Rested state qpcr lncs, multiple sets")
 
 
 
@@ -327,7 +328,18 @@ full_acute_lnc_m_pcr %>%
   ggplot(aes(estimate, -log10(p.val), color = paste(pt,inc_dec))) + geom_point() +
   facet_grid(model ~ coef)+
   xlab("log2FC") +
-  labs(caption = "Figure 4: Differential expressed pcr lncRNAs acute respons, timepoint and sets model, multiple sets")
+  labs(title = "Acute response qpcr lncs, multiple sets")
+
+
+
+
+
+
+
+
+
+
+
 
 
 

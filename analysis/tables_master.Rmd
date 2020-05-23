@@ -1,0 +1,199 @@
+---
+title: "Tables_master"
+author: "ragnva"
+date: "23 5 2020"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r lncRNA_identified_seq, echo=FALSE, include=FALSE}
+
+library(tidyverse)
+library(readxl)
+library(knitr)
+library(dplyr)
+library(biomaRt)
+library(kableExtra)
+library(huxtable)
+### Find lncRNA from ensamble #########
+
+
+time_rest <- readRDS("./derivedData/DE/mixedmodel2_timemodel.RDS") #na="NA" tells read_excel how missing values are coded
+
+# Makes a vector of all transcripts (after filtering)
+all_genes <- unique(time_rest$gene)
+
+
+
+ensembl <- useMart("ensembl")
+ensembl <- useDataset("hsapiens_gene_ensembl", mart = ensembl)
+
+# List attributes from biomart
+listAttributes(ensembl)
+
+# Make a data frame of all genes with symbol, biotype etc...
+all_genes <- getBM(attributes=c('ensembl_gene_id', 'gene_biotype', 'entrezgene_id', 'hgnc_symbol'), 
+              filters = 'ensembl_gene_id',
+      values = all_genes, 
+      mart = ensembl)
+
+
+###total number of transcripts identified in RNA seq data
+
+all_transcripts <- NROW(all_genes)
+
+
+
+## Genes that are also analyzed by qPCR
+goi <- c("ENSG00000234741", "ENSG00000268518",  "ENSG00000225613",  "ENSG00000185847",
+         "ENSG00000249515",  "ENSG00000223784",  "ENSG00000249859",  "ENSG00000269900")
+
+all_genes %>%
+  filter(ensembl_gene_id %in% goi) %>%
+  print()
+
+
+#####lncRNA identified from seq data#####
+
+
+#### make a data frame of lncRNA 
+
+lncRNA <- data.frame (all_genes, na = "NA") %>%
+  filter(gene_biotype == "lncRNA") %>%
+  print()
+
+```
+
+```{r data, include=FALSE, echo=FALSE}
+library(tidyverse)
+library(readxl)
+library(knitr)
+library(dplyr)
+library(biomaRt)
+library(kableExtra)
+library(lme4)
+library(flextable)
+
+primers_all <- read_excel("./data/primers_all.xlsx", na = "NA")
+
+
+#First steps, decide what data to use and summarise
+#Before we can start to format the table, we need to decide what data to #put in it. The goal here is to create a summary table of primer #characteristics. .
+#Store in a new object, so that the raw data can be used later.
+
+
+
+pri <- primers_all %>%
+  rowwise() 
+
+
+#Using dplyr::group:by() and dplyr::summarise() we can now create a summary table.
+
+pri <- data.frame(pri) %>%
+  ungroup() %>%
+  group_by(Ensemble_ID) %>% 
+  print()
+
+
+
+```
+
+
+```{r primer_table_all, results ='asis', echo=FALSE}
+#The summary table is ready for making a table. In R Markdown chunk settings, we need to set the output format to results = "asis". This will print the table correctly. To create the table, all we need to do is to is to pipe it to kable().
+ 
+ pri %>%
+  kable(format = "html", col.names = c("Primers", 
+                                       "Ensemble ID",
+                                       "Forward primer", 
+                                       "Reversed primer"), 
+        caption = "Table 1: All primers made for selected genes", align = c("l","l","l", "l")) %>% 
+   pack_rows("LincAK017368", 1, 3) %>%
+  pack_rows("LincMD1", 4, 6) %>% 
+  pack_rows("PARROT/LINP1", 7, 9) %>% 
+  pack_rows("GAS5", 10, 12) %>% 
+  pack_rows("PVT1", 13, 15) %>% 
+  pack_rows("AK021986", 16, 18) %>% 
+  pack_rows("RMRP", 19, 21) %>% 
+  pack_rows("LNC310", 22, 28) %>% 
+  pack_rows("LNC1405", 29, 31) %>% 
+ kable_styling(bootstrap_options = "striped", font_size = 12) %>%  
+print()
+  #add_header_above(c(" " = 1, "Female" = 2, "Male" = 2))   #1, 2 and 2 is the number of cols .
+
+
+
+
+
+```
+
+
+
+
+
+# Primers used
+
+```{r primers used, results='asis', echo=FALSE}
+prim_u <- read_excel("./data/primers_used.xlsx", na = "NA") %>% 
+  dplyr::select(Name, Gene, Forward_primer, Reversed_primer)
+
+prim_u %>% 
+  kable(format = "html", col.names = c("Name", 
+                                       "Ensemble ID",
+                                       "Forward primer",
+                                       "Reversed primer"), 
+        caption = "Table 2: Primers used", align = c("l","l","l","l")) %>% 
+  kable_styling(bootstrap_options = "striped", font_size = 12) %>% 
+  print()
+```
+
+```{r table all lnc, results='asis', echo=FALSE}
+###make a table of all lncRNAs identified
+
+
+
+
+
+lncRNA %>% 
+dplyr::select(ensembl_gene_id, gene_biotype, entrezgene_id, hgnc_symbol) %>%
+  kable(format = "html", col.names = c("Ensemble gene ID", 
+                                       "Gene biotype",
+                                       "Entrezgene ID", 
+                                       "Hgnc symbol"), 
+        caption = "Table 3: All lncRNAs  identified", align = c("l",
+                "l",
+                "l",
+                "l")) %>% 
+  kable_styling(bootstrap_options = "striped", font_size = 12) %>% 
+  print()
+
+```
+ 
+
+
+
+```{r entrezgene_lnc_table, results='asis', echo=FALSE}
+###make table of lncs with entrezgene ID
+
+remove_na<- data.frame (lncRNA) 
+
+#na.omit removes NA
+entrezgene_id_lnc <- na.omit(remove_na) 
+
+
+#use select to select wanted variables
+entrezgene_id_lnc %>% 
+  dplyr::select(ensembl_gene_id, gene_biotype, entrezgene_id, hgnc_symbol) %>%
+kable(format = "html", col.names = c("Ensemble gene ID", 
+                                     "Gene biotype",
+                                     "Entrezgene ID", 
+                                     "Hgnc symbol"), 
+      caption = "Table 4: All lncRNAs  identified with entrexgene ID", 
+      align = c("l",
+                "l",
+                "l",
+                "l")) %>% 
+  kable_styling(bootstrap_options = "striped", font_size = 12) %>%  
+  print()
+```
