@@ -19,6 +19,7 @@ full_acute <- readRDS("./derivedData/DE/mixedmodel2_acutemodel.RDS")
 
 
 
+
 ### Find lncRNA from ensamble #########
 
 # Makes a vector of all transcripts (after filtering)
@@ -98,15 +99,11 @@ lnc_count <- lncRNA %>%
 
 full_rest_lnc %>%
   mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
-  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
-  ggplot(aes(estimate, -log10(p.val), color = paste(pt,inc_dec))) + geom_point() + 
+  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
+ ggplot(aes(estimate, -log10(p.val), color = paste(pt,inc_dec))) + geom_point() + 
   facet_grid(model ~ coef)+
   xlab("log2FC") +
   labs(caption = "Figure 2: Differential expressed lncRNAs at rest, timepoint and sets model, single sets")
-
-
-
-
 
 
 
@@ -128,7 +125,7 @@ full_rest_lnc %>%
 
 
 full_acute_lnc %>%
-  mutate(pt = if_else(p.adj < 0.05, paste= ("sig",gene), "ns")) %>%
+  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
   mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
   ggplot(aes(estimate, -log10(p.val), color = paste(pt,inc_dec,gene))) + geom_point() +
   facet_grid(model ~ coef)+
@@ -189,10 +186,12 @@ full_acute_lnc_m <- full_acute %>%
   print()
 
 
+
+
 full_acute_lnc_m %>%
   mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
   mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
-  ggplot(aes(estimate, -log10(p.val), color = paste(pt,inc_dec))) + geom_point() +
+  ggplot(aes(estimate, -log10(p.val), color = paste(pt,inc_dec))) + geom_point(aes(label=gene)) +
   facet_grid(model ~ coef)+
   xlab("log2FC") +
   labs(caption = "Figure 4: Differential expressed lncRNAs acute respons, timepoint and sets model, multiple sets")
@@ -204,8 +203,153 @@ full_acute_lnc_m %>%
 
 
 
+########### from qpcr###################
 
 
+
+
+####rest model timepoint and sets single sets#####
+
+
+full_rest_lnc_pcr <- full_rest %>%
+  filter(model %in% c("lib_size_normalized", "tissue_offset_lib_size_normalized"),
+         coef %in% c("timew2pre", "timew12")) %>%
+  
+  dplyr::select(gene, model, coef, estimate, se, z.val, p.val) %>%
+  
+  # filter out only qpcr lncRNA
+  
+  filter(gene %in% lncRNA$ensembl_gene_id) %>%
+  filter(gene %in% goi) %>% 
+  # P-value adjustments
+  group_by(model, coef) %>%
+  mutate(p.adj = p.adjust(p.val, method = "fdr")) %>%
+  print()
+
+
+full_rest_lnc_pcr %>%
+  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
+  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
+  ggplot(aes(estimate, -log10(p.val), color = paste(pt,inc_dec))) + geom_point() + 
+  facet_grid(model ~ coef)+
+  xlab("log2FC") +
+  labs(caption = "Figure 2: Differential expressed qpcr lncRNAs at rest, timepoint and sets model, single sets")
+
+
+
+
+
+
+#####acute model timepoint and sets single sets#####
+
+full_acute_lnc_pcr <- full_acute %>%
+  filter(model %in% c("lib_size_normalized"),
+         coef %in% c("timew2post")) %>%
+  dplyr::select(gene, model, coef, estimate, se, z.val, p.val) %>%
+  
+  # filter out only qpcr lncRNA
+  
+  filter(gene %in% lncRNA$ensembl_gene_id) %>%
+  filter(gene %in% goi) %>% 
+  # P-value adjustments
+  group_by(model, coef) %>%
+  mutate(p.adj = p.adjust(p.val, method = "fdr")) %>%
+  print()
+
+
+full_acute_lnc_pcr %>%
+  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
+  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
+  ggplot(aes(estimate, -log10(p.val), color = paste(pt,inc_dec))) + geom_point() +
+  facet_grid(model ~ coef)+
+  xlab("log2FC") +
+  labs(caption = "Figure 4: Differential expressed qpcr lncRNAs acute respons, timepoint and sets model, single sets")
+
+
+
+
+############ multiple sets###############
+
+
+
+####rest model timepoint and sets multiple sets#####
+
+
+full_rest_lnc_m_pcr <- full_rest %>%
+  filter(model %in% c("lib_size_normalized", "tissue_offset_lib_size_normalized"),
+         coef %in% c("timew2pre:setsmultiple", "timew12:setsmultiple")) %>%
+  
+  dplyr::select(gene, model, coef, estimate, se, z.val, p.val) %>%
+  
+  # filter out only qpcr lncRNA
+  
+  filter(gene %in% lncRNA$ensembl_gene_id) %>%
+  filter(gene %in% goi) %>% 
+  # P-value adjustments
+  group_by(model, coef) %>%
+  mutate(p.adj = p.adjust(p.val, method = "fdr")) %>%
+  print()
+
+
+full_rest_lnc_m_pcr %>%
+  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
+  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
+  ggplot(aes(estimate, -log10(p.val), color = paste( pt, inc_dec))) + geom_point() + 
+  facet_grid(model ~ coef)+
+  xlab("log2FC") +
+  labs(caption = "Figure 2: Differential expressed pcr lncRNAs at rest, timepoint and sets model, multiple sets")
+
+
+
+
+
+
+#####acute model timepoint and sets multiple sets#####
+
+full_acute_lnc_m_pcr <- full_acute %>%
+  filter(model %in% c("lib_size_normalized"),
+         coef %in% c("timew2post:setsmultiple")) %>%
+  dplyr::select(gene, model, coef, estimate, se, z.val, p.val) %>%
+  
+  # filter out only lncRNA
+  
+  filter(gene %in% lncRNA$ensembl_gene_id) %>%
+  filter(gene %in% goi) %>% 
+  # P-value adjustments
+  group_by(model, coef) %>%
+  mutate(p.adj = p.adjust(p.val, method = "fdr")) %>%
+  print()
+
+
+full_acute_lnc_m_pcr %>%
+  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
+  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
+  ggplot(aes(estimate, -log10(p.val), color = paste(pt,inc_dec))) + geom_point() +
+  facet_grid(model ~ coef)+
+  xlab("log2FC") +
+  labs(caption = "Figure 4: Differential expressed pcr lncRNAs acute respons, timepoint and sets model, multiple sets")
+
+
+
+
+
+
+
+
+
+
+###########################testing volcano plot###################
+
+library("ggplot2") #Best plots
+library("ggrepel") #Avoid overlapping labels
+
+
+input <-  #convert the rownames to a column
+volc = ggplot(input, aes(log2FoldChange, -log10(pvalue))) + #volcanoplot with log2Foldchange versus pvalue
+  geom_point(aes(col=sig)) + #add points colored by significance
+  scale_color_manual(values=c("black", "red")) + 
+  ggtitle("Your title here") #e.g. 'Volcanoplot DESeq2'
+volc+geom_text_repel(data=head(input, 20), aes(label=gene))
 
 
 

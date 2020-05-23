@@ -10,7 +10,7 @@
 
 #BiocManager::install('EnhancedVolcano')
 
-n## Bioconductor packages
+## Bioconductor packages
 library(EnhancedVolcano)
 library(org.Hs.eg.db)
 library(edgeR)
@@ -69,7 +69,7 @@ library(cowplot)
 library(qpcR)
 library(qpcrpal)
 library(publR)
-library(rctutils)
+#library(rctutils)
 
 
 ######### Functions #######################
