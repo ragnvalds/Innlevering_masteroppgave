@@ -5,7 +5,13 @@
 
 #BiocManager::install("rnaseqcomp")
 
-## Bioconductor packages
+#if (!requireNamespace('BiocManager', quietly = TRUE))
+  #install.packages('BiocManager')
+
+#BiocManager::install('EnhancedVolcano')
+
+n## Bioconductor packages
+library(EnhancedVolcano)
 library(org.Hs.eg.db)
 library(edgeR)
 library(limma)

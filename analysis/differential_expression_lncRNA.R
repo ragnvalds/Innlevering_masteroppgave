@@ -77,33 +77,8 @@ lnc_count <- lncRNA %>%
 
 ##### Filter and adjust p-values for differentially expression #####
 
-######rest model time only #####
 
-time_rest_lnc <- time_rest %>%
-  filter(model %in% c("lib_size_normalized", "tissue_offset_lib_size_normalized"),
-         coef %in% c("timew2pre", "timew12")) %>%
-  
-  dplyr::select(gene, model, coef, estimate, se, z.val, p.val) %>%
-  
-  # filter out only lncRNA
-  
-  filter(gene %in% lncRNA$ensembl_gene_id) %>%
-  # P-value adjustments
-  group_by(model, coef) %>%
-  mutate(p.adj = p.adjust(p.val, method = "fdr")) %>%
-  print()
-
-
-time_rest_lnc %>%
-  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
-  ggplot(aes(estimate, -log10(p.val), color = pt)) + geom_point() + 
-  facet_grid(model ~ coef)+
-  xlab("Estimate") +
-  labs(caption = "Figure 1: Differential expressed lncRNAs at rest, timepoint only model")
-
-
-
-####rest model timepoint and sets#####
+####rest model timepoint and sets single sets#####
 
 
   full_rest_lnc <- full_rest %>%
@@ -123,42 +98,20 @@ time_rest_lnc %>%
 
 full_rest_lnc %>%
   mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
-  ggplot(aes(estimate, -log10(p.val), color = pt)) + geom_point() + 
+  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
+  ggplot(aes(estimate, -log10(p.val), color = paste(pt,inc_dec))) + geom_point() + 
   facet_grid(model ~ coef)+
-  xlab("Estimate") +
-  labs(caption = "Figure 2: Differential expressed lncRNAs at rest, timepoint and sets model")
+  xlab("log2FC") +
+  labs(caption = "Figure 2: Differential expressed lncRNAs at rest, timepoint and sets model, single sets")
 
 
 
 
 
-###### Acute model time only #####
-
-time_acute_lnc <- time_acute %>%
-  filter(model %in% c("lib_size_normalized"),
-         coef %in% c("timew2post")) %>%
-         dplyr::select(gene, model, coef, estimate, se, z.val, p.val) %>%
-  
-  # filter out only lncRNA
-  
-  filter(gene %in% lncRNA$ensembl_gene_id) %>%
-  # P-value adjustments
-  group_by(model, coef) %>%
-  mutate(p.adj = p.adjust(p.val, method = "fdr")) %>%
-  print()
-
-
-time_acute_lnc %>%
-  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
-  ggplot(aes(estimate, -log10(p.val), color = pt)) + geom_point() + 
-  facet_grid(model ~ coef)+
-  xlab("Estimate") +
-  labs(caption = "Figure 3: Differential expressed lncRNAs acute respons, timepoint only model")
 
 
 
-
-#####acute model timepoint and sets#####
+#####acute model timepoint and sets single sets#####
 
   full_acute_lnc <- full_acute %>%
   filter(model %in% c("lib_size_normalized"),
@@ -175,13 +128,141 @@ time_acute_lnc %>%
 
 
 full_acute_lnc %>%
-  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
-  ggplot(aes(estimate, -log10(p.val), color = pt)) + geom_point() + 
+  mutate(pt = if_else(p.adj < 0.05, paste= ("sig",gene), "ns")) %>%
+  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
+  ggplot(aes(estimate, -log10(p.val), color = paste(pt,inc_dec,gene))) + geom_point() +
   facet_grid(model ~ coef)+
-  xlab("Estimate") +
-  labs(caption = "Figure 4: Differential expressed lncRNAs acute respons, timepoint and sets model")
+  xlab("log2FC") +
+  labs(caption = "Figure 4: Differential expressed lncRNAs acute respons, timepoint and sets model, single sets")
 
 
+
+
+############ multiple sets###############
+
+
+
+####rest model timepoint and sets multiple sets#####
+
+
+full_rest_lnc_m <- full_rest %>%
+  filter(model %in% c("lib_size_normalized", "tissue_offset_lib_size_normalized"),
+         coef %in% c("timew2pre:setsmultiple", "timew12:setsmultiple")) %>%
+  
+  dplyr::select(gene, model, coef, estimate, se, z.val, p.val) %>%
+  
+  # filter out only lncRNA
+  
+  filter(gene %in% lncRNA$ensembl_gene_id) %>%
+  # P-value adjustments
+  group_by(model, coef) %>%
+  mutate(p.adj = p.adjust(p.val, method = "fdr")) %>%
+  print()
+
+
+full_rest_lnc_m %>%
+  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
+  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
+  ggplot(aes(estimate, -log10(p.val), color = paste(pt,inc_dec))) + geom_point() + 
+  facet_grid(model ~ coef)+
+  xlab("log2FC") +
+  labs(caption = "Figure 2: Differential expressed lncRNAs at rest, timepoint and sets model, multiple sets")
+
+
+
+
+
+
+#####acute model timepoint and sets multiple sets#####
+
+full_acute_lnc_m <- full_acute %>%
+  filter(model %in% c("lib_size_normalized"),
+         coef %in% c("timew2post:setsmultiple")) %>%
+  dplyr::select(gene, model, coef, estimate, se, z.val, p.val) %>%
+  
+  # filter out only lncRNA
+  
+  filter(gene %in% lncRNA$ensembl_gene_id) %>%
+  # P-value adjustments
+  group_by(model, coef) %>%
+  mutate(p.adj = p.adjust(p.val, method = "fdr")) %>%
+  print()
+
+
+full_acute_lnc_m %>%
+  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
+  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
+  ggplot(aes(estimate, -log10(p.val), color = paste(pt,inc_dec))) + geom_point() +
+  facet_grid(model ~ coef)+
+  xlab("log2FC") +
+  labs(caption = "Figure 4: Differential expressed lncRNAs acute respons, timepoint and sets model, multiple sets")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+######rest model time only #####
+
+#time_rest_lnc <- time_rest %>%
+#filter(model %in% c("lib_size_normalized", "tissue_offset_lib_size_normalized"),
+# coef %in% c("timew2pre", "timew12")) %>%
+
+#dplyr::select(gene, model, coef, estimate, se, z.val, p.val) %>%
+
+# filter out only lncRNA
+
+#filter(gene %in% lncRNA$ensembl_gene_id) %>%
+# P-value adjustments
+#group_by(model, coef) %>%
+# mutate(p.adj = p.adjust(p.val, method = "fdr")) %>%
+#print()
+
+
+#time_rest_lnc %>%
+# mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
+#ggplot(aes(estimate, -log10(p.val), color = pt)) + geom_point() + 
+# facet_grid(model ~ coef)+
+# xlab("log2FC") +
+# labs(caption = "Figure 1: Differential expressed lncRNAs at rest, timepoint only model")
+
+
+
+
+
+###### Acute model time only #####
+
+#time_acute_lnc <- time_acute %>%
+#filter(model %in% c("lib_size_normalized"),
+# coef %in% c("timew2post")) %>%
+#dplyr::select(gene, model, coef, estimate, se, z.val, p.val) %>%
+
+# filter out only lncRNA
+
+#filter(gene %in% lncRNA$ensembl_gene_id) %>%
+# P-value adjustments
+#group_by(model, coef) %>%
+#mutate(p.adj = p.adjust(p.val, method = "fdr")) %>%
+#print()
+
+
+#time_acute_lnc %>%
+#mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
+#mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
+#ggplot(aes(estimate, -log10(p.val), color = paste(pt,inc_dec))) + geom_point() +
+#facet_grid(model ~ coef)+
+#xlab("log2FC") +
+#labs(caption = "Figure 3: Differential expressed lncRNAs acute respons, timepoint only model")
 
 
 
