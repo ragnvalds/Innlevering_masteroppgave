@@ -1,5 +1,5 @@
 ---
-title: "The_Missing_Lncs"
+title: "The Missing Lncs"
 Shorttitle: An exploratory study of lncRNAs part in muscle adaptation
 output:
   word_document:
@@ -43,6 +43,8 @@ Eukaryotic translation initiation factor 4E-binding protein 1 (4E-BP1)
 
 Focal adhesion kinase (FAK)
 
+Growth arrest specific 5 (GAS5)
+
 Long non coding RNA (lncRNA)
 
 Mitogen-activated protein kinase (MAPK)
@@ -55,6 +57,12 @@ Mammalian target of rapamycin complex 1 (mTORC1)
 
 Mammalian target of rapamycin complex 2 (mTORC2)
 
+Mitogen-activated protein kinase (MAP)
+
+Mitogen-activated protein kinase kinase kinase (MAP3K)
+
+Mitogen-activated protein kinase kinase (MAP2K)
+
 Differentially expressed (DE)
 
 Phosphatidic acid (PA)
@@ -65,6 +73,9 @@ quantitative /real time polymerase chain reaction (qPCR)
 
 ribosomal protein S6K (p70S6K)
 
+RNA component of mitochondrial RNA processing endoribonuclease (RMRP)
+
+40S ribosomal protein S6 kinase (RSK)
 
 \pagebreak
 
@@ -83,7 +94,7 @@ Different signalling pathways that leads to muscle adaptation after strength tra
 
 
 
-RNa is a messenger between DNA and proteins. But in the transcriptional process a lot of non protein coding RNAs are produced [@Ponting2009]. One interesting transcript species are long non coding RNAs (lncRNAs). They are a bit of a mystery. For a long time they were solely regarded as transcriptional noise, but recently they are found interesting. **kilde**. The lncRNAs, as the name implies, is made up of over 200 nucleotides [@Ponting2009]. Some of the lncRNAs can alter the coding gene by pairing with mRNA **kilde[@Wang2016]**, and other can interact with microRNAs and  make them miss their target mRNA **kilde[@Cesana2011]**. Yet another group of lncRNAs can encode micropetides that are shorter than 100 amino acids and by doing that alter the micropeptide induced functions **kilde[@Anderson2015]**. Lncrnas have a hefty toolbox to use, and most of the lncs directly linked to myogenesis acts as transcriptional or epigenetic regulators [@Li2018]. Little is known of their function and the evidence for lncRNAs function is scarce. But due to more advanced research methods, and higher interest the recent years, many lncRNAs has been identified and annotated. LncRNAs and their implication on muscle adaptation to strength training may be vast. Some is known, and cancer research advocates more research on lncRNAs. Especially the ones that are connected to tumor growth **KILDE**. Little is kown about the lncRNAs role in skeletal muscle adaptation to strength training. There may be some studies on mice, but in human skeletal muscle, the knowledge is scarce, if any. An interesting path is therefore to linc the lncs to signalling patways.
+RNa is a messenger between DNA and proteins. But in the transcriptional process a lot of non protein coding RNAs are produced [@Ponting2009]. One interesting transcript species are long non coding RNAs (lncRNAs). They are a bit of a mystery. For a long time they were solely regarded as transcriptional noise, but recently they are found interesting. **kilde**. The lncRNAs, as the name implies, is made up of over 200 nucleotides [@Ponting2009]. Little is known of their function and the evidence for lncRNAs function is scarce. But due to more advanced research methods, and higher interest the recent years, many lncRNAs has been identified and annotated. LncRNAs and their implication on muscle adaptation to strength training may be vast. Some is known, and cancer research advocates more research on lncRNAs. Especially the ones that are connected to tumor growth **KILDE**. Little is kown about the lncRNAs role in skeletal muscle adaptation to strength training. There may be some studies on mice, but in human skeletal muscle, the knowledge is scarce, if any.
 
 
 
@@ -91,14 +102,8 @@ RNa is a messenger between DNA and proteins. But in the transcriptional process 
 
 
 ## 1.1 Training volume and muscle growth
-**Muskelvekst og treningsvolum (kan evt gjøres til to underdelkap – mulig rekkefølgen bør byttes om). Her skal du først få frem at det er et tydelig forhold mellom muskelvekst og treningsvolum. Fremhev at dette lenge var usikkert, men at meta-analyse viser dette – få deretter frem at dette er tydelig i intrabiologiskemodeller (og hvorfor). Hvorfor **
+**Muskelvekst og treningsvolum (kan evt gjøres til to underdelkap – mulig rekkefølgen bør byttes om). Her skal du først få frem at det er et tydelig forhold mellom muskelvekst og treningsvolum. Fremhev at dette lenge var usikkert, men at meta-analyse viser dette** 
 
-Translation of ribosome and the making of proteins is the key to muscle growth. Translation depends on two variables, translation capacity and translation efficiency. Translation capacity is all about how many ribosome are available, tRNA and translation factors **KIlde [Chaillou2014]**. And translation efficiency is how efficient the ribosome does the protein synthesis **KILDE**. Increase in the latter is likely one of the main variables  behind elevated MPS as a response to strength training. **KIlde[@O'Neil2009]**.
-
-
-Intensiteten på styrketreningen har en klar sammenheng med økningen i muskelstyrke. Treningsintensiteten har vært over 80 % av 1RM i de studiene som viser størst økning i muskelstyrke (Hunter et al., 2004; Latham et al., 2003; Liu & Latham, 2009). En ser en hypertrofi av type II muskelfibre ved høyintensitetstrening, mens type I muskelfibre påvirkes mest ved lavere intensitet (Sletvold, 2007). Lengden på intervensjonsperioden spiller også inn på økningen i muskelstyrke. Raastad et al. (2010) hevder at i hovedsak skyldes styrkeøkningen de første ukene, nevral adaptasjon. Det er uvisst akkurat hvor lenge nevral adaptasjon er hovedårsaken, men som regel snakker en om opptil fire uker. Deretter følger en periode med hypertrofi, og en bør derfor ha en intervensjonsperiode på minst 10 uker for å se en reell styrkeøkning (ibid).
-
-We adapt to training and human skeletal muscles are capable of an exceptional plasticity. Contraction induced changes, calcium flux, redox balance, reactive oxygen species (ROS). In total a cascade of signal transduction.
 
 Strength training induces mechanical stimuli to skeletal muscles **Kilde** and the muscle adapts, among others, by adding sarcomeres in parallel in muscle fibres**Kilde**. Strength training results in neural adaptations, improved strength, alter muscle phenotype. and increased cross sectional area (CSA) of the muscle fiber **KILDE[@Staron1990]**. INcreased RFD (rate of increase in force at the contraction onset)  **KILDE**. Other adaptations to strength training is increased CSA, specially IIa fibres, increase in noncontractile tissue, e.g collagen, and change in muscle fibers angle of pennation. **KILDE**Adaptations to strength training shows after 8-12 weeks of repeated training**[@Folland2007]**. Over time, the strength gain will be more due to muscle growth than neural adaptations **kilde**. There will be an increase in muscle net protein synthesis (MPS) **KIlde [@Damas2015]**. MPS is increased due to lower protein degradation and higher, maybe more efficient, protein synthesis **kilde[@Phillips1997]**
 
@@ -107,8 +112,8 @@ Beginners have low hypertrophy effect from strength training, and the strength g
 The central neural component is important for muscle adaptations due to strength training, especially with unilateral training. With the latter the CSA in the untrained leg does not change, but one can observe an increase in strength **KILDE[@Munn2004]**.
 
 
-
-
+**få deretter frem at dette er tydelig i intrabiologiskemodeller (og hvorfor). Hvorfor **
+Systems biology is collaboration across different research fields and sciences[@Hester2011]. In need of multilevel studies to make a "Human Model". Trying to collect data from e.g. biology, physiology and bioscience to predict how the human body responds and adapts to various stimuli.
 
 
 ## 1.2 Cellular pathways
@@ -117,6 +122,8 @@ The central neural component is important for muscle adaptations due to strength
 
 Increase in mRNA expression after bout of strength training, drives protein synthesis of specific proteins **Barres et al. KILDE**
 adaptive hypertrophy mainly driven by MPS (muscle protein synthesis) after activation of mTOR, ribosomal protein S6K (p70) and downstream variables **KILDE[@Bodine2001])**.
+
+Translation of ribosome and the making of proteins is the key to muscle growth. Translation depends on two variables, translation capacity and translation efficiency. Translation capacity is all about how many ribosome are available, tRNA and translation factors **KIlde [Chaillou2014]**. And translation efficiency is how efficient the ribosome does the protein synthesis **KILDE**. Increase in the latter is likely one of the main variables  behind elevated MPS as a response to strength training. **KIlde[@O'Neil2009]**.
 
 
 
@@ -134,76 +141,14 @@ Mtorc1 is said to be driving the ribosomal biogenesis, but the mechanisme is not
  
 
 
+Ras is activated when extracellular mitogen binds to the membrane receptor. Followed by activation of Mitogen-activated protein kinase kinase kinase(MAP3K), Mitogen-activated protein kinase kinase (MAP2K) and Mitogen-activated protein kinase (MAP). The latter can then activate Myc, or other transcription factors **kilde**. Induce cell growth and proliferation.
+
+MAPK can influence the translation of mRNA. It phosporylates 40S ribosomal protein S6 kinase (RSK), downstream is ribosomal protein S6. MAPK is upstrem for C-myc **kilde**  
 
 
 
 
-Mechanosensory regulation of MPS involves phosphatidic acid (PA) and activation of focal adhesion kinase (FAK) proteins, which both activate MPS through mTOR-dependent and independent mechanisms. Protein degradation is primarily dependent on the activity of the ubiquitin-proteasome pathway (Sandri, 2008) via muscle-specific E3 ubiquitin ligases, muscle atrophy F-box (atrogin-1/MAFbx) and muscle RING finger 1 (MuRF1), which are key regulators of proteolysis under catabolic conditions. Nutrition and exercise regulate autophagy-lysosome systems, including mitochondrial autophagy, which constitute important degradation systems ensuring cell component and metabolic turnover.
-
-
-
-**Akt signaling pathway**
-
-
-The Akt Pathway, or PI3K-Akt Pathway is a signal transduction pathway that promotes survival and growth in response to extracellular signals. Key proteins involved are PI3K (phosphatidylinositol 3-kinase) and Akt (Protein Kinase B).
-
-Initial stimulation by one of the growth factors causes activation of a cell surface receptor and phosphorylation of PI3K. Activated PI3K then phosphorylates lipids on the plasma membrane, forming second messenger phosphatidylinositol (3,4,5)-trisphosphate (PIP3). Akt, a serine/threonine kinase, is recruited to the membrane by interaction with these phosphoinositide docking sites, so that it can be fully activated.[1] Activated Akt mediates downstream responses, including cell survival, growth, proliferation, cell migration and angiogenesis, by phosphorylating a range of intracellular proteins. The pathway is present in all cells of higher eukaryotes and is highly conserved.[2]
-
-The pathway is highly regulated by multiple mechanisms, often involving cross-talk with other signalling pathways. Problems with PI3K-Akt pathway regulation can lead to increase in signalling activity. This has been linked to a range of diseases such as cancer and type II diabetes. A major antagonist of PI3K activity is PTEN (phosphatase and tensin homolog), a tumour suppressor which is often mutated or lost in cancer cells. Akt phosphorylates as many as 100 different substrates, leading to a wide range of effects on cells.[3]
-
-The Akt-PI3K pathway is essential for cell survival as activated Akt influences many factors involved in apoptosis, either by transcription regulation or direct phosphorylation. [5] In the nucleus, Akt inhibits transcription factors that promote the expression of cell death genes, and enhances transcription of anti-apoptotic genes. A well studied example is the Forkhead family transcription factors (FoxO/FH), of which FKHR/FoxO1, FKHRL1/FoxO3 and AFX/FoxO4 are directly phosphorylated by Akt.[12][25] This phosphorylation induces export to the cytosol where they are sequestered by 14-3-3 proteins and eventually undergo degradation via the ubiquitin-proteasome pathway.[2][26]
-
-Akt also positively regulates some transcription factors to allow expression of pro-survival genes. Akt can phosphorylate and activate the IκB kinase IKKα, causing degradation of IκB and nuclear translocation of NF-κB where it promotes expression of caspase inhibitors, c-Myb and Bcl-xL.[2][12] Also promoting cell survival, cAMP response element binding protein (CREB) is phosphorylated by Akt at Ser133, stimulating recruitment of CREB-binding protein (CBP) to the promoter of target genes, such as Bcl-2.[27] Akt has also been shown to phosphorylate murine double minute 2 (Mdm2), a key regulator of DNA damage responses, at Ser166 and Ser186. Phosphorylation of Mdm2 by Akt upregulates its ubiquitin-ligase activity, therefore indirectly suppressing p53-mediated apoptosis.[25] Another target of Akt is the Yes-associated protein (YAP), phosphorylated at Ser127 leading to 14-3-3 binding and cytosolic localisation. Therefore, it cannot co-activate p73-mediated apoptosis in response to DNA damage.[28]
-
-Akt negatively regulates pro-apoptotic proteins by direct phosphorylation. For example, phosphorylation of BAD, the Bcl-2 family member, on Ser136 causes translocation from the mitochondrial membrane to the cytosol, where it is sequestered by 14-3-3 proteins.[27] Akt phosphorylates Caspase-9 on Ser196, preventing a caspase cascade leading to cell death.[2][12] Akt also phosphorylates MAP kinase kinase kinases (MAPKKK) upstream of the stress-activated protein kinase (SAPK) pathway. Phosphorylation of apoptosis signal-regulating kinase 1 (ASK1) on Ser83 and mixed lineage kinase 3 (MLK3) on Ser674 inhibits their activity and prevents MAP kinase induced apoptosis.[25]
-
-
-
-**MAPK signaling patway**
-
-
-Overall, the extracellular mitogen binds to the membrane receptor. This allows Ras (a Small GTPase) to swap its GDP for a GTP. It can now activate MAP3K (e.g., Raf), which activates MAP2K, which activates MAPK. MAPK can now activate a transcription factor, such as Myc. 
-
-Ras activation
-Receptor-linked tyrosine kinases such as the epidermal growth factor receptor (EGFR) are activated by extracellular ligands, such as epidermal growth factor (EGF). Binding of EGF to the EGFR activates the tyrosine kinase activity of the cytoplasmic domain of the receptor. The EGFR becomes phosphorylated on tyrosine residues. Docking proteins such as GRB2 contain an SH2 domain that binds to the phosphotyrosine residues of the activated receptor.[2] GRB2 binds to the guanine nucleotide exchange factor SOS by way of the two SH3 domains of GRB2. When the GRB2-SOS complex docks to phosphorylated EGFR, SOS becomes activated.[3] Activated SOS then promotes the removal of GDP from a member of the Ras subfamily (most notably H-Ras or K-Ras). Ras can then bind GTP and become active.
-
-Apart from EGFR, other cell surface receptors that can activate this pathway via GRB2 include Trk A/B, Fibroblast growth factor receptor (FGFR) and PDGFR.
-
-Kinase cascade
-Activated Ras activates the protein kinase activity of RAF kinase.[4] RAF kinase phosphorylates and activates MEK (MEK1 and MEK2). MEK phosphorylates and activates a mitogen-activated protein kinase (MAPK).
-
-RAF, and ERK (also known as MAPK) are both serine/threonine-selective protein kinases. MEK is a serine/tyrosine/threonine kinase.
-
-In the technical sense, RAF, MEK, and MAPK are all mitogen-activated kinases, as is MNK (see below). MAPK was originally called "extracellular signal-regulated kinases" (ERKs) and "microtubule associated protein kinase" (MAPK). One of the first proteins known to be phosphorylated by ERK was a microtubule-associated protein (MAP). As discussed below, many additional targets for phosphorylation by MAPK were later found, and the protein was renamed "mitogen-activated protein kinase" (MAPK). The series of kinases from RAF to MEK to MAPK is an example of a protein kinase cascade. Such series of kinases provide opportunities for feedback regulation and signal amplification.
-
-Regulation of translation and transcription
-Three of the many proteins that are phosphorylated by MAPK are shown in the Figure. One effect of MAPK activation is to alter the translation of mRNA to proteins. MAPK phosphorylates 40S ribosomal protein S6 kinase (RSK). This activates RSK, which, in turn, phosphorylates ribosomal protein S6.[5] Mitogen-activated protein kinases that phosphorylate ribosomal protein S6 were the first to be isolated.[4]
-
-MAPK regulates the activities of several transcription factors. MAPK can phosphorylate C-myc. MAPK phosphorylates and activates MNK, which, in turn, phosphorylates CREB. MAPK also regulates the transcription of the C-Fos gene. By altering the levels and activities of transcription factors, MAPK leads to altered transcription of genes that are important for the cell cycle.
-
-The 22q11, 1q42, and 19p13 genes are associated with schizophrenia, schizoaffective, bipolar, and migraines by affecting the ERK pathway.
-
-
-MAP Kinase Pathways.
-Regulation of cell cycle entry and proliferation
-Role of mitogen signaling in cell cycle progression The ERK pathway plays an important role of integrating external signals from the presence of mitogens such as epidermal growth factor (EGF) into signaling events promoting cell growth and proliferation in many mammalian cell types. In a simplified model, the presence of mitogens and growth factors trigger the activation of canonical receptor tyrosine kinases such as EGFR leading to their dimerization and subsequent activation of the small GTPase Ras.[6] This then leads to a series of phosphorylation events downstream in the MAPK cascade (Raf-MEK-ERK) ultimately resulting in the phosphorylation and activation of ERK. The phosphorylation of ERK results in an activation of its kinase activity and leads to phosphorylation of its many downstream targets involved in regulation of cell proliferation. In most cells, some form of sustained ERK activity is required for cells to activate genes that induce cell cycle entry and suppress negative regulators of the cell cycle. Two such important targets include Cyclin D complexes with Cdk4 and Cdk6 (Cdk4/6) which are both phosphorylated by ERK.[7] The transition from G1 to S phase is coordinated by the activity of Cyclin D-Cdk4/6, which increases during late G1 phase as cells prepare to enter S-phase in response to mitogens. Cdk4/6 activation contributes to hyper-phosphorylation and the subsequent destabilization of retinoblastoma protein (Rb).[7] Hypo-phosphorylated Rb, is normally bound to transcription factor E2F in early G1 and inhibits its transcriptional activity, preventing expression of S-phase entry genes including Cyclin E, Cyclin A2 and Emi1.[6] ERK1/2 activation downstream of mitogen induced Ras signaling is necessary and sufficient to remove this cell cycle block and allow cells to progress to S-phase in most mammalian cells.
-
-
-Schematic of mitogen input integrated into the cell cycle
-Downstream feedback control and generation of a bistable G1/S switch
-
-Growth and mitogen signals are transmitted downstream of the ERK pathway are incorporated into multiple positive feedback loops to generate a bistable switch at the level of E2F activation.[8] This occurs due to three main interactions during late G1 phase. The first is a result of mitogen stimulation though the ERK leading to the expression of the transcription factor Myc, which is a direct activator of E2F.[7] The second pathway is a result of ERK activation leading to the accumulation of active complexes of Cyclin D and Cdk4/6 which destabilize Rb via phosphorylation and further serve to activate E2F and promote expression of its targets. Finally, these interactions are all reinforced by an additional positive feedback loop by E2F on itself, as its own expression leads to production of the active complex of Cyclin E and CDK2, which further serves to lock in a cell's decision to enter S-phase. As a result, when serum concentration is increased in a gradual manner, most mammalian cells respond in a switch-like manner in entering S-phase. This mitogen stimulated, bistable E2F switch is exhibits hysteresis, as cells are inhibited from returning to G1 even after mitogen withdrawal post E2F activation.[9]
-
-Dynamic signal processing by the ERK pathway
-Single cell imaging experiments have shown ERK to be activated in stochastic bursts in the presence of EGF. Furthermore, the pathway has been shown to encode the strength of signaling inputs though frequency modulated pulses of its activity.[9] Using live cell FRET biosensors, cells induced with different concentrations of EGF illicit activity bursts of different frequency, where higher levels of EGF resulted in more frequent bursts of ERK activity. Furthermore, the dynamics of ERK activation in response to mitogens were found to be relevant for unique downstream responses including timing of S-phase entry in MCF10A cells.[9] Various types of growth factors can also lead to unique ERK dynamics in other cell types effecting cell fate, suggesting the temporal dynamics of ERK activation is a general means of encoding unique gene expression programs by cells.[10][11]
-
-Integration of mitogen and stress signals in proliferation
-
-Recent live cell imaging experiments in MCF10A and MCF7 cells have shown that a combination of mitogen signaling though ERK and stress signals through activation of p53 in mother cells contributes to the likelihood of whether newly formed daughter cells will immediately re-enter the cell cycle or enter quiescence (G0) preceding mitosis.[12] Rather than daughter cells starting with no key signaling proteins after division, mitogen/ERK induced Cyclin D1 mRNA and DNA damage induced p53 protein, both long lived factors in cells, can be stably inherited from mother cells after cell division. The levels of these regulators vary from cell to cell after mitosis and stoichiometry between them strongly influences cell cycle commitment though activation of Cdk2. Chemical perturbations using inhibitors of ERK signaling or inducers p53 signaling in mother cells suggest daughter cells with high levels of p53 protein and low levels of Cyclin D1 transcripts were shown to primarily enter G0 whereas cells with high Cyclin D1 and low levels of p53 are most likely to reenter the cell cycle. These results illustrate a form of encoded molecular memory though the history of mitogen signaling through ERK and stress response though p53.[13][14]
-
-
-
-
+**stress response p53?**
 
 
 
@@ -211,87 +156,69 @@ Recent live cell imaging experiments in MCF10A and MCF7 cells have shown that a 
 
 ## 1.3 Long non-coding RNA
 
-•**Delkap 3: LNCs (flere underdelkap? E.g.** 
 
   
 ### 1.3.1  
   **o	 LNCs generelt, hva er de? Hvorfor vet vi så lite? Generelle funksjoner og nomenklatur/kategorier**
 
-  
-  
-  [@Kung2013]
+In the early 1990s, **kilde(Brannan et al. 1990) ** discovered that the lncRNA H19 was involved in egigentic regulation. Later, many more lncRNAs has been identified and described. Their function in epigenetic regulation are still eluded, but some of them are well known. Some of the lncRNAs can alter the coding gene by pairing with mRNA **kilde[@Wang2016]**, and other can interact with microRNAs and  make them miss their target mRNA **kilde[@Cesana2011]**. Yet another group of lncRNAs can encode micropetides that are shorter than 100 amino acids and by doing that alter the micropeptide induced functions **kilde[@Anderson2015]**. Lncrnas have a hefty toolbox to use, and most of the lncs directly linked to myogenesis acts as transcriptional or epigenetic regulators [@Li2018].
 
-**Some of the first cases of gene-specific regulatory roles of lncRNAs were uncovered in the early 1990s, with the discovery of lncRNAs involved in epigenetic regulation, such as H19 (Brannan et al. 1990) **
+LncRNAs can be allocated to five categories:
+1) sense, 2) antisense, 3)bidirectional, 4)intronic and 5)intergenic [@Ponting2009].
+In the first category they overlap one or more exons of another exon on the same strand. The second is the same as the first, except the lncRNA is on the opposite strand. In the third category, the lncRNA is in close genomic proximity to a coding transcript on the opposite strand. The fourth is when it is derived from an intron on a second transcript, and the fifth is when it is in the genomic interval between two different genes. Some of the lncRNAs functions can be seen in figure **?**.
   
   **Figure from [@Kung2013] shows some of the lncRNAs functions
 
 ![](figures/lnc_action.png)
-LncRNAs can be allocated to five categories:
-1) sense, 2) antisense, 3)bidirectional, 4)intronic and 5)intergenic [@Ponting2009].
-In category 1 they overlap one or more exons of another exon on the same strand. Category  is the same as 1, except it is one the opposite strand. 3 is when the lncRNA is in close genomic proximity to a coding transcript on the opposite strand. 4 is when it is derived from an intron on a second transcript, and 5 is when it is in the genomic interval between two different genes.
+
   
 ### 1.3.2
-
-  **o	LNCs i cellevekst og proliferering (med særlig fokus på muskel utover i underdelkap). Hvilke funksjoner har de i regulering av cellevekst og proliferering (på generelt grunnlag – e.g. fra kreftforskning) - igjen plukker du opp pathways fra foregående delkap)? Hvilke funksjoner har de i muskel, inkl info om totalt uttrykksomfang i dyrestudier og kjente funksjoner for spesifikke LNCs?**
   
+ **cell growth and proliferation**
  
+ **cancer research**
 
 One has discovered that lncRNAs may regulate satellite cell biology [@Li2018]. Satellite cells are important for muscle regeneration.  If an injury occurs, the satellite cells will be activated and become myoblasts. Pax7 is downregulated and myogenic regulatory factors (MRFs) are activated to start cell differentiation, thereby making new muscle fibers and replenish the damaged muscle cells **kilde[@Kuang2007]**. Another important feature for the lncRNAs is that they play a role in epigenetic and transcriptional regulation of chromatins. The Lncs interacts with chromatins, and may inhibit other transcriptional regulators activities **kilde[@Han2014]**.
 
 Some of the lncRNAs can alter the coding gene by pairing with mRNA **kilde[@Wang2016]**, and other can interact with microRNAs and  make them miss their target mRNA **kilde[@Cesana2011]**. Yet another group of lncRNAs can encode micropetides that are shorter than 100 amino acids and by doing that alter the micropeptide induced functions **kilde[@Anderson2015]**. Lncrnas have a hefty toolbox to use, and most of the lncs directly linked to myogenesis acts as transcriptional or epigenetic regulators [@Li2018].
+
+**animal studies, may use SYISL?** In mice, lncRNA SYISL interacts with polycomb repressive complex 2 and regulates myogenesis **kilde* It's human morfolog is lncRNA AK021986, but no ensemble ID has been allocated and the latter is therefore removed from the qPCR analysis.
+
+
+
+Some of the known lncRNAs and their function
+The lncRNA Growth arrest specific 5 (GAS5) supresses MYC translation **kilde** (Parrot/LINP1) is a positive regulator of c-Myc and ribosomal biogenesis **kilde**. (PVT1) is activated in the early phase of muscle atrophy. PVT1 alter mitochondrial respiration, myofiber size, apoptosis and mito/autophagy**kilde**. RNA component of mitochondrial RNA processing endoribonuclease (RMRP) alters the transport trough the mitochondrial membrane **kilde**. (Linc-MD1) has many functions related to muscle adaptations. It regulates myogenic differentiation, myogenesis and hypertrophy. Linc-MD1 downregulates myogenic markers when depleted. It is reported to influence the mRNA levels of miRNA-targeted muscle differentiation genes, by and blocking the target mRNA for miR-133 and miR-135 [@Cesana2011].
   
   
-  
-  
-  
-  
-  
-  
+
   
 ### 1.3.3  
 
   **o	hvordan kan vi studerer LNCs in vivo hos mennesker? Først må uttrykksomfanget kartlegges. RNA-seq vs qPCR . Få frem at ikke alle LNCs har poly-A hale, noe som er nødvendig dersom de skal plukkes opp i poly-A drevet RNAseq (poenget er å forberede leseren på at du kun gjenfinner 6 av linkene fra qPCR-exp i RNA-seq datasettet  - dette er en av mulige forklaringer – sekvenseringsdybde er en annen)**
-  
-  Gene sequencing
-Discovery and characterization of lncRNAs has sped up due to the recent years leap in high throughput gene sequencing technology.  
 
-@Sun2016 defined 7692 lncRNAs in bovine skeletal muscle using Ribo_Zero RNA-seq. This sequencing technology can identify both poly A+ and poly A- transcripts. A poly A tail consists of many adenosine monophosphates and helps preventing degradation of mRNA **KIlde** LncRNAs have usually low expression and are highly tissue specific. They usually have a poly A+ or poly A- tail at thee 3' end of the transcript. **kilde[@Cabili2011]**
-
- High throughput gene sequencing technology [@Reuter2015]
-  
-  
-  Genes used for qPCR **dette må ogspå inn I teorikap. Mitt tips er at du skriver teoridelen først – deretter lager du en compiled variant som fungerer som intro i artikkelen**
-
-GAS5 Growth arrest specific 5, suppression of MYC translation.
-LNC310
-LNC1405
-AK017368
-PARROT/LINP1 Positive regulator of ribosomal biogenesis:
-positive regulator av c-Myc
-PVT1
-activated early during muscle atrophy, impacts mitochondrial respiration and morphology and affects mito/autophagy, apoptosis and myofiber size in vivo.
-AK021986 Could not find Ensemble ID. Was removed from further analysis. Long noncoding RNA SYISL regulates myogenesis by interacting with polycomb repressive complex 2
-RMRP  RNA component of mitochondrial RNA processing endoribonuclease. Transport trough the mitochondrial membrane.
-Linc MD1
-Regulators of myogenic differentiation/myogenesis/hypertrophy:
-activated myoblast differentiation. Depletion downregulates myogenic markers, to highly expressed accumulation of myogenic markers. affect myogenesis by blocking target mRNA for miR-133 and miR-135. no activation mastermind-like transcriptional coactivatore1 (MAML1) and myocyte enhance factor 2C (MEF2C). important transcriptional co activators KILDE (???).
-  
-  
-  
-**Ha fokus på å skrive gode avsnitt (på ca ½ side – rettesnor) som forteller en sammenhengende historie – hele introen skal henge sammen**
+How to study lncRNAs in human genome? How many lncRNAs can be identified in the human muscle cells, and are they differentially expressed on different timepoints.
 
 
+Discovery and characterization of lncRNAs has sped up due to the recent years leap in high throughput gene sequencing technology. 
+
+High throughput gene sequencing technology [@Reuter2015]
+
+Use qPCR or RNA seq. Which one is best. RNA seq yields massive data. 
+
+Not all lncRNA has poly A tail. This is essential to be able to sequence. @Sun2016 defined 7692 lncRNAs in bovine skeletal muscle using Ribo_Zero RNA-seq. This sequencing technology can identify both poly A+ and poly A- transcripts. A poly A tail consists of many adenosine monophosphates and helps preventing degradation of mRNA **KIlde** LncRNAs have usually low expression and are highly tissue specific. They usually have a poly A+ or poly A- tail at thee 3' end of the transcript. **kilde[@Cabili2011]**
+
+Only six of the nine lncRNAs that underwent qPCR analysis was recognized in the sequence data.
+
+sequencing depth
 
 
-
-
-
-#Research questions
-How many differentially expressed (DE) lncRNAs identified from gene sequencing data pool after strength training bout.
-How many DE lncRNAS increases?
-How many DE lncRNAS decreases
-How many of the <lincs have GO code (gene ontology), annotated
-Correlation between qPCR data and seq. data.
+The lack of knowledge on how lncRNAs adapts to mechanical stimuli, strength training, in human muscle, advocates further research on the topic. The goal of this study was to explore and identify lncRNAs in human muscle cells. The research questions are as follows:
+1) How manye lncRNAs can be idetified from the rna sequence data.
+2) How many differentially expressed (DE) lncRNAs can be identified from gene sequencing data pool after a strength training bout.
+3) How many DE lncRNAS increases?
+4) How many DE lncRNAS decreases
+5) How many of the lncRNAs have GO code (gene ontology), are annotated
+6) Is there a correlation between qPCR data and seq. data.
 
 
 
@@ -308,55 +235,13 @@ Cancer research has identified and described many different lncRNAs. Especially 
 
 In this study 9 intersecting lncRNAs were analysed with qPCR. Gene sequencing data was also obtained and analysed together with qPCR data. Gene sequencing data is an vast pool and this is an exploratory study.  
 
-How many lncRNAs can be identified in human skeletal muscle. And what happens when adapting to training.
-
-### Genes used for qPCR
-*GAS5*
-Growth arrest specific 5, suppression of MYC translation.
-
-*LNC310*				
-				
-*LNC1405*
-
-
-*AK017368*
-
-*PARROT/LINP1*
-Positive regulator of ribosomal biogenesis:				
-positive regulator av c-Myc				
-				
-
-*PVT1* 				
-activated early during muscle atrophy, impacts mitochondrial respiration and morphology and affects mito/autophagy, apoptosis and myofiber size in vivo. 
-
-
-*AK021986* 
-Could not find Ensemble ID. Was removed from further analysis.
-Long noncoding RNA SYISL regulates myogenesis by interacting with polycomb repressive complex 2				
-				
-*RMRP *
-RNA component of mitochondrial RNA processing endoribonuclease.
-Transport trough the mitochondrial membrane.				
-				
-*Linc MD1*			
-Regulators of myogenic differentiation/myogenesis/hypertrophy:				
-activated myoblast differentiation. Depletion downregulates myogenic markers, to highly expressed accumulation of myogenic markers. affect myogenesis by blocking target mRNA for  miR-133 and miR-135. no activation mastermind-like transcriptional
-coactivatore1 (MAML1) and myocyte enhance factor 2C
-(MEF2C). important transcriptional co activators **KILDE [@Shen2006]**.
-
- linc-MD1 is reported to influence the mRNA levels of miRNA-targeted muscle differentiation genes [@Cesana2011]
-
-## research questions
-How many differentially expressed (DE) lncRNAs identified from gene sequencing data pool after strength training bout.
-
-How many  DE lncRNAS increases?
-
-How many DE lncRNAS decreases
-
-How many of the <lincs have GO code (gene ontology), annotated   
-
-Correlation between qPCR data and seq. data.
-
+The lack of knowledge on how lncRNAs adapts to mechanical stimuli, strength training, in human muscle, advocates further research on the topic. The goal of this study was to explore and identify lncRNAs in human muscle cells. The research questions are as follows:
+1) How manye lncRNAs can be idetified from the rna sequence data.
+2) How many differentially expressed (DE) lncRNAs can be identified from gene sequencing data pool after a strength training bout.
+3) How many DE lncRNAS increases?
+4) How many DE lncRNAS decreases
+5) How many of the lncRNAs have GO code (gene ontology), are annotated
+6) Is there a correlation between qPCR data and seq. data.
 
 
 
@@ -469,13 +354,12 @@ Only 16 of the lncRNAs identified in the gene sequence data have entrezgene gene
 
 **Få frem hva som fører til tildeling av entrezID**
 
-**Får vi til genfunksjonsanalyse – hvis ja, presenter denne for hvert enkelt tidspunkt. Hvis ikke, få frem at dette ble vanskeliggjort av mangelen på entrezID**
 
 
 
 #####entrez gene [@Maglott2011]
 
-INTRODUCTIONEntrez Gene is the gene-specific database at the NationalCenter for Biotechnology Information (NCBI), a divisionof the National Library of Medicine, located on the campusof the US National Institutes of Health in Bethesda, MD,USA. Entrez Gene generates unique integers (GeneID)as stable identifiers for genes and other loci for a subsetof model organisms. It tracks those identifiers and usesthem to integrate multiple types of information includingnomenclature, summary descriptions, accessions of gene-specific and gene product-specific sequences, chromosomallocalization, reports of pathways and protein interactions,associated markers and phenotypes. Because the GeneIDis used to represent gene-specific information in otherdatabases at NCBI, the full Entrez Gene report includes awealth  of  links  to  gene-specific  literature  citations,sequences, variations, homologs and databases outside ofNCBI. Entrez Gene is integrated with NCBI’s Entrezsystem for interactive query, Linkout and access byE-Utilities (1).Data in Entrez Gene result from integration of resultsfrom automated analyses and curation by ReferenceSequence project (RefSeq) staff. Gene-specific annotationin sequences from NCBI’s RefSeq (2) or the InternationalNucleotide Sequence Database Collaboration (INSDC)(3) usually serves as the foundation, with value addedby with information from collaborating model organismdatabases, public users and literature review (especiallythe  Gene  References  into  Function  or  GeneRIFssubmitted  by  the  public  and  staff  of  the  NationalLibrary of Medicine). Updates are posted daily, and cor-rections or suggestions are welcomed (http://www.ncbi.nlm.nih.gov/RefSeq/update.cgi
+Entrez Gene is the gene-specific database at the NationalCenter for Biotechnology Information (NCBI), a divisionof the National Library of Medicine, located on the campusof the US National Institutes of Health in Bethesda, MD,USA. Entrez Gene generates unique integers (GeneID)as stable identifiers for genes and other loci for a subsetof model organisms. It tracks those identifiers and usesthem to integrate multiple types of information includingnomenclature, summary descriptions, accessions of gene-specific and gene product-specific sequences, chromosomallocalization, reports of pathways and protein interactions,associated markers and phenotypes. Because the GeneIDis used to represent gene-specific information in otherdatabases at NCBI, the full Entrez Gene report includes awealth  of  links  to  gene-specific  literature  citations,sequences, variations, homologs and databases outside ofNCBI. Entrez Gene is integrated with NCBI’s Entrezsystem for interactive query, Linkout and access byE-Utilities (1).Data in Entrez Gene result from integration of resultsfrom automated analyses and curation by ReferenceSequence project (RefSeq) staff. Gene-specific annotationin sequences from NCBI’s RefSeq (2) or the InternationalNucleotide Sequence Database Collaboration (INSDC)(3) usually serves as the foundation, with value addedby with information from collaborating model organismdatabases, public users and literature review (especiallythe  Gene  References  into  Function  or  GeneRIFssubmitted  by  the  public  and  staff  of  the  NationalLibrary of Medicine). Updates are posted daily, and cor-rections or suggestions are welcomed (http://www.ncbi.nlm.nih.gov/RefSeq/update.cgi
 
 
 
