@@ -2,68 +2,12 @@
 title: "Tables_master"
 author: "ragnva"
 date: "23 5 2020"
-output: html_document
-editor_options: 
+output:
+  html_document: default
+  word_document: default
+editor_options:
   chunk_output_type: console
 ---
-
-```{r lncRNA_identified_seq, echo=FALSE, include=FALSE}
-
-library(tidyverse)
-library(readxl)
-library(knitr)
-library(dplyr)
-library(biomaRt)
-library(kableExtra)
-library(huxtable)
-### Find lncRNA from ensamble #########
-
-
-time_rest <- readRDS("./derivedData/DE/mixedmodel2_timemodel.RDS") #na="NA" tells read_excel how missing values are coded
-
-# Makes a vector of all transcripts (after filtering)
-all_genes <- unique(time_rest$gene)
-
-
-
-ensembl <- useMart("ensembl")
-ensembl <- useDataset("hsapiens_gene_ensembl", mart = ensembl)
-
-# List attributes from biomart
-listAttributes(ensembl)
-
-# Make a data frame of all genes with symbol, biotype etc...
-all_genes <- getBM(attributes=c('ensembl_gene_id', 'gene_biotype', 'entrezgene_id', 'hgnc_symbol'), 
-              filters = 'ensembl_gene_id',
-      values = all_genes, 
-      mart = ensembl)
-
-
-###total number of transcripts identified in RNA seq data
-
-all_transcripts <- NROW(all_genes)
-
-
-
-## Genes that are also analyzed by qPCR
-goi <- c("ENSG00000234741", "ENSG00000268518",  "ENSG00000225613",  "ENSG00000185847",
-         "ENSG00000249515",  "ENSG00000223784",  "ENSG00000249859",  "ENSG00000269900")
-
-all_genes %>%
-  filter(ensembl_gene_id %in% goi) %>%
-  print()
-
-
-#####lncRNA identified from seq data#####
-
-
-#### make a data frame of lncRNA 
-
-lncRNA <- data.frame (all_genes, na = "NA") %>%
-  filter(gene_biotype == "lncRNA") %>%
-  print()
-
-```
 
 ```{r data, include=FALSE, echo=FALSE}
 library(tidyverse)
@@ -148,6 +92,7 @@ prim_u %>%
   print()
 ```
 
+
 ```{r table all lnc, results='asis', echo=FALSE}
 ###make a table of all lncRNAs identified
 
@@ -162,6 +107,26 @@ dplyr::select(ensembl_gene_id, gene_biotype, entrezgene_id, hgnc_symbol) %>%
                                        "Entrezgene ID", 
                                        "Hgnc symbol"), 
         caption = "Table 3: All lncRNAs  identified", align = c("l",
+                "l",
+                "l",
+                "l")) %>% 
+  kable_styling(bootstrap_options = "striped", font_size = 12) %>% 
+  print()
+
+
+
+
+#####qPCR lncs identified##########
+
+
+
+qPCR_Lnc <- all_genes %>%
+  filter(ensembl_gene_id %in% goi) %>%
+ kable(format = "html", col.names = c("Ensemble gene ID", 
+                                       "Gene biotype",
+                                       "Entrezgene ID", 
+                                       "Hgnc symbol"), 
+        caption = "Table 4: All qPCR lncRNAs  identified", align = c("l",
                 "l",
                 "l",
                 "l")) %>% 
@@ -196,4 +161,6 @@ kable(format = "html", col.names = c("Ensemble gene ID",
                 "l")) %>% 
   kable_styling(bootstrap_options = "striped", font_size = 12) %>%  
   print()
+
+
 ```

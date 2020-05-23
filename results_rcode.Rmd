@@ -1,0 +1,1055 @@
+---
+title: "results_r_code"
+author: "ragnva"
+date: "23 5 2020"
+output: html_document
+---
+## RNA sequencing data
+
+
+```{r lncRNA_identified_seq, echo=FALSE, include=FALSE}
+
+library(tidyverse)
+library(readxl)
+library(knitr)
+library(dplyr)
+library(biomaRt)
+library(kableExtra)
+library(huxtable)
+### Find lncRNA from ensamble #########
+
+
+time_rest <- readRDS("./derivedData/DE/mixedmodel2_timemodel.RDS") #na="NA" tells read_excel how missing values are coded
+
+# Makes a vector of all transcripts (after filtering)
+all_genes <- unique(time_rest$gene)
+
+
+
+ensembl <- useMart("ensembl")
+ensembl <- useDataset("hsapiens_gene_ensembl", mart = ensembl)
+
+# List attributes from biomart
+listAttributes(ensembl)
+
+# Make a data frame of all genes with symbol, biotype etc...
+all_genes <- getBM(attributes=c('ensembl_gene_id', 'gene_biotype', 'entrezgene_id', 'hgnc_symbol'), 
+              filters = 'ensembl_gene_id',
+      values = all_genes, 
+      mart = ensembl)
+
+
+###total number of transcripts identified in RNA seq data
+
+all_transcripts <- NROW(all_genes)
+
+
+
+## Genes that are also analyzed by qPCR
+goi <- c("ENSG00000234741", "ENSG00000268518",  "ENSG00000225613",  "ENSG00000185847",
+         "ENSG00000249515",  "ENSG00000223784",  "ENSG00000249859",  "ENSG00000269900")
+
+all_genes %>%
+  filter(ensembl_gene_id %in% goi) %>%
+  print()
+
+
+#####lncRNA identified from seq data#####
+
+
+#### make a data frame of lncRNA 
+
+lncRNA <- data.frame (all_genes, na = "NA") %>%
+  filter(gene_biotype == "lncRNA") %>%
+  print()
+
+
+
+
+###pull number of lncRNAs identified
+
+
+lnc_count <- lncRNA %>% 
+  nrow() %>%
+  print()
+
+
+###lncRNAs entrezgene_id
+
+
+e_id <- lncRNA %>% 
+  pull(entrezgene_id)
+
+#NROW gives you number of rows. na.omit removes NA.
+   
+  ent_id_count <- NROW(na.omit(e_id)) %>%
+     print()
+
+
+
+###lncRNAs used in qPCR analysis found in seq data
+
+goi <- c("ENSG00000234741", "ENSG00000268518",  "ENSG00000225613",  "ENSG00000185847",
+         "ENSG00000249515",  "ENSG00000223784",  "ENSG00000249859",  "ENSG00000269900")
+
+qPCR_Lnc <- all_genes %>%
+  filter(ensembl_gene_id %in% goi) %>%
+  print()
+
+qPCR_Lncs_identf <- qPCR_Lnc %>% 
+  nrow() %>%
+  print()
+
+```
+ 
+ 
+
+ **RNA-seq (se oppbygning av results i hammarstrm et al RNA-seq draft**
+
+
+In total `r (all_transcripts)` were identified in the RNA sequencing data, and `r  (lnc_count)` of them were identified as lncRNAs. LncRNAs were identified with BiomaRT R package and Ensemble ID. With this method is it not possible to find lncRNAs without Ensemble id. The latter applied to AKO21986, one of the qPCR lncRNAs and it was removed from the analysis. 
+
+Only `r (ent_id_count)` of the lncRNAs identified in the gene sequence data have  entrezgene gene id number. Entrezgene ID is needed to perform a gene ontology analysis.**Få frem hva som fører til tildeling av entrezID**
+
+**Får vi til genfunksjonsanalyse – hvis ja, presenter denne for hvert enkelt tidspunkt. Hvis ikke, få frem at dette ble vanskeliggjort av mangelen på entrezID**
+
+
+
+#####entrez gene [@Maglott2011]
+
+INTRODUCTIONEntrez Gene is the gene-specific database at the NationalCenter for Biotechnology Information (NCBI), a divisionof the National Library of Medicine, located on the campusof the US National Institutes of Health in Bethesda, MD,USA. Entrez Gene generates unique integers (GeneID)as stable identifiers for genes and other loci for a subsetof model organisms. It tracks those identifiers and usesthem to integrate multiple types of information includingnomenclature, summary descriptions, accessions of gene-specific and gene product-specific sequences, chromosomallocalization, reports of pathways and protein interactions,associated markers and phenotypes. Because the GeneIDis used to represent gene-specific information in otherdatabases at NCBI, the full Entrez Gene report includes awealth  of  links  to  gene-specific  literature  citations,sequences, variations, homologs and databases outside ofNCBI. Entrez Gene is integrated with NCBI’s Entrezsystem for interactive query, Linkout and access byE-Utilities (1).Data in Entrez Gene result from integration of resultsfrom automated analyses and curation by ReferenceSequence project (RefSeq) staff. Gene-specific annotationin sequences from NCBI’s RefSeq (2) or the InternationalNucleotide Sequence Database Collaboration (INSDC)(3) usually serves as the foundation, with value addedby with information from collaborating model organismdatabases, public users and literature review (especiallythe  Gene  References  into  Function  or  GeneRIFssubmitted  by  the  public  and  staff  of  the  NationalLibrary of Medicine). Updates are posted daily, and cor-rections or suggestions are welcomed (http://www.ncbi.nlm.nih.gov/RefSeq/update.cgi
+
+
+
+```{r change timepoint high_low volume, echo=FALSE, include=FALSE}
+
+# Load data
+# Mixed-effects negative binomial count models were fitted and saved in 
+# ./R/dge_list_models.R. Results saved in RDS files (see below).
+# no need to run these models again.
+
+
+
+full_rest <- readRDS("./derivedData/DE/mixedmodel2_fullmodel.RDS")
+full_acute <- readRDS("./derivedData/DE/mixedmodel2_acutemodel.RDS")
+
+
+
+
+##### Find lncRNA from ensamble #########
+
+# Makes a vector of all transcripts (after filtering)
+all_genes <- unique(full_rest$gene) 
+
+
+ensembl <- useMart("ensembl")
+ensembl <- useDataset("hsapiens_gene_ensembl", mart = ensembl)
+
+# List attributes from biomart
+listAttributes(ensembl)
+
+# Make a data frame of all genes with symbol, biotype etc...
+all_genes <- getBM(attributes=c('ensembl_gene_id', 'gene_biotype', 'entrezgene_id', 'hgnc_symbol'), 
+                   filters = 'ensembl_gene_id',
+                   values = all_genes, 
+                   mart = ensembl)
+
+#filter lncRNAs
+lncRNA <- all_genes %>%
+  filter(gene_biotype == "lncRNA") %>%
+  print()
+
+
+
+
+##### Filter and adjust p-values for differentially expression #####
+
+######rest model full #####
+
+lnc_rest <- full_rest %>%
+  filter(model %in% c("tissue_offset_lib_size_normalized")) %>% 
+         #coef %in% c("(intercept)", "timew2pre", "timew12", "timew0:setsmultiple", "timew2pre:setsmultiple", "timew12:setsmultiple")) %>%
+  
+  dplyr::select(gene, model, coef, estimate, se, z.val, p.val) %>%
+  
+  # filter out only lncRNA
+  
+  filter(gene %in% lncRNA$ensembl_gene_id) %>%
+  # P-value adjustments
+  group_by(gene, coef) %>%
+  mutate(p.adj = p.adjust(p.val, method = "fdr")) %>%
+  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>% 
+  print()
+
+
+lnc_rest %>%
+  ggplot(aes(estimate, -log10(p.val), color = pt)) + geom_point() + 
+  facet_grid(model ~ coef)+
+  xlab("Estimate") +
+  labs(caption = "")
+
+
+
+#######acute model full#######
+
+
+lnc_acute <- full_acute %>%
+  filter(model %in% c("lib_size_normalized")) %>% 
+  #coef %in% c("(intercept)", "timew2post", "setsmultiple", "timew2post:setsmultiple" )) %>%
+  
+  dplyr::select(gene, model, coef, estimate, se, z.val, p.val) %>%
+  
+  # filter out only lncRNA
+  
+  filter(gene %in% lncRNA$ensembl_gene_id) %>%
+  # P-value adjustments
+  group_by(gene, coef) %>%
+  mutate(p.adj = p.adjust(p.val, method = "fdr")) %>%
+  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>% 
+  print()
+
+
+lnc_acute %>%
+  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
+  ggplot(aes(estimate, -log10(p.val), color = pt)) + geom_point() + 
+  facet_grid(model ~ coef)+
+  xlab("Estimate") +
+  labs(caption = "")
+
+
+
+
+
+
+
+
+
+
+######moderate volume####
+
+###	**av disse LNCs endret 114 (2 weeks)**
+  
+two_w_mod_lnc <-lnc_rest %>%
+  filter(coef %in% "timew2pre:setsmultiple") %>% 
+         #pt %in% "sig") %>% 
+  print()
+
+two_rest_mod <- two_w_mod_lnc %>% 
+  filter(pt == "sig") %>%
+  NROW() %>% 
+  print()
+
+
+#increase/decrease
+
+inc_dec_tw_mod <- two_w_mod_lnc %>% 
+  filter(pt == "sig") %>%
+  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
+  print()
+
+inc_two_mod <- inc_dec_tw_mod %>% 
+  filter(inc_dec=="increase") %>% 
+  NROW() %>% 
+  print()
+
+#94 increase
+
+
+dec_two_mod <- inc_dec_tw_mod %>% 
+  filter(inc_dec=="decrease") %>% 
+  NROW() %>% 
+  print()
+#20 decrease
+
+
+
+###76 (2weeks acute)
+
+two_w_acute_mod <- lnc_acute %>%
+  filter(model %in% c("lib_size_normalized"), 
+         coef %in% c("timew2post:setsmultiple" )) %>%
+  print()
+
+two_acut_mod <- two_w_acute_mod%>% 
+  filter(pt == "sig") %>%
+  NROW() %>% 
+  print()
+
+
+#increase/decrease
+
+inc_dec_tw_a_mod <- two_w_acute_mod %>% 
+  filter(pt == "sig") %>%
+  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
+  print()
+
+
+inc_two_a_mod <- inc_dec_tw_a_mod %>% 
+  filter(inc_dec=="increase") %>% 
+  NROW() %>% 
+  print()
+
+# 31 increase
+
+
+dec_two_a_mod <- inc_dec_tw_a_mod %>% 
+  filter(inc_dec=="decrease") %>% 
+  NROW() %>% 
+  print()
+# 45 decrease
+
+
+
+
+###82 DE 12 weeeks med moderat treningsvolum 
+
+  twelve_w_rest_mod <- lnc_rest %>%
+  filter(model %in% c("tissue_offset_lib_size_normalized"),
+         coef %in% c("timew12:setsmultiple")) %>% 
+           print()
+
+  
+  twelve_rest_mod <- twelve_w_rest_mod%>% 
+    filter(pt == "sig") %>%
+    NROW() %>% 
+    print()
+
+  
+  
+  #increase/decrease
+  
+  
+  inc_dec_twelve_mod <- twelve_w_rest_mod %>% 
+    filter(pt == "sig") %>%
+    mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
+    print()
+  
+  
+  inc_twelve_mod <- inc_dec_twelve_mod %>% 
+    filter(inc_dec=="increase") %>% 
+    NROW() %>% 
+    print()
+  
+  # 51 increase
+  
+  
+  dec_twelve_mod <- inc_dec_twelve_mod %>% 
+    filter(inc_dec=="decrease") %>% 
+    NROW() %>% 
+    print()
+  
+  # 31 decrease 
+  
+  
+  
+  
+  
+  ####low training volume#####
+
+##2 weeks##
+  two_w_low_lnc <-lnc_rest %>%
+    filter(model %in% c("tissue_offset_lib_size_normalized"),
+           coef %in% "timew2pre") %>% 
+    print()
+  
+  two_rest_low <- two_w_low_lnc%>% 
+    filter(pt == "sig") %>%
+    NROW() %>% 
+    print()
+  #686 lnc changed
+  
+  
+  #increase/decrease
+  
+  inc_dec_tw_low <- two_w_low_lnc %>% 
+    filter(pt == "sig") %>%
+    mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
+    print()
+  
+  
+  inc_two_low <- inc_dec_tw_low %>% 
+    filter(inc_dec=="increase") %>% 
+    NROW() %>% 
+    print()
+  
+  # 634 increase
+  
+  
+  dec_two_low <- inc_dec_tw_low %>% 
+    filter(inc_dec=="decrease") %>% 
+    NROW() %>% 
+    print()
+  
+  # 52 decrease 
+  
+  
+  
+
+###2weeks acute####
+  two_w_acute_low <- lnc_acute %>%
+    filter(model %in% c("lib_size_normalized"), 
+           coef %in% c("timew2post" )) %>%
+    print()
+  
+  
+  two_acute_low <- two_w_acute_low%>% 
+    filter(pt == "sig") %>%
+    NROW() %>% 
+    print()
+  #544 lnc changed
+  
+  
+  
+  #increase/decrease
+  inc_dec_tw_a_low <- two_w_acute_low %>% 
+    filter(pt == "sig") %>%
+    mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
+    print()
+  
+  
+  inc_tw_a_low <- inc_dec_tw_a_low %>% 
+    filter(inc_dec=="increase") %>% 
+    NROW() %>% 
+    print()
+  
+  # 196 increase
+  
+  
+  dec_tw_a_low <- inc_dec_tw_a_low %>% 
+    filter(inc_dec=="decrease") %>% 
+    NROW() %>% 
+    print()
+  
+  # 348 decrease
+  
+  
+  
+  
+###12 weeks####
+  twelve_w_rest_low <- lnc_rest %>%
+    filter(model %in% c("tissue_offset_lib_size_normalized"),
+           coef %in% c("timew12")) %>% 
+    print()
+  
+  
+  twelve_rest_low <- twelve_w_rest_low%>% 
+    filter(pt == "sig") %>%
+    NROW() %>% 
+    print()
+  #432 lnc changed
+  
+  
+  
+  #increase/decrease
+  
+  inc_dec_twelve_low <- twelve_w_rest_low %>% 
+    filter(pt == "sig") %>%
+    mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
+    print()
+  
+  
+  inc_twelve_low <- inc_dec_twelve_low %>% 
+    filter(inc_dec=="increase") %>% 
+    NROW() %>% 
+    print()
+  
+  # 428 increase
+  
+  
+  dec_twelve_low <- inc_dec_twelve_low %>% 
+    filter(inc_dec=="decrease") %>% 
+    NROW() %>% 
+    print()
+  
+  # 4 decrease
+  
+
+```
+
+Of the `r  (lnc_count)` lncRNAs, `r (two_rest_mod)` changed at 2 weeks rest, `r (two_acut_mod)` at 2weeks acute and `r (twelve_rest_mod)` at 12 weeeks rested state with moderate training volume. With low volme `r (two_rest_low)`, `r (two_acute_low)` and `r (twelve_rest_low)` changed respectively.
+
+
+
+At week 2 rested state, `r (inc_two_mod)` increased and `r (dec_two_mod)` decreased with moderate volume. With low volume `r (inc_two_low)` increased and `r (dec_two_low)` decreased. 
+
+
+At week 2 post training `r (inc_two_a_mod)` increased and `r (dec_two_a_mod)` decreased with moderate volume. With low volume `r (inc_tw_a_low)` increased and `r (dec_tw_a_low)` decreased.
+
+
+
+At week 12, `r (inc_twelve_mod)` increased and `r (dec_twelve_mod)` decreased with moderate volume. 
+With low volume `r (inc_twelve_low)` increased and `r (dec_twelve_low)` decreased.
+
+
+
+
+
+
+
+
+ 
+ 
+
+
+
+
+
+
+##DE lncRNAs both acute and rest
+
+```{r lncRNA DE, echo= FALSE, include= FALSE}
+
+library(tidyverse)
+library(readxl)
+library(knitr)
+library(dplyr)
+library(biomaRt)
+
+# Load data
+# Mixed-effects negative binomial count models were fitted and saved in 
+# ./R/dge_list_models.R. Results saved in RDS files (see below).
+# no need to run these models again.
+
+full_rest <- readRDS("./derivedData/DE/mixedmodel2_fullmodel.RDS")
+full_acute <- readRDS("./derivedData/DE/mixedmodel2_acutemodel.RDS")
+### Find lncRNA from ensamble #########
+
+# Makes a vector of all transcripts (after filtering)
+all_genes <- unique(full_rest$gene) 
+
+
+
+ensembl <- useMart("ensembl")
+ensembl <- useDataset("hsapiens_gene_ensembl", mart = ensembl)
+
+# List attributes from biomart
+listAttributes(ensembl)
+
+# Make a data frame of all genes with symbol, biotype etc...
+all_genes <- getBM(attributes=c('ensembl_gene_id', 'gene_biotype', 'entrezgene_id', 'hgnc_symbol'), 
+                   filters = 'ensembl_gene_id',
+                   values = all_genes, 
+                   mart = ensembl)
+
+
+
+
+
+
+
+
+
+
+#####lncRNA identified from seq data#####
+
+
+#### make a data frame of lncRNA 
+
+lncRNA <- all_genes %>%
+  filter(gene_biotype == "lncRNA") %>%
+  print()
+
+
+##### Filter and adjust p-values for differentially expression #####
+
+######rest model time only #####
+
+full_rest_lnc <- full_rest %>%
+  filter(model %in% c("lib_size_normalized", "tissue_offset_lib_size_normalized"),
+         coef %in% c("timew2pre", "timew12")) %>%
+  
+  dplyr::select(gene, model, coef, estimate, se, z.val, p.val) %>%
+  
+  # filter out only lncRNA
+  
+  filter(gene %in% lncRNA$ensembl_gene_id) %>%
+  # P-value adjustments
+  group_by(model, coef) %>%
+  mutate(p.adj = p.adjust(p.val, method = "fdr")) %>%
+  print()
+
+
+######DE lncs count at rest#####
+
+#####Total DE lncs at rest######
+
+DE_count <- full_rest_lnc %>%
+  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
+  filter(model %in% "tissue_offset_lib_size_normalized",
+         coef %in% "timew2pre",
+         pt %in% "sig") %>%
+ print()
+
+DE_count_lnc_rest <- DE_count %>% 
+  NROW() %>% 
+  print()
+#NROW gives number of rows in a column.
+#543 genes DE
+
+#####count lnc DE increase######
+pos_neg_lnc_rest <- DE_count %>%
+    mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
+           print()
+
+inc_rest <- pos_neg_lnc_rest %>% 
+  filter(inc_dec=="increase") %>% 
+  NROW() %>% 
+  print()
+
+#504 DE increase
+  
+
+##### count lnc DE decrease######
+dec_rest <- pos_neg_lnc_rest %>% 
+  filter(inc_dec=="decrease") %>% 
+  NROW() %>% 
+  print()
+ 
+#39 DE decrease
+ 
+
+##### count DE qPCR lncs#####
+## Genes that are also analyzed by qPCR
+goi <- c("ENSG00000234741", "ENSG00000268518",  "ENSG00000225613",  "ENSG00000185847",
+         "ENSG00000249515",  "ENSG00000223784",  "ENSG00000249859",  "ENSG00000269900")
+DE_count_lnc_q <- DE_count %>%
+  filter(gene %in% goi) %>%
+  print()
+
+DE_qpcr_rest <- DE_count_lnc_q %>%  pull(gene)
+
+#"ENSG00000225613" and "ENSG00000234741 is DE
+
+
+
+######DE lncs count acute#####
+
+#####acute model timepoint and sets#####
+
+full_acute_lnc <- full_acute %>%
+  filter(model %in% c("lib_size_normalized"),
+         coef %in% c("timew2post")) %>%
+  dplyr::select(gene, model, coef, estimate, se, z.val, p.val) %>%
+  
+  # filter out only lncRNA
+  
+  filter(gene %in% lncRNA$ensembl_gene_id) %>%
+  # P-value adjustments
+  group_by(model, coef) %>%
+  mutate(p.adj = p.adjust(p.val, method = "fdr")) %>%
+  print()
+
+#####Total DE lncs acute ######
+
+DE_count_acute <- full_acute_lnc %>%
+  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
+  filter(model %in% "lib_size_normalized",
+         coef %in% "timew2post",
+         pt %in% "sig") %>%
+  print()
+
+DE_count_lnc_acute <- DE_count_acute %>% 
+  NROW() %>% 
+  print()
+#NROW gives number of rows in a column.
+#385 genes DE
+
+
+#####count lnc DE acute increase######
+
+pos_neg_lnc_acute <- DE_count_acute %>%
+  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
+  print()
+
+inc_acute <- pos_neg_lnc_acute %>% 
+  filter(inc_dec=="increase") %>% 
+  NROW() %>% 
+  print()
+
+#146 DE increase
+
+##### count lnc DE acute decrease######
+
+
+dec_acute <- pos_neg_lnc_acute %>% 
+  filter(inc_dec=="decrease") %>% 
+  NROW() %>% 
+  print()
+
+#239 DE decrease
+
+
+
+
+##### count DE acute qPCR lncs#####
+## Genes that are also analyzed by qPCR
+goi <- c("ENSG00000234741", "ENSG00000268518",  "ENSG00000225613",  "ENSG00000185847",
+         "ENSG00000249515",  "ENSG00000223784",  "ENSG00000249859",  "ENSG00000269900")
+DE_count_lnc_acute_qpcr <- DE_count_acute %>%
+  filter(gene %in% goi) %>%
+  print()
+
+DE_qpcr_acute <- DE_count_lnc_acute_qpcr %>%  pull(gene)
+
+
+```
+
+
+
+
+## quantitative /real time polymerase chain reaction (qPCR):
+
+
+```{r qPCR analysis timepoint, echo=FALSE, include=FALSE}
+
+library(tidyverse)
+library(readxl)
+library(knitr)
+library(dplyr)
+library(nlme)
+library(emmeans)
+library(feather)
+library(glmmTMB)
+library(lme4)
+library(mgcv)
+
+
+
+                      #######lnc from qPCR change on different timepoint########
+  
+  ##load data
+qpcr_results <- readRDS("./derivedData/qpcr_results.RDS")
+
+                          ######moderate training volume######
+  
+
+
+###	**av disse LNCs endret 3 (2 weeks)**
+  
+  
+  qpcr_t_mod <-qpcr_results %>%
+    mutate(pt = if_else(p.value < 0.05, "sig", "ns")) %>%
+    filter(coef %in% "timepointw2pre",
+           sets %in% "Multiple") %>% 
+    print()
+  
+  
+  qpcr_two_mod <- qpcr_t_mod  %>% 
+    filter(pt == "sig") %>%
+    NROW() %>% 
+    print()
+  
+
+  
+  #increase/decrease
+  
+  q_inc_dec_two_mod <- qpcr_t_mod %>% 
+    filter(pt == "sig") %>%
+    mutate(inc_dec = if_else(Value >0.00,"increase", "decrease")) %>% 
+    print()
+  
+  q_inc_two_mod <- q_inc_dec_two_mod%>% 
+    filter(inc_dec=="increase") %>% 
+    NROW() %>% 
+    print()
+  
+  #2 increase
+  
+  
+  q_dec_two_mod <- q_inc_dec_two_mod %>% 
+    filter(inc_dec=="decrease") %>% 
+    NROW() %>% 
+    print()
+  #1 decrease
+  
+  
+  
+  
+  
+  
+  ### 4 changed (2weeks acute)
+  
+  
+  qpcr_ta_mod <-qpcr_results %>%
+    mutate(pt = if_else(p.value < 0.05, "sig", "ns")) %>%
+    filter(coef %in% "timepointw2post",
+           sets %in% "Multiple") %>% 
+    print()
+  
+  
+  
+  qpcr_two_a_mod <- qpcr_ta_mod  %>% 
+    filter(pt == "sig") %>%
+    NROW() %>% 
+    print()
+  #4 changed
+  
+  
+  
+  
+  #increase/decrease
+  
+  q_inc_dec_two_a_mod <- qpcr_ta_mod %>% 
+    filter(pt == "sig") %>%
+    mutate(inc_dec = if_else(Value >0.00,"increase", "decrease")) %>% 
+    print()
+  
+  q_inc_two_a_mod <- q_inc_dec_two_a_mod%>% 
+    filter(inc_dec=="increase") %>% 
+    NROW() %>% 
+    print()
+  
+  #2 increase
+  
+  
+  q_dec_two_a_mod <- q_inc_dec_two_a_mod %>% 
+    filter(inc_dec=="decrease") %>% 
+    NROW() %>% 
+    print()
+  #2 decrease
+  
+  
+  
+  
+  
+  
+  
+  
+  ### 3 changed at 12 weeeks med moderat treningsvolum 
+  
+  
+  qpcr_twel_mod <-qpcr_results %>%
+    mutate(pt = if_else(p.value < 0.05, "sig", "ns")) %>%
+    filter(coef %in% "timepointw12",
+           sets %in% "Multiple") %>% 
+    print()
+  
+  
+  qpcr_twelve_mod <- qpcr_twel_mod  %>% 
+    filter(pt == "sig") %>%
+    NROW() %>% 
+    print()
+  #3 changed
+  
+  
+  
+  
+  #increase/decrease
+  
+  q_inc_dec_twelve_mod <- qpcr_twel_mod %>% 
+    filter(pt == "sig") %>%
+    mutate(inc_dec = if_else(Value >0.00,"increase", "decrease")) %>% 
+    print()
+  
+  q_inc_two_a_mod <- q_inc_dec_twelve_mod%>% 
+    filter(inc_dec=="increase") %>% 
+    NROW() %>% 
+    print()
+  
+  #3 increase
+  
+  
+  q_dec_twelve_mod <-q_inc_dec_twelve_mod %>% 
+    filter(inc_dec=="decrease") %>% 
+    NROW() %>% 
+    print()
+  
+  #0 decrease
+  
+  
+  
+                         
+  
+  
+  
+                               ####low training volume#####
+  
+ 
+  
+  ###	**av disse LNCs endret 1  at(2 weeks)**
+  
+  
+  qpcr_t_low <-qpcr_results %>%
+    mutate(pt = if_else(p.value < 0.05, "sig", "ns")) %>%
+    filter(coef %in% "timepointw2pre",
+           sets %in% "setssingle") %>% 
+    print()
+  
+  
+  qpcr_two_low <- qpcr_t_low  %>% 
+    filter(pt == "sig") %>%
+    NROW() %>% 
+    print()
+  
+  
+  
+  #increase/decrease
+  
+  q_inc_dec_two_low <- qpcr_t_low %>% 
+    filter(pt == "sig") %>%
+    mutate(inc_dec = if_else(Value >0.00,"increase", "decrease")) %>% 
+    print()
+  
+  q_inc_two_low <- q_inc_dec_two_low%>% 
+    filter(inc_dec=="increase") %>% 
+    NROW() %>% 
+    print()
+  
+  #1 increase
+  
+  
+  q_dec_two_low <- q_inc_dec_two_low %>% 
+    filter(inc_dec=="decrease") %>% 
+    NROW() %>% 
+    print()
+  #0 decrease
+  
+  
+  
+  
+  
+  
+  ### 1 changed (2weeks acute)
+  
+  
+  qpcr_ta_low <-qpcr_results %>%
+    mutate(pt = if_else(p.value < 0.05, "sig", "ns")) %>%
+    filter(coef %in% "timepointw2post",
+           sets %in% "setssingle") %>% 
+    print()
+  
+  
+  
+  qpcr_two_a_low <- qpcr_ta_low  %>% 
+    filter(pt == "sig") %>%
+    NROW() %>% 
+    print()
+  #1 changed
+  
+  
+  
+  
+  #increase/decrease
+  
+  q_inc_dec_two_a_low <- qpcr_ta_low %>% 
+    filter(pt == "sig") %>%
+    mutate(inc_dec = if_else(Value >0.00,"increase", "decrease")) %>% 
+    print()
+  
+  q_inc_two_a_low <- q_inc_dec_two_a_low%>% 
+    filter(inc_dec=="increase") %>% 
+    NROW() %>% 
+    print()
+  
+  #0 increase
+  
+  
+  q_dec_two_a_low <- q_inc_dec_two_a_low %>% 
+    filter(inc_dec=="decrease") %>% 
+    NROW() %>% 
+    print()
+  #1 decrease
+  
+  
+  
+  
+  
+  
+  
+  
+  ### 0 changed at 12 weeeks med low treningsvolum 
+  
+  
+  qpcr_twel_low <-qpcr_results %>%
+    mutate(pt = if_else(p.value < 0.05, "sig", "ns")) %>%
+    filter(coef %in% "timepointw12",
+           sets %in% "setssingle") %>% 
+    print()
+  
+  
+  qpcr_twelve_low <- qpcr_twel_low  %>% 
+    filter(pt == "sig") %>%
+    NROW() %>% 
+    print()
+  #0 changed
+  
+  
+  
+  
+  #increase/decrease
+  
+  q_inc_dec_twelve_low <- qpcr_twel_low %>% 
+    filter(pt == "sig") %>%
+    mutate(inc_dec = if_else(Value >0.00,"increase", "decrease")) %>% 
+    print()
+  
+  q_inc_two_a_low <- q_inc_dec_twelve_low%>% 
+    filter(inc_dec=="increase") %>% 
+    NROW() %>% 
+    print()
+  
+  #0 increase
+  
+  
+  q_dec_twelve_low <-q_inc_dec_twelve_low %>% 
+    filter(inc_dec=="decrease") %>% 
+    NROW() %>% 
+    print()
+  #0 decrease
+
+
+```
+
+
+
+
+9 lncRNAs that have previously been linked to muscle plasticity/growth.were used in qPCR analysis. Of the latter, `r (qPCR_Lncs_identf)`  were identified in the RNA sequencing data.
+
+For moderate training volume `r (qpcr_two_mod)` lncRNAs changed significantly, `r (q_inc_two_mod)` increased and `r (q_dec_two_mod)`decreased at timepoint w2pre.
+
+At timepoint w2post `r (qpcr_two_a_mod)` changed, of wich `r (q_inc_two_a_mod)`increased and `r (q_dec_two_a_mod )`decreased.
+
+At timepoint w12, `r (qpcr_twelve_mod)` changed, `r (q_inc_two_a_mod)` increased and  `r (q_dec_twelve_mod)` decreased.
+
+
+With low training volume
+`r (qpcr_two_low)` changed at rested state timepoint w2pre, `r (q_inc_two_low)`increased and `r (q_dec_two_low)` decreased.  At timepoint w2post, `r ( qpcr_two_a_low)` changed,   `r (q_inc_two_a_low)`  increased and `r (q_dec_two_a_low)` decreased.  
+
+At timepoint w12 rested state `r (qpcr_twelve_low)` lncRNAs changed significantly.
+
+
+**•	sammenligning moderat vs lavt volum – hvor mange LNCs responderte ulikt på de to treningsmod ved hvert av de tre tidspunktene?**
+
+**•	Hvilke endret seg ved hvert av de tre tidspunktene? Prøv å få til en samlende historie, med fokus på gener som endrer seg, inkl retning og fold-change. For de andre, holder det å skrive at de ikke endret seg**
+
+
+**•	Var det forskjell mellom moderat og lavt volum? Ideelt sett skrives dette sammen med info fra foregående punkt – igjen tenk rød tråd og historie RNA-seq vs qPCR** 
+
+**lage én figur som fremviser korrelasjon (mellom per mg uttrykk RNA-seq og per-mg-uttrykk-qPCR)? Bryte dataene ned til individer? Dvs  lage et korrelasjonsplot for samtlige individer og gener? Evt et plot per gen. Disse dataene kan evt presenteres i tabellform -  poenget er å vise frem at dataene er reliable**
+
+
+
+**-	Btw, det ser ut til at et av genene har avvikende results i foreliggende figs – dette kan tyde på metodiske problemer knyttet til enten RNA-seq eller qPCr – sjekk qPCR-kjøringene**
+ Only applies to rested state models. 
+
+
+
+
+
+**lncRNAs identified as DE**
+
+***rest***
+`r (DE_count_lnc_rest)` lncRNAs were identified as differentially expressed when analysed from pre training to w12. The biopsies were taken in rested state.
+
+
+***acute***
+`r (DE_count_lnc_acute)` lncRNAs were identified as differentially expressed directly after a training bout at timepoint w2post.
+
+
+
+**lncRNAs DE increase/decrease**
+
+
+`r (inc_rest)` of the differentially expressed lncRNAs at rest increased, and `r (dec_rest)` decreased.
+
+For the acute analysis `r (inc_acute)` lncrNAs increased and `r (dec_acute)` decreased. Of the qPCR lncRNAs there were `r (DE_qpcr_rest)` differentially expressed at rest and `r (DE_qpcr_acute)` differentially expressed after the acute analysis
