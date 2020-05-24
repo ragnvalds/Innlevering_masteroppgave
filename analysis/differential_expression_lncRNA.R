@@ -106,9 +106,22 @@ full_rest_lnc %>%
   xlab("log2FC")+
   labs(title = "Rested state,single sets")
 
+                          ######Count lnc genes DE##############
+  
+DE_rest_single <- full_rest_lnc %>%
+  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
+  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
+  filter(pt == "sig",
+         model == "tissue_offset_lib_size_normalized",
+         coef == "timew12",
+         inc_dec == "increase") %>%
+  #NROW() %>% 
+  print()
+   
+#124 DE single sets timepre to timew12
+#124 increase
 
-  
-  
+
 
 
 
@@ -135,6 +148,23 @@ full_acute_lnc %>%
   facet_grid(model ~ coef)+
   xlab("log2FC") +
   labs(title = "Acute respons,single sets")
+
+                     ######Count lnc genes DE##############
+
+
+
+DE_acute_single <- full_acute_lnc %>%
+  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
+  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
+filter(pt == "sig",
+       coef == "timew2post", 
+       inc_dec == "decrease") %>%
+  NROW() %>% 
+  print()
+
+#385 lnc DE at timepoint w2post single sets
+#146 increased
+#239 decreased
 
 
 
@@ -169,8 +199,22 @@ full_rest_lnc_m %>%
   labs(title = "Rested state,multiple sets")
 
 
+ 
+
+                    ######Count lnc genes DE##############
+
+DE_rest_multiple <- full_rest_lnc_m %>%
+  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
+  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
+filter(pt == "ns",
+       model == "tissue_offset_lib_size_normalized",
+       coef == "timew12:setsmultiple") %>% 
+       #inc_dec == "increase") %>%
+  #NROW() %>% 
+  print()
 
 
+# 0 DE lncs at rest multiple sets
 
 
 #####acute model timepoint and sets multiple sets#####
@@ -202,10 +246,25 @@ full_acute_lnc_m %>%
 
 
 
+                   ######Count lnc genes DE##############
+
+DE_acute_multiple <- full_acute_lnc_m %>%
+  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
+  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
+filter(pt == "ns",
+       coef == "timew2post:setsmultiple") %>%  
+       #inc_dec == "decrease") %>%
+  #NROW() %>% 
+  print()
+
+# 0 DE lncs acute multiple sets
 
 
 
-########### from qpcr###################
+
+
+
+                        ########### from qpcr###################
 
 
 
@@ -238,6 +297,19 @@ full_rest_lnc_pcr %>%
   labs(title = "Rested state qpcr lncs, single sets")
 
 
+               ######Count lnc genes DE##############
+
+DE_qpcr_rest_single <- full_rest_lnc_pcr %>%
+  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
+  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
+filter(pt == "sig",
+       model == "tissue_offset_lib_size_normalized",
+       coef == "timew12") %>% 
+  #inc_dec == "increase") %>%
+  #NROW() %>% 
+  print()
+
+# 5 DE increased rest single
 
 
 
@@ -266,6 +338,18 @@ full_acute_lnc_pcr %>%
   xlab("log2FC") +
   labs(title = "Acute respons qpcr lncs, single sets")
 
+                ######Count lnc genes DE##############
+
+DE_qpcr_acute_single <- full_acute_lnc_pcr %>%
+  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
+  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
+filter(pt == "sig",
+       coef == "timew2post") %>% 
+  #inc_dec == "increase") %>%
+  #NROW() %>% 
+  print()
+
+# 3 DE decreased acute w2post single sets.
 
 
 
@@ -301,7 +385,19 @@ full_rest_lnc_m_pcr %>%
   labs(title = "Rested state qpcr lncs, multiple sets")
 
 
+                ######Count lnc genes DE##############
 
+DE_qpcr_rest_multiple <- full_rest_lnc_m_pcr %>%
+  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
+  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
+  filter(pt == "sig",
+    model == "tissue_offset_lib_size_normalized",
+       coef == "timew12:setsmultiple") %>% 
+  #inc_dec == "increase") %>%
+  #NROW() %>% 
+  print()
+
+# 0 DE lnc at rest multiple sets.
 
 
 
@@ -333,14 +429,19 @@ full_acute_lnc_m_pcr %>%
 
 
 
+                  ######Count lnc genes DE##############
+
+DE_qpcr_acute_multiple <- full_acute_lnc_m_pcr %>%
+  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
+  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
+filter(pt == "ns",
+       coef == "timew2post:setsmultiple") %>% 
+  #inc_dec == "increase") %>%
+  #NROW() %>% 
+  print()
 
 
-
-
-
-
-
-
+# 0 De lncs at acute w2post multiple sets.
 
 
 
