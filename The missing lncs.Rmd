@@ -80,46 +80,22 @@ RNA component of mitochondrial RNA processing endoribonuclease (RMRP)
 \pagebreak
 
 # 1. Theory
-
-Humans are made for movement, and prolonged exercise training can enhance human exercise performance and help to maintain good health. Proper function of skeletal muscles are important for every aspect in life. Athletes need strong and enduring muscles to perform their best in competitions. Elderly people need strong muscles in the extremities to be able to walk across the road on green light, and to ascend stairs. Strong leg muscles are also important to prevent loss of balance and injury. When the muscles are exposed to mechanical stimuli, they adapt and becomes stronger or more persevering. Usually one tries to induce mechanical stimuli to the muscles with strength training. There are a vast number of different strength training programs and methods, but the two main variables are volume and intensity **kilde**. Volume is about sets, repetitions and number of training bouts. Intensity, on the other hand, is about load, speed and time. The training intensity is closely connected to increased muscle strength, and usually one finds large increase in muscle strength after high intensity training studies. How many sets and repetitions to apply, are a never ending discussion. The most used volume variables when performing strength training are probably 3 sets and 8-12 repetitions. The latter is a good starting point, but with manipulation of the volume variables one can gain even more muscle strength. What it all boils down to, is that musclegrowth and strength gain is highly correlated with the choices you do regarding volume and intensity. Much is known about the different strength training methods and how to maximize strength and muscle gain. Tailormade strength training bouts are big business, and are used for athletes, rehabilitation patients and exercisers alike. BUt little is known about what really happens when the muscle adapts to training. What are the rationales behind the small bashful changes in RNA expression, protein translation and other similar processes.
-
-
-
+Humans are made for movement, and prolonged exercise training can enhance human exercise performance and help to maintain good health. Proper function of skeletal muscles are important for every aspect in life. Athletes need strong and enduring muscles to perform their best in competitions. Elderly people need strong muscles in the extremities to be able to walk across the road on green light, and to ascend stairs. Strong leg muscles are also important to prevent loss of balance and injury. When the muscles are exposed to mechanical stimuli, they adapt and becomes stronger or more persevering. Usually one tries to induce mechanical stimuli to the muscles with strength training. There are a vast number of different strength training programs and methods, and one can vary the training volume with sets, repetitions or load **kilde**. The training volume is closely connected to increased muscle strength, and usually one finds large increase in muscle strength after high intensity training studies. How many sets and repetitions to apply, are a never ending discussion. The most used volume variables when performing strength training are probably 3 sets and 8-12 repetitions. The latter is a good starting point, but with manipulation of the volume variables one can gain even more muscle strength. What it all boils down to, is that musclegrowth and strength gain is highly correlated with the choices you do regarding volume. Much is known about the different strength training methods and how to maximize strength and muscle gain. Tailormade strength training bouts are big business, and are used for athletes, rehabilitation patients and exercisers alike. BUt little is known about what really happens when the muscle adapts to training. What are the rationales behind the small bashful changes in RNA expression, protein translation and other similar processes.
 
 Different signalling pathways that leads to muscle adaptation after strength training have been identified. One of the most important to strength training adaptations is mammalian target of rapamycin (mTOR) **KIlde**. MTOR is a part of the phosphatidylinositol 3-kinase-related kinase family and has two distinct multi-protein complexes mtor c1 and c2. The former is recognized as the one most important to muscle adaptation. **KILDE**. We don't know much about the function of mtorc2, but it looks like it may be associated with the ribosome and regulating ribosomal activity, and cell survival **KILDE**.mTORC1 is targeting different signalling pathways and proteins, and is probably very important for muscle protein synthesis (MPS) **KILDE**. mTORc1 is activated by focal adhesion kinase (FAK) - Akt - mTOR- torc1- p70S6K. mTORC2 is downstream from FAK, Akt and upstream from eukaryotic translation initiation factor 4E-binding protein 1 (4E-BP1). Initiation of protein translation is activated by phosphatidic acid (PA), the latter activates mTORC1 and thereafter ribosomal protein S6K (p70S6K). Mechanical stress activates mitogen-activated protein kinase (MAPK), which can activate myc and phosphorylate C-myc. Regulates transcription factors and therby may regulate transcription of proteins **KILDE**. Little is known of proteins that regulates satellite cells. **Kilde** advocates that satellite cells are regulated by myostatin. Upregulated myostatin levels increases p21, a cyclin-dependent kinase inhibitor, and inhibits differentiation. Satellite cells, or muscle stem cells, are small cells that can evolve to sketelal muscle cells. When activated they can proliferate and transform to myoblasts **kilde**.  The latter can induce muscle fibre hypertrophy or make new muscle cells **kilde**. They are situated between the sarcolemma and membrane of the muscle fibre. Activated upon mechanical strain. Excercise triggers a cascade of different signaling molecules, e.g. growth factors and cytokines. HGF activates satellite cells, fibroblast growth factor (FGF) and insulin-like growth factor-I (IGF-1) increases proliferation.
-
-
-
-
-
-
 
 RNa is a messenger between DNA and proteins. But in the transcriptional process a lot of non protein coding RNAs are produced [@Ponting2009]. One interesting transcript species are long non coding RNAs (lncRNAs). They are a bit of a mystery. For a long time they were solely regarded as transcriptional noise, but recently they are found interesting. **kilde**. The lncRNAs, as the name implies, is made up of over 200 nucleotides [@Ponting2009]. Little is known of their function and the evidence for lncRNAs function is scarce. But due to more advanced research methods, and higher interest the recent years, many lncRNAs has been identified and annotated. LncRNAs and their implication on muscle adaptation to strength training may be vast. Some is known, and cancer research advocates more research on lncRNAs. Especially the ones that are connected to tumor growth **KILDE**. Little is kown about the lncRNAs role in skeletal muscle adaptation to strength training. There may be some studies on mice, but in human skeletal muscle, the knowledge is scarce, if any.
 
 
-
-
-
-
 ## 1.1 Training volume and muscle growth
-**Muskelvekst og treningsvolum (kan evt gjøres til to underdelkap – mulig rekkefølgen bør byttes om). Her skal du først få frem at det er et tydelig forhold mellom muskelvekst og treningsvolum. Fremhev at dette lenge var usikkert, men at meta-analyse viser dette** 
+Beginners have low hypertrophy effect from strength training, and the strength gain mostly comes from neural adaptations to muscle activation **kilde**. Adaptation to strength training is an individual response and everything are not identified or understood yet. What is known, is that one can vary load, sets and repetitions to target either CSA or neuromuscular drive **KILDE**. One usually vary the load between 1RM and 10RM, the repetitions between 4-12 and the sets between 1-6. Muscle growth is highly correlated with strength training volume **kilde** For a long time this was debated, but recent meta-studies have shown that the former is true. **elaborate**  **kilde**
 
+Strength training induces mechanical stimuli to skeletal muscles **Kilde** and the muscle adapts, among others, by adding sarcomeres in parallel in muscle fibres**Kilde**. Strength training results in neural adaptations, improved strength, alter muscle phenotype. and increased cross sectional area (CSA) of the muscle fiber **KILDE[@Staron1990]**. Increased RFD (rate of increase in force at the contraction onset)  **KILDE**. Other adaptations to strength training is increased CSA, specially IIa fibres, increase in noncontractile tissue, e.g collagen, and change in muscle fibers angle of pennation. **KILDE**Adaptations to strength training shows after 8-12 weeks of repeated training**[@Folland2007]**. Over time, the strength gain will be more due to muscle growth than neural adaptations **kilde**. There will be an increase in muscle net protein synthesis (MPS) **KIlde [@Damas2015]**. MPS is increased due to lower protein degradation and higher, maybe more efficient, protein synthesis **kilde[@Phillips1997]**. The central neural component is important for muscle adaptations due to strength training, especially with unilateral training. With the latter the CSA in the untrained leg does not change, but one can observe an increase in strength **KILDE[@Munn2004]**.
 
-Strength training induces mechanical stimuli to skeletal muscles **Kilde** and the muscle adapts, among others, by adding sarcomeres in parallel in muscle fibres**Kilde**. Strength training results in neural adaptations, improved strength, alter muscle phenotype. and increased cross sectional area (CSA) of the muscle fiber **KILDE[@Staron1990]**. INcreased RFD (rate of increase in force at the contraction onset)  **KILDE**. Other adaptations to strength training is increased CSA, specially IIa fibres, increase in noncontractile tissue, e.g collagen, and change in muscle fibers angle of pennation. **KILDE**Adaptations to strength training shows after 8-12 weeks of repeated training**[@Folland2007]**. Over time, the strength gain will be more due to muscle growth than neural adaptations **kilde**. There will be an increase in muscle net protein synthesis (MPS) **KIlde [@Damas2015]**. MPS is increased due to lower protein degradation and higher, maybe more efficient, protein synthesis **kilde[@Phillips1997]**
-
-Beginners have low hypertrophy effect from strength training, and the strength gain mostly comes from neural adaptations to muscle activation **kilde**. Adaptation to strength training is an individual response and everything are not identified or understood yet. What is known, is that one can vary load and volume to target either CSA or neuromuscular drive **KILDE**. One usually vary the load between 1RM and 10RM, and the volume between 4-12 repetitions.
-
-The central neural component is important for muscle adaptations due to strength training, especially with unilateral training. With the latter the CSA in the untrained leg does not change, but one can observe an increase in strength **KILDE[@Munn2004]**.
-
-
-**få deretter frem at dette er tydelig i intrabiologiskemodeller (og hvorfor). Hvorfor **
-Systems biology is collaboration across different research fields and sciences[@Hester2011]. In need of multilevel studies to make a "Human Model". Trying to collect data from e.g. biology, physiology and bioscience to predict how the human body responds and adapts to various stimuli.
+Systems biology is collaboration across different research fields and sciences[@Hester2011]. In need of multilevel studies to make a "Human Model". Trying to collect data from e.g. biology, physiology and bioscience to predict how the human body responds and adapts to various stimuli. This aproach to understand adaptation to strength training advocates that there are a strong correlation between training volume and muscle growth **kilde**  **elaborate**
 
 
 ## 1.2 Cellular pathways
-**fokus på cellulære pathways som antas å kontrollere muskelvekst (ie. Gjennom reg av translasjon og satelittcelleprolif) – her skal du konsentrere deg om pathways som senere skal brukes aktivt i diskusjon rundt betydningene av LNCs – du skal altså etablere en rød tråd – informasjonen begrenses således til generell oversikt samt perspektiver som påvirkes av LNCs**
-
-
 Increase in mRNA expression after bout of strength training, drives protein synthesis of specific proteins **Barres et al. KILDE**
 adaptive hypertrophy mainly driven by MPS (muscle protein synthesis) after activation of mTOR, ribosomal protein S6K (p70) and downstream variables **KILDE[@Bodine2001])**.
 
@@ -155,10 +131,7 @@ MAPK can influence the translation of mRNA. It phosporylates 40S ribosomal prote
 
 
 ## 1.3 Long non-coding RNA
-
-
-  
-### 1.3.1  
+### 1.3.1 Overwiev 
   **o	 LNCs generelt, hva er de? Hvorfor vet vi så lite? Generelle funksjoner og nomenklatur/kategorier**
 
 In the early 1990s, **kilde(Brannan et al. 1990) ** discovered that the lncRNA H19 was involved in egigentic regulation. Later, many more lncRNAs has been identified and described. Their function in epigenetic regulation are still eluded, but some of them are well known. Some of the lncRNAs can alter the coding gene by pairing with mRNA **kilde[@Wang2016]**, and other can interact with microRNAs and  make them miss their target mRNA **kilde[@Cesana2011]**. Yet another group of lncRNAs can encode micropetides that are shorter than 100 amino acids and by doing that alter the micropeptide induced functions **kilde[@Anderson2015]**. Lncrnas have a hefty toolbox to use, and most of the lncs directly linked to myogenesis acts as transcriptional or epigenetic regulators [@Li2018].
@@ -172,9 +145,8 @@ In the first category they overlap one or more exons of another exon on the same
 ![](figures/lnc_action.png)
 
   
-### 1.3.2
+### 1.3.2 Cell growth and proliferation
   
- **cell growth and proliferation**
  
  **cancer research**
 
@@ -182,7 +154,7 @@ One has discovered that lncRNAs may regulate satellite cell biology [@Li2018]. S
 
 Some of the lncRNAs can alter the coding gene by pairing with mRNA **kilde[@Wang2016]**, and other can interact with microRNAs and  make them miss their target mRNA **kilde[@Cesana2011]**. Yet another group of lncRNAs can encode micropetides that are shorter than 100 amino acids and by doing that alter the micropeptide induced functions **kilde[@Anderson2015]**. Lncrnas have a hefty toolbox to use, and most of the lncs directly linked to myogenesis acts as transcriptional or epigenetic regulators [@Li2018].
 
-**animal studies, may use SYISL?** In mice, lncRNA SYISL interacts with polycomb repressive complex 2 and regulates myogenesis **kilde* It's human morfolog is lncRNA AK021986, but no ensemble ID has been allocated and the latter is therefore removed from the qPCR analysis.
+**animal studies, may use SYISL?** In mice, lncRNA SYISL interacts with polycomb repressive complex 2 and regulates myogenesis **kilde* It's human homolog is lncRNA AK021986, but no ensemble ID has been allocated and the latter is therefore removed from the qPCR analysis.
 
 
 
@@ -192,10 +164,7 @@ The lncRNA Growth arrest specific 5 (GAS5) supresses MYC translation **kilde** (
   
 
   
-### 1.3.3  
-
-  **o	hvordan kan vi studerer LNCs in vivo hos mennesker? Først må uttrykksomfanget kartlegges. RNA-seq vs qPCR . Få frem at ikke alle LNCs har poly-A hale, noe som er nødvendig dersom de skal plukkes opp i poly-A drevet RNAseq (poenget er å forberede leseren på at du kun gjenfinner 6 av linkene fra qPCR-exp i RNA-seq datasettet  - dette er en av mulige forklaringer – sekvenseringsdybde er en annen)**
-
+### 1.3.3 Methods used to study lncRNAs in human muscle cells  
 How to study lncRNAs in human genome? How many lncRNAs can be identified in the human muscle cells, and are they differentially expressed on different timepoints.
 
 
@@ -256,13 +225,14 @@ This study is based on the 1/3 set study completed by Hammarström et al. [@Hamm
 Information about potential discomforts and risks associated with the study were given to all the participants and they gave their informed consent before study enrolment. All procedures were performed in accordance to the Declaration of Helsinki. The study design was pre-registered (ClinicalTrials.gov Identifier: NCT02179307) and approved by the local ethics committee at Lillehammer University College, Department of Sport Science (no. 2013-11-22:2).
 
 
-## Intervention and participants overview **lag figur som viser oversikt over intervensjonen – se hammarstrom et al 2020**
-![](figures/.png)
+## Intervention and participants overview 
+41 female and male participants were recruited to the study. The eligibility criteria were age between 18 and 40 years and non-smoking. The exclusion criteria were impaired muscle strength due to ongoing or previous injury, prescribed medicine that could alter exercise adaptations, more than one strength exercise bout weekly during the last 12 months or local anaesthetic intolerance. 7 participants were excluded during data analysis due to different reasons. Details can be found in @Hammarström2020. 
 
-41 female and male participants were recruited to the study. The eligibility criteria were age between 18 and 40 years and non-smoking. The exclusion criteria were impaired muscle strength due to ongoing or previous injury, prescribed medicine that could alter exercise adaptations, more than one strength exercise bout weekly during the last 12 months or local anaesthetic intolerance. 7 participants were excluded during data analysis due to different reasons. Details can be found in Hammarstroms article **KILDE**
-  The intervention was made up by 12 weeks of full-body strength training.
-Within-participants differentiation of training volume was achieved by doing unilaterally leg exercises. The strength-training consisted of one set and three set exercises, and the exercise was randomly allocated to the participants two legs. Assessment of muscle strength was performed at baseline and week 3, 5, 9 and after the intervention. Body composition was assessed before and after the intervention and dietary data was **SELVANGITT** after 4-5 following days after week 6. M.vastus lateralis biopsies were taken at the following 4 different timepoints bilaterally: week 0 (rested state), week 2 (pre-exercise), week 2 (post-exercise, acute-phase) and week 12 (rested state).
-The detailed study protocol can be found in Hammarstroms article **KILDE**
+The intervention was made up by 12 weeks of full-body strength training.
+Within-participants differentiation of training volume was achieved by doing unilaterally leg exercises. The strength-training consisted of one set and three set exercises, and the exercise was randomly allocated to the participants two legs. Assessment of muscle strength was performed at baseline and week 3, 5, 9 and after the intervention. Body composition was assessed before and after the intervention and dietary data was reported 4-5 executive days after week 6. M.vastus lateralis biopsies were taken at the following 4 different timepoints bilaterally: week 0 (rested state), week 2 (pre-exercise), week 2 (post-exercise, acute-phase) and week 12 (rested state) **figure ?** 
+
+![](figures/figure_intervention.png)
+The detailed study protocol can be found in @Hammarström2020
  
  
 
@@ -283,26 +253,35 @@ The protocol was done in accordance to the protocol from **KILDE**
 The qPCR was done with a qPCR machine (Applied Biosystems 7500 fast Real-Time PCR Systems, Life Technologies AS). Used 384 well plates filled with total 10 µl solution. The latter consisting of 2 µl cDNA, specific primers (Forward and Reverse, total 1µl), H20 and a prepared master mix (2X SYBR Select Master Mix, Applied Biosystems, Life Technologies AS). The qPCR protocol was 40 cycles (3 s 95°C denaturing and 30 s 60°C annealing)**?**
 Primertest were performed and the primers with the best melt-curves was selected (single product amplification)
 
-### Overview of primers used.
-
-Parrot_F1R1/LINP1 annotated with LINP1
-
-AKO21986_F3R3 was sorted out because does not have ensemble number.
-
-
-
-
-
-
+### Overview of primers.
 Primers were designed for all selected long non coding RNAs (LINCs) with Primer3Plus **(Untergasser et al. 2012)** and ordered from Thermo Scientific.
 
-Raw data was exported from the qPCR machine and uploaded to RStudio and analysed with the qpcR-package (Ritz & Spiess, 2008) written for R (R Core Team, 2018). Treshold cycles (Ct) were estimated within the latter. Gene expression data were log-transformed prior to statistical analysis
+**table all primers**
 
-seq data. Biomart, and other packages.
+A primertest was conducted to validate which primers to use in the qPCR setup. The primerpair with the best meltcurve, with no biproduct or primerdimers, were choosen.
+
+**table primers choosen**
+
+
+
+## RNA sequencing data
+
+Parrot/LINP1 annotated with LINP1
+
+AKO21986 was sorted out because does not have ensemble number.
+
+
+
+
+
 
 
 
 ## Statistics
+Raw data was exported from the qPCR machine and uploaded to RStudio and analysed with the qpcR-package (Ritz & Spiess, 2008) written for R (R Core Team, 2018). Treshold cycles (Ct) were estimated within the latter. Gene expression data were log-transformed prior to statistical analysis
+
+seq data. Biomart, and other packages.
+
 
 Mixed-effects negative binomial count models were fitted and saved in 
 ./R/dge_list_models.R. Results saved in RDS files
@@ -337,29 +316,13 @@ VOLCANO plot
 
 # Results
 
-**gangen gjennom results blir som følger (skriv som sammenhengende historie):**
-
-
-
-
-
 
  **RNA-seq (se oppbygning av results i hammarstrm et al RNA-seq draft**
 
 In total 15025 were identified in the RNA sequencing data, and 1390 of them were identified as lncRNAs. LncRNAs were identified with BiomaRT R package and Ensemble ID. With this method is it not possible to find lncRNAs without Ensemble id. The latter applied to AKO21986, one of the qPCR lncRNAs and it was removed from the analysis.
 
-Only 16 of the lncRNAs identified in the gene sequence data have entrezgene gene id number. Entrezgene ID is needed to perform a gene ontology analysis
+Only 16 of the lncRNAs identified in the gene sequence data have entrezgene gene id number. Entrezgene ID is needed to perform a gene ontology analysis. National Center for Biotechnology Information (NCBI) hosts the gene specific databbse Entrez Gene. The database generates unique and stable gene identifier integers [@Maglott2011]. This gene ID are then used to integrate different information aboyt the specific gene, such as nomenclature, sequence, pathways and protein interaction [@Maglott2011]. The information in the database is based on results from NCBI's other databases. Research on lncRNAs and their functions are therefore important and needed to evolve the database and increase the number of anotated lncRNAs.
 
-
-
-**Få frem hva som fører til tildeling av entrezID**
-
-
-
-
-#####entrez gene [@Maglott2011]
-
-Entrez Gene is the gene-specific database at the NationalCenter for Biotechnology Information (NCBI), a divisionof the National Library of Medicine, located on the campusof the US National Institutes of Health in Bethesda, MD,USA. Entrez Gene generates unique integers (GeneID)as stable identifiers for genes and other loci for a subsetof model organisms. It tracks those identifiers and usesthem to integrate multiple types of information includingnomenclature, summary descriptions, accessions of gene-specific and gene product-specific sequences, chromosomallocalization, reports of pathways and protein interactions,associated markers and phenotypes. Because the GeneIDis used to represent gene-specific information in otherdatabases at NCBI, the full Entrez Gene report includes awealth  of  links  to  gene-specific  literature  citations,sequences, variations, homologs and databases outside ofNCBI. Entrez Gene is integrated with NCBI’s Entrezsystem for interactive query, Linkout and access byE-Utilities (1).Data in Entrez Gene result from integration of resultsfrom automated analyses and curation by ReferenceSequence project (RefSeq) staff. Gene-specific annotationin sequences from NCBI’s RefSeq (2) or the InternationalNucleotide Sequence Database Collaboration (INSDC)(3) usually serves as the foundation, with value addedby with information from collaborating model organismdatabases, public users and literature review (especiallythe  Gene  References  into  Function  or  GeneRIFssubmitted  by  the  public  and  staff  of  the  NationalLibrary of Medicine). Updates are posted daily, and cor-rections or suggestions are welcomed (http://www.ncbi.nlm.nih.gov/RefSeq/update.cgi
 
 
 
@@ -372,19 +335,15 @@ At week 2 post training 31 increased and 45 decreased with moderate volume. With
 At week 12, 51 increased and 31 decreased with moderate volume. With low volume 428 increased and 4 decreased.
 
 
-
-
-
-
-##DE lncRNAs both acute and rest
-
-
+**insert figures FC**
 
 
 ## quantitative /real time polymerase chain reaction (qPCR):
 
 9 lncRNAs that have previously been linked to muscle plasticity/growth.were used in qPCR analysis. Of the latter, 6 were identified in the RNA sequencing data.
 
+
+**table?**
 ENSG00000185847	LINC01405
 ENSG00000223784	LINP1
 ENSG00000225613	LINCMD1
