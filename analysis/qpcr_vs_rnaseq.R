@@ -28,7 +28,7 @@ linc_ensembl <- read_excel("./data/name_LINCs.xlsx") %>%
 
 #####Response at rest pre-post#####
 
-### with timepoint and sets at rest, model:tissue_offset_lib_size_normalized
+### with timepoint and sets at rest single sets, model:tissue_offset_lib_size_normalized
 
 full_rest <- readRDS("./derivedData/DE/mixedmodel2_fullmodel.RDS")
 
@@ -41,7 +41,8 @@ rnaseq_w2pre_full_t<- full_rest %>%
   print()
 
 qpcr_results %>%
-  filter(coef == "timepointw12") %>%
+  filter(coef == "timepointw12",
+         sets == "setssingle") %>%
   dplyr::select(gene, estimate = Value) %>%
   mutate(type = "qpcr") %>%
   rbind(rnaseq_w2pre_full_t) %>%
@@ -49,12 +50,12 @@ qpcr_results %>%
   ggplot(aes(qpcr, rnaseq)) + geom_point() + 
   xlab("qPCR") +
   ylab("RNAseq") +
-  labs(title = "Correlation rested state, single sets") 
+  labs(title = "FC qpcr vs seq at rest, single sets")
 
 
 
 
-#####timepoint and sets accute
+#####timepoint and sets accute single sets
 
 full_acute <- readRDS("./derivedData/DE/mixedmodel2_acutemodel.RDS")
 
@@ -67,15 +68,17 @@ rnaseq_acute_full<- full_acute %>%
   print()
 
 qpcr_results %>%
-  filter(coef == "timepointw2post") %>%
+  filter(coef == "timepointw2post",
+         sets == "setssingle") %>%
   dplyr::select(gene, estimate = Value) %>%
   mutate(type = "qpcr") %>%
   rbind(rnaseq_acute_full) %>%
   pivot_wider(names_from = type, values_from = estimate, values_fn = list(estimate = mean)) %>%
-  ggplot(aes(qpcr, rnaseq)) + geom_point() + 
+   ggplot(aes(qpcr, rnaseq)) + geom_point() + 
   xlab("qPCR") +
   ylab("RNAseq") +
-  labs(title = "Correlation acute response, single sets")
+  labs(title = "FC qpcr vs seq acute response single sets")
+
 
 
 
@@ -98,16 +101,39 @@ rnaseq_w2pre_full_t_m<- full_rest %>%
 
 qpcr_results %>%
   filter(coef == "timepointw12",
-         sets == "multiple") %>%
-  dplyr::select(gene, estimate = Value) %>%
+         sets == "Multiple") %>%
+dplyr::select(gene, estimate = Value) %>%
   mutate(type = "qpcr") %>%
   rbind(rnaseq_w2pre_full_t_m) %>%
   pivot_wider(names_from = type, values_from = estimate, values_fn = list(estimate = mean)) %>%
   ggplot(aes(qpcr, rnaseq)) + geom_point() + 
   xlab("qPCR") +
   ylab("RNAseq") +
-  labs(title = "Correlation rested state, multiple sets") 
+  labs(title = "FC qpcr vs seq rested state, multiple sets") 
 
 
   
+#####timepoint and sets accute multiple sets
+
+full_acute <- readRDS("./derivedData/DE/mixedmodel2_acutemodel.RDS")
+
+rnaseq_acute_full_m<- full_acute %>%
+  filter(gene %in% linc_ensembl$ensembl, 
+         coef == "timew2post:setsmultiple", 
+         model == "lib_size_normalized") %>%
+  dplyr::select(gene, estimate) %>%
+  mutate(type = "rnaseq") %>%
+  print()
+
+qpcr_results %>%
+  filter(coef == "timepointw2post",
+         sets == "Multiple") %>%
+  dplyr::select(gene, estimate = Value) %>%
+  mutate(type = "qpcr") %>%
+  rbind(rnaseq_acute_full_m) %>%
+  pivot_wider(names_from = type, values_from = estimate, values_fn = list(estimate = mean)) %>%
+  ggplot(aes(qpcr, rnaseq)) + geom_point() + 
+  xlab("qPCR") +
+  ylab("RNAseq") +
+  labs(title = "FC qpcr vs seq acute response multiple sets")
 

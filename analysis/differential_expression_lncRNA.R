@@ -304,7 +304,7 @@ DE_qpcr_rest_single <- full_rest_lnc_pcr %>%
   mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
 filter(pt == "sig",
        model == "tissue_offset_lib_size_normalized",
-       coef == "timew12") %>% 
+       coef == "timew12") %>%
   #inc_dec == "increase") %>%
   #NROW() %>% 
   print()
@@ -344,7 +344,8 @@ DE_qpcr_acute_single <- full_acute_lnc_pcr %>%
   mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
   mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
 filter(pt == "sig",
-       coef == "timew2post") %>% 
+       coef == "timew2post") %>%
+  dplyr::select(gene) %>% 
   #inc_dec == "increase") %>%
   #NROW() %>% 
   print()

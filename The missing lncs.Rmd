@@ -84,7 +84,7 @@ Humans are made for movement, and prolonged exercise training can enhance human 
 
 Different signalling pathways that leads to muscle adaptation after strength training have been identified. One of the most important to strength training adaptations is mammalian target of rapamycin (mTOR) **KIlde**. MTOR is a part of the phosphatidylinositol 3-kinase-related kinase family and has two distinct multi-protein complexes mtor c1 and c2. The former is recognized as the one most important to muscle adaptation. **KILDE**. We don't know much about the function of mtorc2, but it looks like it may be associated with the ribosome and regulating ribosomal activity, and cell survival **KILDE**.mTORC1 is targeting different signalling pathways and proteins, and is probably very important for muscle protein synthesis (MPS) **KILDE**. mTORc1 is activated by focal adhesion kinase (FAK) - Akt - mTOR- torc1- p70S6K. mTORC2 is downstream from FAK, Akt and upstream from eukaryotic translation initiation factor 4E-binding protein 1 (4E-BP1). Initiation of protein translation is activated by phosphatidic acid (PA), the latter activates mTORC1 and thereafter ribosomal protein S6K (p70S6K). Mechanical stress activates mitogen-activated protein kinase (MAPK), which can activate myc and phosphorylate C-myc. Regulates transcription factors and therby may regulate transcription of proteins **KILDE**. Little is known of proteins that regulates satellite cells. **Kilde** advocates that satellite cells are regulated by myostatin. Upregulated myostatin levels increases p21, a cyclin-dependent kinase inhibitor, and inhibits differentiation. Satellite cells, or muscle stem cells, are small cells that can evolve to sketelal muscle cells. When activated they can proliferate and transform to myoblasts **kilde**.  The latter can induce muscle fibre hypertrophy or make new muscle cells **kilde**. They are situated between the sarcolemma and membrane of the muscle fibre. Activated upon mechanical strain. Excercise triggers a cascade of different signaling molecules, e.g. growth factors and cytokines. HGF activates satellite cells, fibroblast growth factor (FGF) and insulin-like growth factor-I (IGF-1) increases proliferation.
 
-RNa is a messenger between DNA and proteins. But in the transcriptional process a lot of non protein coding RNAs are produced [@Ponting2009]. One interesting transcript species are long non coding RNAs (lncRNAs). They are a bit of a mystery. For a long time they were solely regarded as transcriptional noise, but recently they are found interesting. **kilde**. The lncRNAs, as the name implies, is made up of over 200 nucleotides [@Ponting2009]. Little is known of their function and the evidence for lncRNAs function is scarce. But due to more advanced research methods, and higher interest the recent years, many lncRNAs has been identified and annotated. LncRNAs and their implication on muscle adaptation to strength training may be vast. Some is known, and cancer research advocates more research on lncRNAs. Especially the ones that are connected to tumor growth **KILDE**. Little is kown about the lncRNAs role in skeletal muscle adaptation to strength training. There may be some studies on mice, but in human skeletal muscle, the knowledge is scarce, if any.
+RNa is a messenger between DNA and proteins. But in the transcriptional process a lot of non protein coding RNAs are produced [@Ponting2009]. One interesting transcript species are long non coding RNAs (lncRNAs). They are a bit of a mystery. For a long time they were solely regarded as transcriptional noise, but recently they are found interesting. **kilde**. LncRNAs and their implication on muscle adaptation to strength training may be vast. Some is known, and cancer research advocates more research on lncRNAs. Especially the ones that are connected to tumor growth **KILDE**. Little is kown about the lncRNAs role in skeletal muscle adaptation to strength training. There may be some studies on mice, but in human skeletal muscle, the knowledge is scarce, if any.
 
 
 ## I.I Training volume and muscle growth
@@ -132,7 +132,8 @@ MAPK can influence the translation of mRNA. It phosporylates 40S ribosomal prote
 
 ## I.I Long non-coding RNA
 ### I.III.I Overwiev 
-  **o	 LNCs generelt, hva er de? Hvorfor vet vi så lite? Generelle funksjoner og nomenklatur/kategorier**
+  
+The lncRNAs, as the name implies, is made up of over 200 nucleotides [@Ponting2009]. Little is known of their function and the evidence for lncRNAs function is scarce. But due to more advanced research methods, and higher interest the recent years, many lncRNAs has been identified and annotated. 
 
 In the early 1990s, **kilde(Brannan et al. 1990) ** discovered that the lncRNA H19 was involved in egigentic regulation. Later, many more lncRNAs has been identified and described. Their function in epigenetic regulation are still eluded, but some of them are well known. Some of the lncRNAs can alter the coding gene by pairing with mRNA **kilde[@Wang2016]**, and other can interact with microRNAs and  make them miss their target mRNA **kilde[@Cesana2011]**. Yet another group of lncRNAs can encode micropetides that are shorter than 100 amino acids and by doing that alter the micropeptide induced functions **kilde[@Anderson2015]**. Lncrnas have a hefty toolbox to use, and most of the lncs directly linked to myogenesis acts as transcriptional or epigenetic regulators [@Li2018].
 
@@ -311,9 +312,6 @@ Method paper (Hammarstr��t al 2018), the fixed effects are reduced
 to only contain gene-specific time + time:sets
 
 
-VOLCANO plot
-
-
 # 3. Results
 
 ## 3.1. LncRNAs identified 
@@ -367,17 +365,38 @@ RNA seg data
 
 
 
-pcr
+pcr lncs found in seq data
 
 5 DE increased rest w12 single
 
+
+ENSG00000185847/LINC01405
+ENSG00000223784/LINP1
+ENSG00000225613/LINCMD1
+ENSG00000234741/GAS5
+ENSG00000268518
+
+
 3 DE decreased acute w2post single sets
+
+
+ENSG00000223784/LINP1
+ENSG00000225613/LINCMD1
+ENSG00000234741/GAS5
+
+
 
 0 DE lnc at rest multiple sets.
 
 0 De lncs at acute w2post multiple sets.
 
 **•	Var det forskjell mellom moderat og lavt volum? Ideelt sett skrives dette sammen med info fra foregående punkt – igjen tenk rød tråd og historie RNA-seq vs qPCR** 
+
+
+**Fold change qpcr lncRNAs to RNAseq lncRNAs Response at rest pre-post and acute timepoint w2post. Look at figures**
+
+
+
 
 **lage én figur som fremviser korrelasjon (mellom per mg uttrykk RNA-seq og per-mg-uttrykk-qPCR)? Bryte dataene ned til individer? Dvs  lage et korrelasjonsplot for samtlige individer og gener? Evt et plot per gen. Disse dataene kan evt presenteres i tabellform -  poenget er å vise frem at dataene er reliable**
 
@@ -413,7 +432,7 @@ How can lncRNA alter/have an influence on adaptation to strength training
 Is it possible to use lncRNA expression to make a model to predict how the muscle adapts to strength training.
 
 How to normalise sequencing data? In this paper it was used two different approaches. Normalized by lib size and normalizing by tissue weight.
-**Focuser på en – dvs bruk tissue-offset – du trenger i utgangspunktet ikke diskutere dette**
+
 
 
 
