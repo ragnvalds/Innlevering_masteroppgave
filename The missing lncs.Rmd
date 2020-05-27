@@ -271,6 +271,8 @@ Parrot/LINP1 annotated with LINP1
 
 AKO21986 was sorted out because does not have ensemble number.
 
+RNA_sequencing was performed in accordance to **Hammarstrøms new article**
+
 
 
 
@@ -320,12 +322,7 @@ In total 15025 genes were identified in the RNA sequencing data, and 1390 of the
 
 Only 16 of the lncRNAs identified in the gene sequence data have entrezgene gene id number. Entrezgene ID is needed to perform a gene ontology analysis. National Center for Biotechnology Information (NCBI) hosts the gene specific databbse Entrez Gene. The database generates unique and stable gene identifier integers [@Maglott2011]. This gene ID are then used to integrate different information about the specific gene, such as nomenclature, sequence, pathways and protein interaction [@Maglott2011]. The information in the database is based on results from NCBI's other databases. Research on lncRNAs and their functions are therefore important and needed to evolve the database and increase the number of anotated lncRNAs.
 
-Of the 1390 lncRNAs, 114 changed at 2 weeks rest, 76 at 2 weeks acute and 82 at 12 weeeks rested state with moderate training volume. With low volme 686, 544 and 432 changed respectively. At week 2 rested state, 94 increased and 20 decreased with moderate volume. With low volume 634 increased and 52 decreased. At week 2 post training 31 increased and 45 decreased with moderate volume. With low volume 196 increased and 348 decreased. At week 12, 51 increased and 31 decreased with moderate volume. With low volume 428 increased and 4 decreased.
-
-
-
-
-
+Of the 1390 lncRNAs, **?** changed at 2 weeks rest, **?** at 2 weeks acute and **?** at 12 weeeks rested state with moderate training volume. With low volme **?**, **?** and **?** changed respectively. At week 2 rested state, **?** increased and **?** decreased with moderate volume. With low volume **?** increased and **?** decreased. At week 2 post training **?**increased and 45 decreased with moderate volume. With low volume **?** increased and **?** decreased. At week 12, **?** increased and **?** decreased with moderate volume. With low volume **?** increased and **?** decreased.
 
 
 
@@ -346,29 +343,9 @@ For moderate training volume 1 lncRNAs increased significantly at timepoint w2pr
 
 
 
-**lncRNAs identified as DE  based on tissue offset lib size normalized for rested state and lib size normalized for acute. 
+The lncRNAs identified as DE were based on tissue offset lib size normalized data for rested state and lib size normalized data for acute. With low volume, from timepre to timew12, **?** lncRNAs were differentially expressed (DE). All of them were upregulated. At timew2post **?** were DE, **?** increased and *?** decreased. With moderate volume zero lncRNAs were DE at the former and latter timepoints.
 
-RNA seg data
-
-124 DE single sets timepre to timew12
-124 increase
-
-
-385 lnc DE at timepoint w2post single sets
-146 increased
-239 decreased
-
-
-0 DE lncs at rest w12 multiple sets
-
-0 DE lncs acute w2post multiple sets
-
-
-
-pcr lncs found in seq data
-
-5 DE increased rest w12 single
-
+Of the 6 lncRNAs that were analyzed with qpcr, **?** of the following were DE in the seq data at timepoint from pre to timew12 low volume. All of them were upregulated. with moderate volume, **?** genes were DE
 
 ENSG00000185847/LINC01405
 ENSG00000223784/LINP1
@@ -377,20 +354,10 @@ ENSG00000234741/GAS5
 ENSG00000268518
 
 
-3 DE decreased acute w2post single sets
-
-
+With low volume at w2post the following **?** lncRNAs were DE. All of them were downregulated. with moderate volume, **?** genes were DE
 ENSG00000223784/LINP1
 ENSG00000225613/LINCMD1
-ENSG00000234741/GAS5
-
-
-
-0 DE lnc at rest multiple sets.
-
-0 De lncs at acute w2post multiple sets.
-
-**•	Var det forskjell mellom moderat og lavt volum? Ideelt sett skrives dette sammen med info fra foregående punkt – igjen tenk rød tråd og historie RNA-seq vs qPCR** 
+ENSG00000234741/GAS5 
 
 
 **Fold change qpcr lncRNAs to RNAseq lncRNAs Response at rest pre-post and acute timepoint w2post. Look at figures**
@@ -398,6 +365,9 @@ ENSG00000234741/GAS5
 
 
 
+
+
+##ASKED DANIEL HOW TO DO THIS
 **lage én figur som fremviser korrelasjon (mellom per mg uttrykk RNA-seq og per-mg-uttrykk-qPCR)? Bryte dataene ned til individer? Dvs  lage et korrelasjonsplot for samtlige individer og gener? Evt et plot per gen. Disse dataene kan evt presenteres i tabellform -  poenget er å vise frem at dataene er reliable**
 
 
@@ -408,11 +378,15 @@ ENSG00000234741/GAS5
 # 4. Discussion
 
 
-Start diskusjonen med ett avsnitt som summerer opp nyhetsverdien i datasettet (uten på gjenta results). Plassér funnen i relasjon til litteraturen. Har dette blitt gjort før? Samsvarer resultatene? Ha fokus på mod vs lavt volum, med skrpåblikk på effekter av tid. Ta for deg data fra spesielt interessant LINCs (enten med hht tidligere forskning, som for eksempel MD1, eller med hht RNA-se dataene, eg knyttet til p-verdi, fold-change eller genefunksjonsanalyser) – fremhev at MD1 støtter oppunder tidligere forskning som indikerer mulig rolle i muskelbiologi – fremhev at andre gener assosieres med muskelfunksjon (og volum eller tid) for første gang. Diskusjonen deles deretter inni følgende temaer (som alle, foruten det siste, henger sammen med info i dette første avsnittet):
-1)	LNCs og deres tilstedeværelse I muskel – 1390 LNCS – hvordan samsvarer dette med dyrestudier? Det store antallet uttrykte gener og og det store antallet som endrer seg indikerer at LNCS spiller viktige roller i msukelfysiologi 
-2)	Volum-avhengige LNC-responser? Fremhev det store bildet – viste noen av genene differensielle responser mellom conditions? Hvis ja, kan vi si noe om betydning for muskelbiologi? Hvis nei, henvis til RNA-seq-paperet til hammarstrøm, som indikerer at responser på ett og tre-sett trening er svært like – NB vi brukte intrabiologisk treningsmodell – gir oss god oppløsning – gode korrelasjoner i RNA-seq datasettet mellom repeated samples (i.e. kontralaterale samples)
-3)	Tids-effekter LNC-responser. Mange endret seg (utgjør xx % av alle gener som endret uttrykk). Diskutere spesielt interessante gener i detalj (som fremhevet i diskusjonens første avsnitt) – kan vi si noe om biologiske effekter? Bruk gjerne litteratur på andre vevsmodeller enn muskel
-4)	Metodiske utfordringer og fremtidige perspektiver
+*Start diskusjonen med ett avsnitt som summerer opp nyhetsverdien i datasettet (uten på gjenta results). Plassér funnen i relasjon til litteraturen. Har dette blitt gjort før? Samsvarer resultatene? Ha fokus på mod vs lavt volum, med skrpåblikk på effekter av tid. Ta for deg data fra spesielt interessant LINCs (enten med hht tidligere forskning, som for eksempel MD1, eller med hht RNA-se dataene, eg knyttet til p-verdi, fold-change eller genefunksjonsanalyser) – fremhev at MD1 støtter oppunder tidligere forskning som indikerer mulig rolle i muskelbiologi – fremhev at andre gener assosieres med muskelfunksjon (og volum eller tid) for første gang. Diskusjonen deles deretter inni følgende temaer (som alle, foruten det siste, henger sammen med info i dette første avsnittet):*
+
+*1)	LNCs og deres tilstedeværelse I muskel – 1390 LNCS – hvordan samsvarer dette med dyrestudier? Det store antallet uttrykte gener og og det store antallet som endrer seg indikerer at LNCS spiller viktige roller i msukelfysiologi*
+
+*2)	Volum-avhengige LNC-responser? Fremhev det store bildet – viste noen av genene differensielle responser mellom conditions? Hvis ja, kan vi si noe om betydning for muskelbiologi? Hvis nei, henvis til RNA-seq-paperet til hammarstrøm, som indikerer at responser på ett og tre-sett trening er svært like – NB vi brukte intrabiologisk treningsmodell – gir oss god oppløsning – gode korrelasjoner i RNA-seq datasettet mellom repeated samples (i.e. kontralaterale samples)*
+
+*3)	Tids-effekter LNC-responser. Mange endret seg (utgjør xx % av alle gener som endret uttrykk). Diskutere spesielt interessante gener i detalj (som fremhevet i diskusjonens første avsnitt) – kan vi si noe om biologiske effekter? Bruk gjerne litteratur på andre vevsmodeller enn muskel*
+
+*4)	Metodiske utfordringer og fremtidige perspektiver*
 
 
 Is it more to lncRNAs than just transcriptional noise?
@@ -433,11 +407,45 @@ Is it possible to use lncRNA expression to make a model to predict how the muscl
 
 How to normalise sequencing data? In this paper it was used two different approaches. Normalized by lib size and normalizing by tissue weight.
 
-
+bare valgt ut lncRNA fra ensemble
 
 
 # 5. Conclusion
 
+              ####SINGLE SETS############
+       
+       # DE timew2pre 169
+        # DE increase 164
+          # DE decrease 5
+          
+          
+          
+          #DE w2post 102
+          #increase 40
+          # decrease 62
+          
+          
+          
+          # DE timew12 64
+          # 64 increase
+
+
+
+                        #########Multiple sets###########
+
+                          # 0 DE lncs at rest w2pre multiple sets
+                         
+                         # 0 DE lncs acute w2post multiple sets
+                         
+                          # 0 DE at rest w12 multiple sets
+                          
+                          
+
+
+
+         
+         
+         setter p verdi til 0,01. spiller ingen rolle om setter 0,1. Ingen tydelig forskjell mellom sets. FC er satt til signifikant < -0.5 og >0.5.
 
 # Apendix
 

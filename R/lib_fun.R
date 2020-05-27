@@ -3,7 +3,7 @@
 
  #BiocManager::install("clusterProfiler")
 
-#BiocManager::install("rnaseqcomp")
+
 
 #if (!requireNamespace('BiocManager', quietly = TRUE))
   #install.packages('BiocManager')
@@ -28,6 +28,13 @@ library(biomaRt)
 library(Rnmr1D)
 
 # Cran packages
+# Libraries venn diagram
+library(VennDiagram)
+library(tidyverse)
+library(hrbrthemes)
+library(tm)
+library(proustr)
+
 
 library(RColorBrewer)
 

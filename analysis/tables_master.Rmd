@@ -21,6 +21,12 @@ library(flextable)
 
 primers_all <- read_excel("./data/primers_all.xlsx", na = "NA")
 
+time_rest <- readRDS("./derivedData/DE/mixedmodel2_timemodel.RDS")
+full_rest <- readRDS("./derivedData/DE/mixedmodel2_fullmodel.RDS")
+
+time_acute <- readRDS("./derivedData/DE/mixedmodel2_acutemodel_timeonly.RDS")
+full_acute <- readRDS("./derivedData/DE/mixedmodel2_acutemodel.RDS")
+
 
 #First steps, decide what data to use and summarise
 #Before we can start to format the table, we need to decide what data to #put in it. The goal here is to create a summary table of primer #characteristics. .
@@ -192,3 +198,57 @@ kable(format = "html", col.names = c("Ensemble gene ID",
 
 
 ```
+
+```{r acute time, results=asis, echo= FALSE}
+
+#####acute model time #####
+
+  time_acute_lnc <- time_acute %>%
+  filter(model %in% c("lib_size_normalized"),
+         coef %in% c("timew2post")) %>%
+  dplyr::select(gene, model, coef, estimate, se, z.val, p.val) %>%
+  
+  # filter out only lncRNA
+  
+  filter(gene %in% lncRNA$ensembl_gene_id) %>%
+  # P-value adjustments
+  group_by(model, coef) %>%
+  mutate(p.adj = p.adjust(p.val, method = "fdr")) %>%
+  print()
+
+
+ acute_time <- time_acute_lnc %>%
+  mutate(pt = if_else(p.adj < 0.01, "sig", "ns"), 
+         fc = if_else(estimate > 1,"sig", "ns" )) %>% 
+  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
+filter(pt == "sig",
+       coef == "timew2post",
+       fc == "sig") %>%
+   kable() %>% 
+   print()
+ 
+ 
+ #make table of significant lnc
+ 
+ #acute <- acute_time %>% 
+   ##dplyr:: select(gene, estimate, p.adj, pt, fc, inc_dec) %>%
+   #print()
+
+ ##acute %>% 
+ #kable(format = "html", col.names = c("Ensemble gene ID", 
+                                    # "Estimate",
+                                    # "P.adjusted", 
+                                    # "P.value",
+                                    ## "Fold change",
+                                    # "Direction"), 
+      #caption = "Table 5: Significant lncRNAs at timepoint w2post.", 
+      #align = c("l",
+               # "l",
+               # "l",
+               # "l",
+               # "l",
+               # "l")) %>% 
+ # kable_styling(bootstrap_options = "striped", font_size = 12) %>%   
+  # print()
+```
+

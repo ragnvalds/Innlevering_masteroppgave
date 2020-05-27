@@ -18,74 +18,26 @@ time_acute <- readRDS("./derivedData/DE/mixedmodel2_acutemodel_timeonly.RDS")
 full_acute <- readRDS("./derivedData/DE/mixedmodel2_acutemodel.RDS")
 
 
+# load list of all genes with ensemble info
+all_genes <- readRDS("./derivedData/all_genes.RDS")
 
+#load lncRNA
 
-### Find lncRNA from ensamble #########
-
-# Makes a vector of all transcripts (after filtering)
-all_genes <- unique(time_rest$gene) 
-
-
-
-ensembl <- useMart("ensembl")
-ensembl <- useDataset("hsapiens_gene_ensembl", mart = ensembl)
-
-# List attributes from biomart
-listAttributes(ensembl)
-
-# Make a data frame of all genes with symbol, biotype etc...
-all_genes <- getBM(attributes=c('ensembl_gene_id', 'gene_biotype', 'entrezgene_id', 'hgnc_symbol'), 
-              filters = 'ensembl_gene_id',
-      values = all_genes, 
-      mart = ensembl)
-
-
-
-
-
-
-
-## Genes that are also analyzed by qPCR
-goi <- c("ENSG00000234741", "ENSG00000268518",  "ENSG00000225613",  "ENSG00000185847",
-         "ENSG00000249515",  "ENSG00000223784",  "ENSG00000249859",  "ENSG00000269900")
-
-all_genes %>%
-  filter(ensembl_gene_id %in% goi) %>%
-  print()
-
-
-#####lncRNA identified from seq data#####
-
-
-#### make a data frame of lncRNA 
-
-lncRNA <- all_genes %>%
-  filter(gene_biotype == "lncRNA") %>%
-  print()
-
-
-
-
-###pull number of lncRNAs idetified
-
-
-lnc_count <- lncRNA %>% 
-  nrow() %>%
-  print()
-
+lncRNA <- readRDS("./derivedData/lncRNA.RDS")
 
 
 
 ##### Filter and adjust p-values for differentially expression #####
 
 
-####rest model timepoint and sets single sets#####
+
+####rest w2pre #####
 
 
   
-full_rest_lnc <- full_rest %>%
-  filter(model %in% c("lib_size_normalized", "tissue_offset_lib_size_normalized"),
-         coef %in% c("timew2pre", "timew12")) %>%
+restw2 <- time_rest %>%
+  filter(model %in% c("tissue_offset_lib_size_normalized"),
+         coef %in% c("timew2pre")) %>%
   
   dplyr::select(gene, model, coef, estimate, se, z.val, p.val) %>%
   
@@ -98,36 +50,100 @@ full_rest_lnc <- full_rest %>%
   print()
 
 
-full_rest_lnc %>%
-  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
-  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
- ggplot(aes(estimate, -log10(p.val), color = paste(pt,inc_dec))) + geom_point() + 
-  facet_grid(model ~ coef)+
-  xlab("log2FC")+
-  labs(title = "Rested state,single sets")
+restw2 %>%
+  mutate(p.value = if_else(p.adj < 0.01, "sig", "ns"),
+         fc = if_else(estimate < -0.5 | estimate > 0.5 , "sig", "ns" )) %>% #significant if over 0,5 and -0,5
+   
+  #filter(pt == "sig" & fc == "sig") %>% 
+  #mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
+  ggplot(aes(estimate, -log10(p.val), color = p.value)) + geom_point() + 
+  facet_grid(model ~ coef)+    ###slå sammen pt og fc. fremvise alle med log 2 over 0,5 eller under -0,5. tabell 1+ lincer med lavest p verdi.
+  xlab("log2FC pre post")+
+  labs(title = "Rested State") %>% 
+    print()
 
+
+  
+  
+  
                           ######Count lnc genes DE##############
   
-DE_rest_single <- full_rest_lnc %>%
-  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
+DE_rest_w2 <- restw2 %>%
+  mutate(pt = if_else(p.adj < 0.01, "sig", "ns"),
+         fc = if_else(estimate < -0.5 | estimate > 0.5 , "sig", "ns" )) %>% #significant if over 0,5 and -0,5
   mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
-  filter(pt == "sig",
-         model == "tissue_offset_lib_size_normalized",
-         coef == "timew12",
-         inc_dec == "increase") %>%
-  #NROW() %>% 
+  filter(pt == "sig" & 
+         inc_dec == "increase" &
+         #fc == "sig" & 
+         fc == "sig") %>%
+  NROW() %>% 
   print()
+
+
    
-#124 DE single sets timepre to timew12
-#124 increase
+
+# DE timew2pre 169
+# DE increase 164
+# DE decrease 5
+
+
+
+                ##############time w12#################
+
+
+restw12 <- time_rest %>%
+  filter(model %in% c("tissue_offset_lib_size_normalized"),
+         coef %in% c("timew12")) %>%
+  
+  dplyr::select(gene, model, coef, estimate, se, z.val, p.val) %>%
+  
+  # filter out only lncRNA
+  
+  filter(gene %in% lncRNA$ensembl_gene_id) %>%
+  # P-value adjustments
+  group_by(model, coef) %>%
+  mutate(p.adj = p.adjust(p.val, method = "fdr")) %>%
+  print()
+
+
+restw12 %>%
+  mutate(p.value = if_else(p.adj < 0.01, "sig", "ns"),
+         fc = if_else(estimate < -0.5 | estimate > 0.5 , "sig", "ns" )) %>% #significant if over 0,5 and -0,5
+  
+  #filter(pt == "sig" & fc == "sig") %>% 
+  #mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
+  ggplot(aes(estimate, -log10(p.val), color = p.value)) + geom_point() + 
+  facet_grid(model ~ coef)+    ###slå sammen pt og fc. fremvise alle med log 2 over 0,5 eller under -0,5. tabell 1+ lincer med lavest p verdi.
+  xlab("log2FC pre post ")+
+  labs(title = "Rested State") %>% 
+  print()
+
+
+                         ###############count DE lnc##############
+
+
+DE_rest_w12 <- restw12 %>%
+  mutate(pt = if_else(p.adj < 0.01, "sig", "ns"),
+         fc = if_else(estimate < -0.5 | estimate > 0.5 , "sig", "ns" )) %>% #significant if over 0,5 and -0,5
+  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
+  filter(pt == "sig" & 
+           inc_dec == "decrease" &
+           #fc == "sig" & 
+           fc == "sig") %>%
+  NROW() %>% 
+  print()
+
+
+# DE lnc timew12 64
+# 64 increase
 
 
 
 
 
-#####acute model timepoint and sets single sets#####
+                  #####acute model timepoint w2post #####
 
-  full_acute_lnc <- full_acute %>%
+  acute_w2post <- time_acute %>%
   filter(model %in% c("lib_size_normalized"),
          coef %in% c("timew2post")) %>%
   dplyr::select(gene, model, coef, estimate, se, z.val, p.val) %>%
@@ -141,43 +157,59 @@ DE_rest_single <- full_rest_lnc %>%
   print()
 
 
-full_acute_lnc %>%
-  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
+acute_w2post%>%
+  mutate(p.value = if_else(p.adj < 0.01, "sig", "ns"),
+         fc = if_else(estimate < -0.5 | estimate > 0.5 , "sig", "ns" )) %>% #significant if over 0,5 and -0,5
   mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
-  ggplot(aes(estimate, -log10(p.val), color = paste(pt,inc_dec))) + geom_point() +
+  ggplot(aes(estimate, -log10(p.val), color = p.value)) + geom_point() +
   facet_grid(model ~ coef)+
-  xlab("log2FC") +
-  labs(title = "Acute respons,single sets")
+  xlab("log2FC acute") +
+  labs(title = "Acute respons")
 
-                     ######Count lnc genes DE##############
+                     
+                                  ######Count lnc genes DE#############
 
 
-
-DE_acute_single <- full_acute_lnc %>%
-  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
+DE_acute_w2post <- acute_w2post %>%
+  mutate(pt = if_else(p.adj < 0.01, "sig", "ns"),
+         fc = if_else(estimate < -0.5 | estimate > 0.5 , "sig", "ns" )) %>% #significant if over 0,5 and -0,5
   mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
-filter(pt == "sig",
-       coef == "timew2post", 
-       inc_dec == "decrease") %>%
+  filter(pt == "sig" & 
+           inc_dec == "decrease" &
+           #fc == "sig" & 
+           fc == "sig") %>%
   NROW() %>% 
   print()
 
-#385 lnc DE at timepoint w2post single sets
-#146 increased
-#239 decreased
+
+
+#DE w2post 102
+#increase 40
+# decrease 62
 
 
 
-############ multiple sets###############
+
+
+
+
+
+ 
+ 
+
+ 
+ 
+ 
+                        ############ multiple sets###############
 
 
 
 ####rest model timepoint and sets multiple sets#####
 
 
-full_rest_lnc_m <- full_rest %>%
-  filter(model %in% c("lib_size_normalized", "tissue_offset_lib_size_normalized"),
-         coef %in% c("timew2pre:setsmultiple", "timew12:setsmultiple")) %>%
+full_rest_w2pre <- full_rest %>%
+  filter(model %in% c("tissue_offset_lib_size_normalized"),
+         coef %in% c("timew2pre:setsmultiple")) %>%
   
   dplyr::select(gene, model, coef, estimate, se, z.val, p.val) %>%
   
@@ -190,36 +222,96 @@ full_rest_lnc_m <- full_rest %>%
   print()
 
 
-full_rest_lnc_m %>%
-  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
-  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
-  ggplot(aes(estimate, -log10(p.val), color = paste(pt,inc_dec))) + geom_point() + 
+full_rest_w2pre %>%
+  mutate(p.value = if_else(p.adj < 0.01, "sig", "ns"),
+         fc = if_else(estimate < -0.5 | estimate > 0.5 , "sig", "ns" )) %>% #significant if over 0,5 and -0,5
+  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
+  ggplot(aes(estimate, -log10(p.val), color = p.value)) + geom_point() + 
   facet_grid(model ~ coef)+
-  xlab("log2FC") +
+  xlab("log2FC pre post sets") +
   labs(title = "Rested state,multiple sets")
 
 
- 
 
+ 
                     ######Count lnc genes DE##############
 
-DE_rest_multiple <- full_rest_lnc_m %>%
-  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
-  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
-filter(pt == "ns",
-       model == "tissue_offset_lib_size_normalized",
-       coef == "timew12:setsmultiple") %>% 
-       #inc_dec == "increase") %>%
-  #NROW() %>% 
+  DE_sets_w2pre <- full_rest_w2pre %>%
+    mutate(pt = if_else(p.adj < 0.01, "sig", "ns"),
+           fc = if_else(estimate < -0.5 | estimate > 0.5 , "sig", "ns" )) %>% #significant if over 0,5 and -0,5
+    mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
+    filter(pt == "sig" ) %>%  
+             #inc_dec == "increase" &
+             #fc == "sig" & 
+             #fc == "sig") %>%
+    #NROW() %>% 
+    print()
+
+
+# 0 DE lncs at rest w2pre multiple sets
+
+
+
+
+
+#######################timepoint w12################
+
+full_rest_w12 <- full_rest %>%
+  filter(model %in% c("tissue_offset_lib_size_normalized"),
+         coef %in% c("timew12:setsmultiple")) %>%
+  
+  dplyr::select(gene, model, coef, estimate, se, z.val, p.val) %>%
+  
+  # filter out only lncRNA
+  
+  filter(gene %in% lncRNA$ensembl_gene_id) %>%
+  # P-value adjustments
+  group_by(model, coef) %>%
+  mutate(p.adj = p.adjust(p.val, method = "fdr")) %>%
   print()
 
 
-# 0 DE lncs at rest multiple sets
+full_rest_w12 %>%
+  mutate(p.value = if_else(p.adj < 0.01, "sig", "ns"),
+         fc = if_else(estimate < -0.5 | estimate > 0.5 , "sig", "ns" )) %>% #significant if over 0,5 and -0,5
+  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
+  ggplot(aes(estimate, -log10(p.val), color = p.value)) + geom_point() + 
+  facet_grid(model ~ coef)+
+  xlab("log2FC pre post sets") +
+  labs(title = "Rested state,multiple sets")
+
+
+
+
+######Count lnc genes DE##############
+
+DE_sets_w12 <- full_rest_w12 %>%
+  mutate(pt = if_else(p.adj < 0.01, "sig", "ns"),
+         fc = if_else(estimate < -0.5 | estimate > 0.5 , "sig", "ns" )) %>% #significant if over 0,5 and -0,5
+  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
+  filter(pt == "sig" ) %>%  
+  #inc_dec == "increase" &
+  #fc == "sig" & 
+  #fc == "sig") %>%
+  #NROW() %>% 
+  print()
+
+# 0 DE w12 multiple sets
+
+  
+  
+
+
+
+
+
+
+
 
 
 #####acute model timepoint and sets multiple sets#####
 
-full_acute_lnc_m <- full_acute %>%
+full_acute_w2post <- full_acute %>%
   filter(model %in% c("lib_size_normalized"),
          coef %in% c("timew2post:setsmultiple")) %>%
   dplyr::select(gene, model, coef, estimate, se, z.val, p.val) %>%
@@ -235,36 +327,59 @@ full_acute_lnc_m <- full_acute %>%
 
 
 
-full_acute_lnc_m %>%
-  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
-  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
-  ggplot(aes(estimate, -log10(p.val), color = paste(pt,inc_dec))) + geom_point(aes(label=gene)) +
+full_acute_w2post %>%
+  mutate(p.value = if_else(p.adj < 0.01, "sig", "ns"),
+         fc = if_else(estimate < -0.5 | estimate > 0.5 , "sig", "ns" )) %>% #significant if over 0,5 and -0,5
+  mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
+  ggplot(aes(estimate, -log10(p.val), color = p.value)) + geom_point() + 
   facet_grid(model ~ coef)+
-  xlab("log2FC") +
-  labs(title = "Acute respons, multiple sets")
-
+  xlab("log2FC acute sets") +
+  labs(title = "Acute response,multiple sets")
 
 
 
                    ######Count lnc genes DE##############
 
-DE_acute_multiple <- full_acute_lnc_m %>%
-  mutate(pt = if_else(p.adj < 0.05, "sig", "ns")) %>%
+DE_sets_w2post <- full_acute_w2post %>%
+  mutate(pt = if_else(p.adj < 0.01, "sig", "ns"),
+         fc = if_else(estimate < -0.5 | estimate > 0.5 , "sig", "ns" )) %>% #significant if over 0,5 and -0,5
   mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
-filter(pt == "ns",
-       coef == "timew2post:setsmultiple") %>%  
-       #inc_dec == "decrease") %>%
+  filter(fc == "sig") %>% 
+           #inc_dec == "decrease" &
+           #fc == "sig" & 
+           #fc == "sig") %>%
   #NROW() %>% 
   print()
 
-# 0 DE lncs acute multiple sets
+# 0 DE lncs acute w2post multiple sets
 
 
 
 
 
 
-                        ########### from qpcr###################
+
+
+
+
+
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                          ########### from qpcr###################
 
 
 
