@@ -54,9 +54,27 @@ qpcr_results %>%
   
   labs(caption = "(Based on data from qpcr and gene sequencing)")
 
-  
+time_rest <- readRDS("./derivedData/DE/mixedmodel2_timemodel.RDS")
+
+seq<- time_rest %>%
+  filter(gene %in% linc_ensembl$ensembl, 
+         coef == "timew12", 
+         model == "tissue_offset_lib_size_normalized") %>%
+  dplyr::select(gene, estimate) %>%
+  mutate(type = "rnaseq") %>%
+  print()
+
+qpcr <- qpcr_results %>%
+  filter(coef == "timepointw12",
+         sets == "setssingle") %>%
+  dplyr::select(gene, estimate = Value) %>%
+  mutate(type = "qpcr") %>%
+  print()
 
 
+cor_qs <- merge(seq, qpcr, by="gene", all = T)
+
+saveRDS(cor_qs, "./derivedData/cor_qs.RDS")
 ### with timepoint and sets at rest, model:tissue_offset_lib_size_normalized
 
 full_rest <- readRDS("./derivedData/DE/mixedmodel2_fullmodel.RDS")

@@ -1,0 +1,62 @@
+
+
+```{r, results='asis', echo=FALSE, include= FALSE}
+
+
+library(tidyverse) # for data wrangling and file download
+library(knitr) # for the kable function
+library(kableExtra)
+library(dplyr)
+library(readxl)
+```
+
+
+```{r w2_tab, results='asis', echo = FALSE, include=FALSE}
+w2_tab <- read_excel("./figures/w2_p_table.xlsx", sheet = "top10", na = "NA") %>% 
+  dplyr::select(Ensemble_gene_id, log2FC, Hgnc_symbol, Gene_Ontology, Reference, Species)
+
+
+w2_tab %>% 
+  kable(format = "html",
+        caption = "Timew2pre") %>% 
+  kable_styling(bootstrap_options = "striped", font_size = 25) %>% 
+  print()
+```
+
+
+```{r w2post, results='asis', echo=FALSE, include=FALSE}
+
+w2post_tab <- read_excel("./figures/w2post_p_table.xlsx", sheet = "top10", na = "NA")%>% 
+  dplyr::select(Ensemble_gene_id, log2FC, Hgnc_symbol, Gene_Ontology, Reference, Species)
+
+
+w2post_tab %>% 
+  kable(format = "html",
+        caption = "Timew2post") %>% 
+  kable_styling(bootstrap_options = "striped", font_size = 25) %>% 
+  print()
+
+```
+
+
+
+```{r w12, results='asis', echo=FALSE, include=TRUE}
+
+w12_tab <- read_excel("./figures/w12_p_table.xlsx", sheet = "top10", na = "NA")%>% 
+  dplyr::select(Ensemble_gene_id, log2FC, Hgnc_symbol, Gene_Ontology, Reference, Species)
+
+
+w12_tab %>% 
+  kable(format = "html",
+        caption = "Timew12") %>% 
+  kable_styling(bootstrap_options = "striped", font_size = 25) %>% 
+  print() 
+
+
+kable
+```
+
+
+
+```
+

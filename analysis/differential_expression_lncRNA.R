@@ -35,6 +35,7 @@ lncRNA <- readRDS("./derivedData/lncRNA.RDS")
 
 
   
+
 restw2 <- time_rest %>%
   filter(model %in% c("tissue_offset_lib_size_normalized"),
          coef %in% c("timew2pre")) %>%
@@ -50,6 +51,7 @@ restw2 <- time_rest %>%
   print()
 
 
+
 restw2 %>%
   mutate(p.value = if_else(p.adj < 0.01, "sig", "ns"),
          fc = if_else(estimate < -0.5 | estimate > 0.5 , "sig", "ns" )) %>% #significant if over 0,5 and -0,5
@@ -57,9 +59,13 @@ restw2 %>%
   #filter(pt == "sig" & fc == "sig") %>% 
   #mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
   ggplot(aes(estimate, -log10(p.val), color = p.value)) + geom_point() + 
-  facet_grid(model ~ coef)+    ###slå sammen pt og fc. fremvise alle med log 2 over 0,5 eller under -0,5. tabell 1+ lincer med lavest p verdi.
-  xlab("log2FC pre post")+
-  labs(title = "Rested State") %>% 
+  facet_grid( ~ coef)+
+  theme_bw() +
+  theme(strip.background =element_rect(fill="white"))+
+  theme(legend.text = element_text(size = 10), 
+  legend.title = element_text(size = 12))+
+  ###slå sammen pt og fc. fremvise alle med log 2 over 0,5 eller under -0,5. tabell 1+ lincer med lavest p verdi.
+  xlab("log2FC pre-post") %>%    
     print()
 
 
@@ -113,9 +119,12 @@ restw12 %>%
   #filter(pt == "sig" & fc == "sig") %>% 
   #mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
   ggplot(aes(estimate, -log10(p.val), color = p.value)) + geom_point() + 
-  facet_grid(model ~ coef)+    ###slå sammen pt og fc. fremvise alle med log 2 over 0,5 eller under -0,5. tabell 1+ lincer med lavest p verdi.
-  xlab("log2FC pre post ")+
-  labs(title = "Rested State") %>% 
+  facet_grid( ~ coef)+
+  theme_bw() +
+  theme(strip.background =element_rect(fill="white"))+
+  theme(legend.text = element_text(size = 10), 
+        legend.title = element_text(size = 12))+###slå sammen pt og fc. fremvise alle med log 2 over 0,5 eller under -0,5. tabell 1+ lincer med lavest p verdi.
+  xlab("log2FC pre-post ")%>% 
   print()
 
 
@@ -162,10 +171,12 @@ acute_w2post%>%
          fc = if_else(estimate < -0.5 | estimate > 0.5 , "sig", "ns" )) %>% #significant if over 0,5 and -0,5
   mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>% 
   ggplot(aes(estimate, -log10(p.val), color = p.value)) + geom_point() +
-  facet_grid(model ~ coef)+
-  xlab("log2FC acute") +
-  labs(title = "Acute respons")
-
+  facet_grid( ~ coef)+
+  theme_bw() +
+  theme(strip.background =element_rect(fill="white"))+
+  theme(legend.text = element_text(size = 10), 
+        legend.title = element_text(size = 12))+
+  xlab("log2FC acute") 
                      
                                   ######Count lnc genes DE#############
 
@@ -227,10 +238,12 @@ full_rest_w2pre %>%
          fc = if_else(estimate < -0.5 | estimate > 0.5 , "sig", "ns" )) %>% #significant if over 0,5 and -0,5
   mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
   ggplot(aes(estimate, -log10(p.val), color = p.value)) + geom_point() + 
-  facet_grid(model ~ coef)+
-  xlab("log2FC pre post sets") +
-  labs(title = "Rested state,multiple sets")
-
+  facet_grid( ~ coef)+
+  theme_bw() +
+  theme(strip.background =element_rect(fill="white"))+
+  theme(legend.text = element_text(size = 10), 
+        legend.title = element_text(size = 12))+
+  xlab("log2FC pre-post") 
 
 
  
@@ -276,10 +289,12 @@ full_rest_w12 %>%
          fc = if_else(estimate < -0.5 | estimate > 0.5 , "sig", "ns" )) %>% #significant if over 0,5 and -0,5
   mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
   ggplot(aes(estimate, -log10(p.val), color = p.value)) + geom_point() + 
-  facet_grid(model ~ coef)+
-  xlab("log2FC pre post sets") +
-  labs(title = "Rested state,multiple sets")
-
+  facet_grid( ~ coef)+
+  theme_bw() +
+  theme(strip.background =element_rect(fill="white"))+
+  theme(legend.text = element_text(size = 10), 
+        legend.title = element_text(size = 12))+
+  xlab("log2FC pre-post") 
 
 
 
@@ -300,13 +315,6 @@ DE_sets_w12 <- full_rest_w12 %>%
 
   
   
-
-
-
-
-
-
-
 
 
 #####acute model timepoint and sets multiple sets#####
@@ -332,10 +340,12 @@ full_acute_w2post %>%
          fc = if_else(estimate < -0.5 | estimate > 0.5 , "sig", "ns" )) %>% #significant if over 0,5 and -0,5
   mutate(inc_dec = if_else(estimate >0.00,"increase", "decrease")) %>%
   ggplot(aes(estimate, -log10(p.val), color = p.value)) + geom_point() + 
-  facet_grid(model ~ coef)+
-  xlab("log2FC acute sets") +
-  labs(title = "Acute response,multiple sets")
-
+  facet_grid( ~ coef)+
+  theme_bw() +
+  theme(strip.background =element_rect(fill="white"))+
+  theme(legend.text = element_text(size = 10), 
+        legend.title = element_text(size = 12))+
+  xlab("log2FC acute") 
 
 
                    ######Count lnc genes DE##############

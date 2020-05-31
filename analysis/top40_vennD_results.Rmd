@@ -94,7 +94,7 @@ DE_rest_w2 <- restw2 %>%
  
  ####write excel spreadsheet####
 library(writexl)
-write_xlsx(w2_p_table, "./figures/w2_p_table.xlsx")
+#write_xlsx(w2_p_table, "./figures/w2_p_table.xlsx")
 
 ```
 
@@ -140,12 +140,15 @@ DE_rest_w12 <- restw12 %>%
 
                           ###arrange dataset on p.adjust
 
- w12_arranged <- arrange(DE_rest_w12,p.adj )
+ #w12_arranged <- arrange(DE_rest_w12,p.adj )
  
-            ######sort out 40 best p adj values. Try to use top_n#############
+            
+ 
+ 
+ ######sort out 40 best p adj values. Try to use top_n#############
 
  w12_p_table <- w12_arranged %>% 
- top_n(40, -p.adj) %>% 
+ top_n(10, -p.adj) %>% #top10
   print()
 
 
@@ -155,7 +158,7 @@ DE_rest_w12 <- restw12 %>%
  
   ####write excel spreadsheet####
 library(writexl)
-write_xlsx(w12_p_table, "./figures/w12_p_table.xlsx")
+#write_xlsx(w12_p_table, "./figures/w12_p_table.xlsx")
 
 ```
 
@@ -215,7 +218,7 @@ DE_acute_w2post <- acute_w2post %>%
  
   ####write excel spreadsheet####
 library(writexl)
-write_xlsx(w2post_p_table, "./figures/w2post_p_table.xlsx")
+#write_xlsx(w2post_p_table, "./figures/w2post_p_table.xlsx")
 
 ```
 
@@ -242,21 +245,79 @@ data3 <- DE_rest_w12 %>%
 # Add datasets vertically, remember to ungroup.
  all_data <- rbind(data1, data2, data3) %>% 
    ungroup %>% 
-   dplyr::select(gene, coef)
+   print()
+
+all_data <- all_data %>% 
+  group_by(coef) %>% 
+  print()
+
+####find duplicates. Does not work the way I wanted.
+dups <- all_data %>% 
+  group_by(gene, model, coef) %>% 
+  mutate(Duplicated = case_when(length(gene)>1 ~ "Yes",
+                            TRUE ~ "No")) %>%
+  ungroup()
+
+
+
+#select gene
+
+dg1 <- data1 %>% 
+  dplyr::select(gene)
+
+dg2 <- data2 %>% 
+  dplyr::select(gene)
+
+dg3 <- data3 %>% 
+  dplyr::select(gene)
+
+
+#Trying to find similar genes at different timepoint.
+
+#Shared genes
+
+#intersect(intersect(a,b),c)
+#More cleverly, and more conveniently if you have a lot of arguments:
+#Reduce(intersect, list(a,b,c))
+
+ time_goi <- Reduce(intersect, list(dg1, dg2, dg3))
+ #17 lnc same across 3 timepoints'
+ 
+ time_goi <- c("ENSG00000116652", "ENSG00000130600", "ENSG00000205056", "ENSG00000224361","ENSG00000224609", "ENSG00000225613",
+	"ENSG00000229821",
+	"ENSG00000230438",
+	"ENSG00000237499",
+	"ENSG00000260793",
+	"ENSG00000260807",
+	"ENSG00000260966",
+	"ENSG00000263873",
+	"ENSG00000265206",
+	"ENSG00000266923",
+	"ENSG00000273812"	,"ENSG00000286191")
+ 
+ #save as RDS
+ 
+ saveRDS(time_goi, "./derivedData/time_goi.RDS")
+
+intersect(intersect (dg1, dg2), dg3)
 
 
 
 
-# library
-library(VennDiagram)
- 
- 
+
+
+#Genes in data1 but not in data2
+
+setdiff(data1$gene, data2$gene)
+
+
+#Genes in data2 but not in data1
+
+setdiff(data2$gene, data1$gene)
 
  
  
- 
- #########DOES Not work###########
- 
+
  
  #make x
  
@@ -267,60 +328,37 @@ library(VennDiagram)
     data3 %>% filter(coef =="timew12") %>% dplyr:: select(gene) %>% unlist())
  
 #cMake the plot
-venn.diagram(x,
+ grid.newpage() # new blank paper to make the plot on.
+temp <- venn.diagram(x,
   category.names = c("Timew2pre(169)" , "Timew2post (102)" , "Timew12 (64)"),
   filename = NULL,
   output = TRUE,
   imagetype="png" ,
           height = 480 , 
           width = 480 , 
-          resolution = 300,
+          resolution = 1000,
           compression = "lzw",
           lwd = 1,
           col=c("#440154ff", '#21908dff', '#fde725ff'),
           fill = c(alpha("#440154ff",0.3), alpha('#21908dff',0.3), alpha('#fde725ff',0.3)),
-          cex = 0.5,
+          cex = 1,
           fontfamily = "sans",
-          cat.cex = 0.3,
+          cat.cex = 1,
           cat.default.pos = "outer",
           cat.pos = c(-27, 27, 135),
-          cat.dist = c(0.055, 0.055, 0.085),
+          cat.dist = c(0.085, 0.085, 0.085),
           cat.fontfamily = "sans",
           cat.col = c("#440154ff", '#21908dff', '#fde725ff'),
-          rotation = 1
+          rotation = 1,
+          euler.d = TRUE,
+          reverse = FALSE,
+          
         )
-
-
-```
-
-```{r test venndiagram}
-data1 <- DE_rest_w2 %>% 
-  ungroup() %>% 
-  dplyr:: select(gene)
-
-
-data2 <- DE_acute_w2post %>% 
-  ungroup()%>% 
-  dplyr:: select(gene)
-
-data3 <- DE_rest_w12 %>% 
-  ungroup()%>% 
-  dplyr:: select(gene)
-
-
-
-temp <- venn.diagram(,
-                     
-  filename =NULL,
-  cex = 2.5,
-  cat.cex = 2.5,
-  cat.pos = 0
-);
-
-
 grid.draw(temp)
 
+
 ```
+
 
 
 
