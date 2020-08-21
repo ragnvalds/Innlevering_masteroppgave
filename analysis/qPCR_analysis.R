@@ -8,30 +8,54 @@ source("./R/lib_fun.R")
 qpcr.dat <- readRDS("./derivedData/qpcr.replicates_LINCs.Rds")
 
 
-qdat <- qpcr.dat %>%
-  mutate(Ra = eff^-cq, 
-         technical = paste0(subject, timepoint, leg, cdna), 
-         biological = paste0(subject, timepoint, leg, sets)) %>%
+# Create a tissue offset normalisation factor
+# The factor is the amount of tissue used in cDNA synthesis
+
+
+
+
+nf <- read_excel("./data/RNAamount.xlsx") %>%
+  mutate(RNA.mg = (conc * elution.volume)/prot.mrna1, 
+         mg.in.prep = 500/RNA.mg) %>%
+  dplyr::select(subject:timepoint, 
+                mg = prot.mrna1, 
+                RNA.mg,
+                mg.in.prep) %>%
+  
+  dplyr::select(subject:timepoint, nf = mg.in.prep) %>%
   print()
 
 
 
-qdat_norm <- qpcr.dat %>%
+
+
+qdat <- qpcr.dat %>%
+  
+  inner_join(nf) %>%
+
   mutate(Ra = eff^-cq, 
+         Ra.tissue = Ra/nf,
          technical = paste0(subject, timepoint, leg, cdna), 
-         biological = paste0(subject, timepoint, leg, sets)) %>%
-  mutate(Ra = Ra/1.041577) %>% 
-print()
+         biological = paste0(subject, timepoint, leg, sets), 
+         timepoint = factor(timepoint, levels = c("w0", "w2pre", "w12")), 
+         sets = factor(sets, levels = c("single", "multiple"))) %>%
+  
+  # Subject 15 has a bad estimate of total RNA at week2pre. 
+  # Filter out these observations
+  filter(!(subject == "FP15" & timepoint == "w2pre")) %>%
+  
+  print()
 
 
 
 
 
-# make model
+# make model (If you want to use "per RNA model" change
+# dependent variable to Ra)
 
-m1 <- lme(log(Ra) ~ 0 + target + target:timepoint + target:timepoint:sets,
+m1 <- lme(log(Ra.tissue) ~ 0 + target + target:timepoint + target:timepoint:sets,
           random = list(subject = ~ 1, technical = ~ 1), 
-          data = qdat_norm, 
+          data = qdat, 
           control=list(msMaxIter=120,
                        opt = "nloptwrap", msVerbose=TRUE),
           method = "REML", na.action = na.exclude)
@@ -69,7 +93,7 @@ m4 <- update(m1, weights = varfun3)
 m5 <- update(m1, weights = varfun4)# m6 <- update(m1, weights = varfun5)
 
 ### Test models
-anova(m1, m2, m5)
+anova(m1, m2,m4, m5)
 
 
 intervals(m5)
@@ -88,22 +112,36 @@ linc_ensembl <- read_excel("./data/name_LINCs.xlsx") %>%
 
 
 
-qpcr_results_norm <- coef(summary(m5)) %>%
+qpcr_results_coeftable <- coef(summary(m5)) %>%
 data.frame() %>%
   mutate(gene = rownames(.)) %>%
   separate(gene, into = c("gene", "coef", "sets"), sep = ":") %>% 
-  mutate(coef = if_else(is.na(coef), "Intercept", coef), 
+  
+  mutate(coef = if_else(is.na(coef), "Intercept", coef),
+         coef = if_else(!is.na(sets), paste0(coef, ":", sets), coef),
          gene = as.character(gsub("target", "", gene)), 
          gene = gsub(" ", "_", gene)) %>%
+  dplyr::select(gene, coef, Value:p.value) %>%
+
   inner_join(linc_ensembl) %>%
   mutate(gene = ensembl) %>%
-  mutate(sets = if_else(is.na(sets), "Multiple", sets)) %>% 
   print()
+
+
+### Create a data frame of estimated marginal means
+
+estimated_means_qpcr <- emmeans(m5, specs = ~"target|timepoint+sets") %>%
+  data.frame() %>%
+  mutate(gene = gsub(" ", "_", target)) %>%
+  inner_join(linc_ensembl) %>%
+  mutate(gene = ensembl) %>%
+  print()
+
 
 ##save data as RDS
 
-saveRDS(qpcr_results_norm, file = "./derivedData/qpcr_results_norm.RDS")
-
+saveRDS(qpcr_results_coeftable, file = "./derivedData/qpcr_results_norm.RDS")
+saveRDS(estimated_means_qpcr, file = "./derivedData/qpcr_results_estimated_means.RDS")
                       #######lnc from qPCR change on different timepoint########
   
   
