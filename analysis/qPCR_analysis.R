@@ -16,11 +16,22 @@ qdat <- qpcr.dat %>%
 
 
 
+qdat_norm <- qpcr.dat %>%
+  mutate(Ra = eff^-cq, 
+         technical = paste0(subject, timepoint, leg, cdna), 
+         biological = paste0(subject, timepoint, leg, sets)) %>%
+  mutate(Ra = Ra/1.041577) %>% 
+print()
+
+
+
+
+
 # make model
 
 m1 <- lme(log(Ra) ~ 0 + target + target:timepoint + target:timepoint:sets,
           random = list(subject = ~ 1, technical = ~ 1), 
-          data = qdat, 
+          data = qdat_norm, 
           control=list(msMaxIter=120,
                        opt = "nloptwrap", msVerbose=TRUE),
           method = "REML", na.action = na.exclude)
@@ -77,7 +88,7 @@ linc_ensembl <- read_excel("./data/name_LINCs.xlsx") %>%
 
 
 
-qpcr_results <- coef(summary(m5)) %>%
+qpcr_results_norm <- coef(summary(m5)) %>%
 data.frame() %>%
   mutate(gene = rownames(.)) %>%
   separate(gene, into = c("gene", "coef", "sets"), sep = ":") %>% 
@@ -91,7 +102,7 @@ data.frame() %>%
 
 ##save data as RDS
 
-saveRDS(qpcr_results, file = "./derivedData/qpcr_results.RDS")
+saveRDS(qpcr_results_norm, file = "./derivedData/qpcr_results_norm.RDS")
 
                       #######lnc from qPCR change on different timepoint########
   

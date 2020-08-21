@@ -54,6 +54,37 @@ qpcr_results %>%
   
   labs(caption = "(Based on data from qpcr and gene sequencing)")
 
+
+
+
+
+
+
+###Use this to correlate seq and qpcr####
+
+#first normalize qpcr to rna pr mg
+rna_dat <- read_excel("./data/RNAamount.xlsx") %>%
+  mutate(RNA.per.mg = (conc*elution.volume) / prot.mrna1) %>% 
+  filter(include == "incl") %>%
+  filter(timepoint != "w2post",
+         sets == "single") %>%
+  dplyr::select(subject, sets, time = timepoint, RNA.per.mg) %>%
+  mutate(tissue = 1000 / RNA.per.mg, 
+         tl = log(tissue),
+         rl = log(RNA.per.mg))  %>%
+  print()
+
+
+normalz<- rna_dat %>%
+  summarise(nor = mean(rl, na.rm = TRUE))
+            
+
+#normalizing factor 2.874087
+
+#log factor 1.041577
+
+#normalizing on RNA.pr,mg.factor 357.6457
+#log 5.866178
 time_rest <- readRDS("./derivedData/DE/mixedmodel2_timemodel.RDS")
 
 seq<- time_rest %>%
@@ -62,17 +93,25 @@ seq<- time_rest %>%
          model == "tissue_offset_lib_size_normalized") %>%
   dplyr::select(gene, estimate) %>%
   mutate(type = "rnaseq") %>%
+  #mutate(norm = estimate/1.041577) %>% 
   print()
+
 
 qpcr <- qpcr_results %>%
   filter(coef == "timepointw12",
          sets == "setssingle") %>%
   dplyr::select(gene, estimate = Value) %>%
   mutate(type = "qpcr") %>%
-  print()
-
+  mutate(norm = estimate/5.866178) %>% 
+print()
+  
 
 cor_qs <- merge(seq, qpcr, by="gene", all = T)
+
+
+
+##################################################
+
 
 saveRDS(cor_qs, "./derivedData/cor_qs.RDS")
 ### with timepoint and sets at rest, model:tissue_offset_lib_size_normalized

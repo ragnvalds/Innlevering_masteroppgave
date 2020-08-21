@@ -1,6 +1,12 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
 
 
 ```{r, results='asis', echo=FALSE, include= FALSE}
+
 
 
 library(tidyverse) # for data wrangling and file download
@@ -11,23 +17,23 @@ library(readxl)
 ```
 
 
-```{r w2_tab, results='asis', echo = FALSE, include=FALSE}
-w2_tab <- read_excel("./figures/w2_p_table.xlsx", sheet = "top10", na = "NA") %>% 
-  dplyr::select(Ensemble_gene_id, log2FC, Hgnc_symbol, Gene_Ontology, Reference, Species)
+```{r w2_tab, results='asis', echo = FALSE, include=TRUE}
+w2_tab <- read_excel("./data/top10_tables_all_timepoints.xlsx", sheet = "w2pre", na = "NA") %>%
+  dplyr::select(Ensemble_gene_id, log2FC, Hgnc_symbol, Function, Mode_of_action, Target_genes_features, References, Species, P.adj)
 
 
 w2_tab %>% 
   kable(format = "html",
         caption = "Timew2pre") %>% 
-  kable_styling(bootstrap_options = "striped", font_size = 25) %>% 
+  kable_styling(bootstrap_options = "striped", font_size = 18) %>% 
   print()
 ```
 
 
 ```{r w2post, results='asis', echo=FALSE, include=FALSE}
 
-w2post_tab <- read_excel("./figures/w2post_p_table.xlsx", sheet = "top10", na = "NA")%>% 
-  dplyr::select(Ensemble_gene_id, log2FC, Hgnc_symbol, Gene_Ontology, Reference, Species)
+w2post_tab <- read_excel("./data/top10_tables_all_timepoints.xlsx", sheet = "w2post", na = "NA")%>% 
+  dplyr::select(Ensemble_gene_id, log2FC, Hgnc_symbol, Function, Mode_of_action, Target_genes_features, References, Species, P.adj)
 
 
 w2post_tab %>% 
@@ -40,10 +46,10 @@ w2post_tab %>%
 
 
 
-```{r w12, results='asis', echo=FALSE, include=TRUE}
+```{r w12, results='asis', echo=FALSE, include=FALSE}
 
-w12_tab <- read_excel("./figures/w12_p_table.xlsx", sheet = "top10", na = "NA")%>% 
-  dplyr::select(Ensemble_gene_id, log2FC, Hgnc_symbol, Gene_Ontology, Reference, Species)
+w12_tab <- read_excel("./data/top10_tables_all_timepoints.xlsx", sheet = "w12", na = "NA")%>% 
+  dplyr::select(Ensemble_gene_id, log2FC, Hgnc_symbol, Function, Mode_of_action, Target_genes_features, References, Species, P.adj)
 
 
 w12_tab %>% 
