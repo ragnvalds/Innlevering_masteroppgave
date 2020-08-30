@@ -84,12 +84,14 @@ DE_rest_w2 <- restw2 %>%
             ######sort out 40 best p adj values. Try to use top_n#############
 
  w2_p_table <- w2_arranged %>% 
- top_n(40, -p.adj) %>% 
+ top_n(5, -p.adj) %>% 
   print()
  
  
                 ##innerjoin with lncRNA to get hgnc symbol####
  w2_p_table <- w2_p_table %>% inner_join(lncRNA)
+ 
+ saveRDS(w2_p_table, file = "./derivedData/top5_w2pre.RDS")
  
  
  ####write excel spreadsheet####
@@ -140,7 +142,7 @@ DE_rest_w12 <- restw12 %>%
 
                           ###arrange dataset on p.adjust
 
- #w12_arranged <- arrange(DE_rest_w12,p.adj )
+ w12_arranged <- arrange(DE_rest_w12,p.adj )
  
             
  
@@ -148,7 +150,7 @@ DE_rest_w12 <- restw12 %>%
  ######sort out 40 best p adj values. Try to use top_n#############
 
  w12_p_table <- w12_arranged %>% 
- top_n(10, -p.adj) %>% #top10
+ top_n(5, -p.adj) %>% #top10
   print()
 
 
@@ -156,6 +158,9 @@ DE_rest_w12 <- restw12 %>%
  w12_p_table <- w12_p_table %>% inner_join(lncRNA)
  
  
+ saveRDS(w12_p_table, file = "./derivedData/top5_w12.RDS")
+
+
   ####write excel spreadsheet####
 library(writexl)
 #write_xlsx(w12_p_table, "./figures/w12_p_table.xlsx")
@@ -209,12 +214,16 @@ DE_acute_w2post <- acute_w2post %>%
             ######sort out 40 best p adj values. Try to use top_n#############
 
  w2post_p_table <- w2post_arranged %>% 
- top_n(40, -p.adj) %>% 
+ top_n(5, -p.adj) %>% 
   print()
  
  
                  ##innerjoin with lncRNA to get hgnc symbol####
  w2post_p_table <- w2post_p_table %>% inner_join(lncRNA)
+ 
+ 
+  saveRDS(w2post_p_table, file = "./derivedData/top5_w2post.RDS")
+ 
  
   ####write excel spreadsheet####
 library(writexl)

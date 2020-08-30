@@ -8,7 +8,7 @@
 #if (!requireNamespace('BiocManager', quietly = TRUE))
   #install.packages('BiocManager')
 
-#BiocManager::install('EnhancedVolcano')
+#BiocManager::install('vctrs')#"preprocessCore","topGO", "DHARMa"  )
 
 ## Bioconductor packages
 library(EnhancedVolcano)
@@ -27,6 +27,7 @@ library(rnaseqcomp)
 library(biomaRt)
 library(Rnmr1D)
 
+library(vctrs)
 # Cran packages
 # Libraries venn diagram
 library(VennDiagram)
@@ -34,7 +35,7 @@ library(tidyverse)
 library(hrbrthemes)
 library(tm)
 library(proustr)
-
+library(ggpubr)
 
 library(RColorBrewer)
 
@@ -72,34 +73,34 @@ library(cowplot)
 
 # devtools::install_github("DarwinAwardWinner/rctutils")
 # devtools::install_github("dhammarstrom/publR")
-# devtools::install_github("dhammarstrom/qpcrpal")
-library(qpcR)
-library(qpcrpal)
-library(publR)
+#devtools::install_github("dhammarstrom/qpcrpal")
+#library(qpcR)
+#library(qpcrpal)
+#library(publR)
 #library(rctutils)
 
 
 ######### Functions #######################
 # Extracts last letter of a string
-substrRight <- function(x, n){
-  substr(x, nchar(x)-n+1, nchar(x))
-}
+#substrRight <- function(x, n){
+  #substr(x, nchar(x)-n+1, nchar(x))
+#}
 
 ## Extract which row is quantile nnn
 
-which.quantile <- function (x, probs = 0.5, na.rm = FALSE){
-  if (! na.rm & any (is.na (x)))
-    return (rep (NA_integer_, length (probs)))
+#which.quantile <- function (x, probs = 0.5, na.rm = FALSE){
+  #if (! na.rm & any (is.na (x)))
+    #return (rep (NA_integer_, length (probs)))
   
-  o <- order (x)
-  n <- sum (! is.na (x))
-  o <- o [seq_len (n)]
+  #o <- order (x)
+  #n <- sum (! is.na (x))
+  #o <- o [seq_len (n)]
   
-  nppm <- n * probs - 0.5
-  j <- floor(nppm)
-  h <- ifelse((nppm == j) & ((j%%2L) == 0L), 0, 1)
-  j <- j + h
+  #nppm <- n * probs - 0.5
+  #j <- floor(nppm)
+  #h <- ifelse((nppm == j) & ((j%%2L) == 0L), 0, 1)
+  #j <- j + h
   
-  j [j == 0] <- 1
-  o[j]
-}
+  #j [j == 0] <- 1
+  #o[j]
+#}

@@ -2,42 +2,21 @@
 
 source("./R/lib_fun.R")
 
-library("ggpubr")
 
-##load data
-qpcr_results <- readRDS("./derivedData/qpcr_results.RDS")
+
+
+
+
+
+
 
 qpcr_results_norm <- readRDS("./derivedData/qpcr_results_norm.RDS")
 
 
 
 
-#first normalize qpcr to rna pr mg
-rna_dat <- read_excel("./data/RNAamount.xlsx") %>%
-   mutate(RNA.per.mg = (conc*elution.volume) / prot.mrna1) %>% 
-   filter(include == "incl") %>%
-   filter(timepoint != "w2post",
-          sets == "single") %>%
-   dplyr::select(subject, sets, time = timepoint, RNA.per.mg) %>%
-   mutate(tissue = 1000 / RNA.per.mg, 
-          tl = log(tissue),
-          rl = log(RNA.per.mg),
-          rna.weight = RNA.per.mg/tissue)  %>%
-   print()
-  
 
 
-rtest<- rna_dat %>% 
-   summarise(mean(rna.weight))
-
-
-
-#normalizing factor 2.874087
-
-#log factor 1.041577
-
-#normalizing on RNA.pr,mg.factor 357.6457
-#log 5.866178
 
 
 # Ensemble IDs from file
@@ -52,39 +31,111 @@ linc_ensembl <- read_excel("./data/name_LINCs.xlsx") %>%
 
 
 time_rest <- readRDS("./derivedData/DE/mixedmodel2_timemodel.RDS")
+full_rest <- readRDS("./derivedData/DE/mixedmodel2_fullmodel.RDS")
 
 seq<- time_rest %>%
    filter(gene %in% linc_ensembl$ensembl, 
-          coef == "timew12", 
+          #coef == "timew12", 
           model == "tissue_offset_lib_size_normalized") %>%
-   dplyr::select(gene, estimate) %>%
-   mutate(type = "rnaseq") %>%
-   #mutate(norm = estimate/1.041577) %>% 
+   dplyr::select(gene, estimate, coef) %>%
+   #mutate(type = "rnaseq") %>%
+ print()
+
+#sort out "nf" in coef
+
+seqt <- seq %>% 
+   filter(!(coef == "nf")) %>% 
+   filter(!(coef == "(Intercept)")) %>%
    print()
 
 
-qpcr <- qpcr_results %>%
-   filter(coef == "timepointw12",
-          sets == "setssingle") %>%
-   dplyr::select(gene, estimate = Value) %>%
-   mutate(type = "qpcr") %>%
-   #mutate(norm = estimate/	131.2127) %>% 
+seqtime <- seqt %>% 
+   sort(coef) %>% 
+   print()
+   
+
+
+######sort out genes thats not in seq data
+gout <- c("ENSG00000249515", "ENSG00000249515", "ENSG00000249859")
+
+q <- qpcr_results_norm %>% 
+   filter(!gene %in% gout)
+
+
+r <- q %>%
+   dplyr::select(gene, estimate = Value, coef) %>%
+   mutate(labels=c("Intercept" = "(Intercept)",
+                   "Intercept" = "(Intercept)",
+                   "Intercept" = "(Intercept)",
+                   "Intercept" = "(Intercept)",
+                   "Intercept" = "(Intercept)",
+                   "Intercept" = "(Intercept)",
+            "timepointw2pre" = "timew2pre",
+            "timepointw2pre" = "timew2pre",
+            "timepointw2pre" = "timew2pre",
+            "timepointw2pre" = "timew2pre",
+            "timepointw2pre" = "timew2pre",
+            "timepointw2pre" = "timew2pre",
+            "	timepointw12" = "timew12",
+            "	timepointw12" = "timew12",
+            "	timepointw12" = "timew12",
+            "	timepointw12" = "timew12",
+            "	timepointw12" = "timew12",
+            "	timepointw12" = "timew12",
+            "timepointw0:setsmultiple" = "timew0:setsmultiple",
+            "timepointw0:setsmultiple" = "timew0:setsmultiple",
+            "timepointw0:setsmultiple" = "timew0:setsmultiple",
+            "timepointw0:setsmultiple" = "timew0:setsmultiple",
+            "timepointw0:setsmultiple" = "timew0:setsmultiple",
+            "timepointw0:setsmultiple" = "timew0:setsmultiple",
+            "timepointw2pre:setsmultiple" = "timew2pre:setsmultiple",
+            "timepointw2pre:setsmultiple" = "timew2pre:setsmultiple",
+            "timepointw2pre:setsmultiple" = "timew2pre:setsmultiple",
+            "timepointw2pre:setsmultiple" = "timew2pre:setsmultiple",
+            "timepointw2pre:setsmultiple" = "timew2pre:setsmultiple",
+            "timepointw2pre:setsmultiple" = "timew2pre:setsmultiple",
+            "timepointw12:setsmultiple" = "timew12:setsmultiple",
+            "timepointw12:setsmultiple" = "timew12:setsmultiple",
+            "timepointw12:setsmultiple" = "timew12:setsmultiple",
+            "timepointw12:setsmultiple" = "timew12:setsmultiple",
+            "timepointw12:setsmultiple" = "timew12:setsmultiple",
+            "timepointw12:setsmultiple" = "timew12:setsmultiple")) %>% 
+   #mutate(type = "qpcr") %>%
    print()
 
-cor_qs <- merge(seq, qpcr, by="gene", all = T) %>% 
+qpcr1 <- r %>% 
+   mutate(coef = labels, labels = coef) %>% 
+   filter(!(coef =="timew0:setsmultiple")) %>% 
+   print()
+   
+qpcr2 <- qpcr1 %>% 
+   filter(!(coef =="timew2pre:setsmultiple")) %>%
+   dplyr::select(!(labels)) %>% 
    print()
 
-saveRDS(cor_qs, "./derivedData/cor_qs.RDS")
- qs <- readRDS("./derivedData/cor_qs.RDS")
+qpcr3 <-qpcr2 %>% 
+   filter(!(coef =="timew12:setsmultiple")) %>% 
+   print()
 
- gout <- c("ENSG00000249515", "ENSG00000249515", "ENSG00000249859")
+qpcr <-qpcr3 %>% 
+   filter(!(coef =="(Intercept)")) %>% 
+   print()
+
+
+cor_qs <- merge(seqtime, qpcr,by = "gene", all = T) %>%
+  
+   
+   print()
  
- qs <- cor_qs %>% 
-  filter(!gene %in% gout)
+
+###saveRDS(cor_qs, "./derivedData/cor_qs.RDS")
+ ####qs <- readRDS("./derivedData/cor_qs.RDS")
+
+qs <- cor_qs %>% 
+   mutate(seq = estimate.x,
+          qpcr = estimate.y) %>%
+  print()
  
- qs <- qs %>% 
-    mutate(seq = estimate.x,
-           qpcr = estimate.y)
  
    
  
@@ -109,7 +160,7 @@ ggscatter(qs, x = "qpcr" , y = "seq",
 # Shapiro-Wilk normality test for seq
 shapiro.test(qs$seq) # => p = 0.7093
 # Shapiro-Wilk normality test for qpcr
-shapiro.test(qs$qpcr) # => p = 0.6963
+shapiro.test(qs$qpcr) # => p = 0.1333
 
 
 library("ggpubr")
@@ -124,25 +175,25 @@ res
 
 #data:  qs$seq and qs$qpcr
 
-#t = -3.2196, df = 4,
-#p-value = 0.03229
+#t = 2.2439, df = 4,
+#p-value = 0.08824
 #alternative hypothesis: true correlation is not equal to 0
 #95 percent confidence interval:
-   #-0.9832071 -0.1219751
+   #-0.1650172  0.9702552
 #sample estimates:
    #cor 
-#-0.8494492 
+#0.7465191  
 
 
 
 
 #In the result above :
    
-  # t is the t-test statistic value (t = -3.2196),
+  # t is the t-test statistic value (t = 2.2439),
 #df is the degrees of freedom (df= 4),
-#p-value is the significance level of the t-test (p-value = 0.03229).
-#conf.int is the confidence interval of the correlation coefficient at 95% (conf.int = [-0.9832071, -0.1219751]);
-#sample estimates is the correlation coefficient (Cor.coeff = -0.8494492).
+#p-value is the significance level of the t-test (p-value = 0.08824).
+#conf.int is the confidence interval of the correlation coefficient at 95% (conf.int = [-0.1650172  0.9702552]);
+#sample estimates is the correlation coefficient (Cor.coeff = 0.7465191).
 
 
 #Interpretation of the result

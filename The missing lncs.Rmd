@@ -15,6 +15,10 @@ editor_options:
   chunk_output_type: console
 csl: templates/apa.csl
 ---
+DROPP DET AKUTTE
+
+Korrelere lincer med total gener.
+
 
 \pagebreak
 
@@ -317,7 +321,7 @@ This study is based on the muscle samples from @Hammarström2020. They reported*
 
 ## 3.1. LncRNAs identified 
 In total 15025 genes were identified in the RNA sequencing data from m. vastus lateralis, and 1390 of them were identified as lncRNAs (Apendix 1). With the α set to 0.01 and the fold change significance level set to < -0.5 : >0.5, no significant**statistikken skal ikke gjentas her – beskrives i metode.Start med å presentere data for research question 1, etterfulgt av 2 og 3 – dvs volume analyses tas til slutt**
-difference was found between low and moderate volume. The same applied to the data when adjusting α level to 0.05 and 0.1. 
+difference was found between low and moderate volume. The same applied to the data when adjusting α level to 0.05 and 0.1. **Gjort i samsvar med daniels bionformatikk paper**
 
 
 Of the 1390 lncRNAs, 169 were differentially expressed (DE) at timepoint w2pre. 164 lncRNAs were upregulated and 5 were downregulated (figur 3A). At timepoint w2post 102 lncRNAs were DE, and 40 were upregulated and 62 downregulated (figur 3C). After the training period, at timepoint w12, 64 lncRNAs were upregulated (figure 3E). The lncRNAs were arranged according to adjusted p-value and FC. The top ten from their respective timepoint were choosen and explored further (figur 3B, 3D and 3F respectively). 17 of the DE lncRNAs were DE across all timepoints (figur 3G). No significant difference were found between low and moderate volume at any timepoint (figur4). Of the top ten lncRNAs, only 3 are downregulated (figure 3C).**Du må presentere eksempler på gener – alt som skal brukes i diskusjonen, må også nevnes i results – henvis først til cellulære funksjoner – e.g. LncRNA involved in regulatin of cellular proliferation… gener som tidligere har blitt funnet å inneha spesielle funksjoner i skjelettmuskel fremheves spesielt (gjelder seff H19, men også LincMD1, og evt andre).** 
